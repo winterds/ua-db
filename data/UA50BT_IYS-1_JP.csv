@@ -1,0 +1,118 @@
+﻿Card Name,Card Number,Rarity,Color,Type,Effect,Energy Cost,AP Cost,Power,Attributes,Generate Energy,Trigger,Image
+阿吽,UA50BT/IYS-1-001,U,Purple,キャラクター,[登場時]自分の場の特徴を持たない他のキャラを1枚まで選び、別のラインに移動させる。,3,1,3000,-,PP,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-001.png?v8
+邪見,UA50BT/IYS-1-002,C,Purple,キャラクター,[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）,-,1,1500,-,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-002.png?v8
+邪見,UA50BT/IYS-1-003,R,Purple,キャラクター,[登場時]自分の山札の上から4枚見て、特徴を持たないキャラカードを1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,1500,-,P,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-003.png?v8
+殺生丸,UA50BT/IYS-1-004,C,Purple,キャラクター,-,-,1,1500,-,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-004.png?v8
+殺生丸,UA50BT/IYS-1-005,C,Purple,キャラクター,"自分の場にカードが1枚もない場合、手札にあるこのカードの必要エナジーを[紫×2]減らす。
+[登場時]自分の山札の上から2枚見て、特徴を持たない紫のキャラカードを1枚まで場外に置く。残りを望む順で山札の上に置く。",2,1,2000,-,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-005.png?v8
+殺生丸,UA50BT/IYS-1-006,U,Purple,キャラクター,"[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+[自分のターン中]このターン中に自分のキャラが場外から登場している場合、このキャラはBP+1000。",3,1,3000+,-,PP,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-006.png?v8
+殺生丸,UA50BT/IYS-1-007,R,Purple,キャラクター,[アタック時]このターン中に自分のキャラが場外から登場している場合、カードを1枚まで引く。,4,1,4000,-,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-007.png?v8
+殺生丸,UA50BT/IYS-1-008,R,Purple,キャラクター,"[自分のターン中]このターン中に自分のキャラが場外から登場している場合、このキャラは[ダメージ（2）]を得る。
+[登場時]自分の場外から必要エナジーが3以下で消費APが1の特徴を持たない紫のキャラカードを1枚まで自分の場にレストで登場させる。",5,2,4000,-,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-008.png?v8
+殺生丸,UA50BT/IYS-1-009,SR,Purple,キャラクター,"[レイド]〈殺生丸〉アクティブにし、フロントLに移動できる
+[自分のターン中]このターン中に自分のキャラが場外から登場している場合、このキャラはBP+500と[インパクト（1）]を得る。
+[登場時]自分の場外から必要エナジーが3以下で消費APが1の特徴を持たない紫のキャラカードを1枚まで自分の場にレストで登場させる。",6,1,4500+,-,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-009.png?v8
+殺生丸の母,UA50BT/IYS-1-010,U,Purple,キャラクター,[登場時]自分の場外から必要エナジーが4以下で特徴を持たない紫のキャラカードを1枚まで手札に加える。,4,2,4000,-,PP,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-010.png?v8
+りん,UA50BT/IYS-1-011,C,Purple,キャラクター,[起動メイン][レストにする] [ターン1]このキャラはこのターン中、発生エナジー+[紫]と「メインフェイズ終了時、このキャラを退場させる。」を得る。,-,1,1000,-,P+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-011.png?v8
+りん,UA50BT/IYS-1-012,R,Purple,キャラクター,[登場時]自分の場に〈殺生丸〉がある場合、カードを1枚引く。,3,1,2500,-,PP,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-012.png?v8
+りん,UA50BT/IYS-1-013,SR,Purple,キャラクター,"自分のフロントLに〈殺生丸〉がある場合、このキャラの発生エナジー+[紫]。
+[登場時]このキャラが場外から登場していた場合、自分の場の〈殺生丸〉を1枚まで選び、アクティブにする。",2,1,1500,-,P+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-013.png?v8
+赤子,UA50BT/IYS-1-014,C,Purple,キャラクター,[退場時]自分の山札の上から3枚見て、［特徴：奈落一派］を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。,1,1,1500,奈落一派,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-014.png?v8
+鬼蜘蛛,UA50BT/IYS-1-015,C,Purple,キャラクター,[退場時]カードを1枚引く。,-,1,500,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-015.png?v8
+神楽,UA50BT/IYS-1-016,C,Purple,キャラクター,[登場時]カードを1枚引き、自分の手札を1枚場外に置く。,-,1,1500,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-016.png?v8
+神楽,UA50BT/IYS-1-017,U,Purple,キャラクター,このキャラがアクティブの場合、このキャラの発生エナジー+[紫]。,2,1,2500,奈落一派,P+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-017.png?v8
+神楽,UA50BT/IYS-1-018,R,Purple,キャラクター,"[登場時]自分の山札の上から1枚見て、山札の上か場外に置く。
+[起動メイン][ターン1]自分の場の他の［特徴：奈落一派］を1枚まで選び、このターン中、「このキャラはBP4000以上のキャラにブロックされない。」を与える。自分の場の他の［特徴：奈落一派］を1枚退場させる。",3,1,3000,奈落一派,PP,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-018.png?v8
+神楽,UA50BT/IYS-1-019,SR,Purple,キャラクター,[登場時]自分の場外から必要エナジーが2以下で消費APが1の紫のキャラカードを1枚まで自分の場にレストで登場させる。そのキャラにこのターン中、「メインフェイズ終了時、このキャラを退場させる。」を与える。,4,1,4000,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-019.png?v8
+獣郎丸&影郎丸,UA50BT/IYS-1-020,U,Purple,キャラクター,[登場時]必要エナジーが1以下の自分の場の他のキャラを1枚手札に戻す。戻せない場合、このキャラを手札に戻す。,1,1,1500,奈落一派,PP,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-020.png?v8
+神無,UA50BT/IYS-1-021,U,Purple,キャラクター,[登場時]自分の山札の上から3枚見て、［特徴：奈落一派］か〈神無の鏡〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,1500,奈落一派,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-021.png?v8
+神無,UA50BT/IYS-1-022,SR,Purple,キャラクター,"[登場時]カードを1枚引き、自分の手札を1枚場外か裏向きで自分の場の〈奈落〉1枚の下に置く。
+[起動メイン]自分の場外から［特徴：奈落一派］か〈四魂のかけら〉を1枚裏向きで自分の場の〈奈落〉1枚の下に置く。〈神無〉のこの効果は1ターンに1回のみ発動できる。",3,1,3000,奈落一派,PP,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-022.png?v8
+悟心鬼,UA50BT/IYS-1-023,C,Purple,キャラクター,[自分のターン中]このターン中に自分の場のキャラが退場している場合、このキャラはBP+1000。,2,1,3000+,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-023.png?v8
+琥珀,UA50BT/IYS-1-024,U,Purple,キャラクター,[退場時]このカードを手札に加える。,1,1,2000,奈落一派,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-024.png?v8
+奈落,UA50BT/IYS-1-025,U,Purple,キャラクター,[登場時]相手のフロントLのキャラを1枚まで選び、このターン中、BP-1000。,2,1,2500,奈落一派,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-025.png?v8
+奈落,UA50BT/IYS-1-026,R,Purple,キャラクター,"このキャラの下に裏向きのカードがある場合、このキャラは[インパクト無効]を得る。
+[自分のターン中]このキャラの下に裏向きのカードがある場合、このキャラはBP+1000。",2,1,3000+,奈落一派,P,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-026.png?v8
+奈落,UA50BT/IYS-1-027,R,Purple,キャラクター,[起動メイン][ターン1]相手のフロントLのキャラを1枚まで選び、このターン中、BP-1000し、このキャラをアクティブにし、このキャラはこのターン中、[インパクト（1）]を得る。自分の場の［特徴：奈落一派］を1枚退場させる。,4,1,4000,奈落一派,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-027.png?v8
+奈落,UA50BT/IYS-1-028,SR,Purple,キャラクター,"[レイド]〈奈落〉アクティブにし、フロントLに移動できる
+このキャラの下の裏向きのカードの枚数により、以下の効果を全て得る。
+・2枚以上：このキャラが場を離れる場合、代わりにこのカードを手札に戻す。
+・3枚以上：このキャラが自分の場から手札に戻った時、このキャラのレイド元のカードが必要エナジーが2以下で場外にある場合、そのカードを1枚まで自分の場にレストで登場させる。
+[起動メイン][ターン1]自分の場外から［特徴：奈落一派］か〈四魂のかけら〉を1枚裏向きで自分の場の〈奈落〉1枚の下に置く。",4,1,4000,奈落一派,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-028.png?v8
+白童子,UA50BT/IYS-1-029,C,Purple,キャラクター,-,-,1,2000,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-029.png?v8
+人見 蔭刀,UA50BT/IYS-1-030,C,Purple,キャラクター,"このカードは〈奈落〉としても扱う。
+[登場時]自分の場にあるキャラが全て［特徴：奈落一派］の場合、自分の山札の上から1枚見て、山札の上に置くか、裏向きで自分の場の〈奈落〉1枚の下に置く。",-,1,1500,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-030.png?v8
+夢幻の白夜,UA50BT/IYS-1-031,C,Purple,キャラクター,[退場時]自分の山札の上から2枚まで場外に置く。,-,1,1500,奈落一派,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-031.png?v8
+神無の鏡,UA50BT/IYS-1-032,U,Purple,フィールド,[起動メイン][レストにする]自分の場外から［特徴：奈落一派］か〈四魂のかけら〉を1枚裏向きで自分の場の〈奈落〉1枚の下に置く。,1,1,-,-,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-032.png?v8
+最猛勝,UA50BT/IYS-1-033,C,Purple,イベント,カードを2枚引く。自分の場に〈奈落〉がある場合、相手は自身の場外にあるイベントカードを2枚望む順で自身の山札の下に置く。,3,1,-,-,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-033.png?v8
+四魂のかけら,UA50BT/IYS-1-034,U,Purple,イベント,自分のAPカードを2枚まで選び、アクティブにする。,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-034.png?v8
+瘴気,UA50BT/IYS-1-035,U,Purple,イベント,相手のフロントLのキャラを1枚選び、自分の場の［特徴：奈落一派］1枚につき、このターン中、BP-1000。,4,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-035.png?v8
+天生牙,UA50BT/IYS-1-036,U,Purple,イベント,カードを1枚引き、自分の手札を1枚場外に置く。その後、自分の場外から必要エナジーが3以下で消費APが1の特徴を持たない紫のキャラカードを1枚まで自分の場にレストで登場させる。,4,1,-,-,-,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-036.png?v8
+爆砕牙,UA50BT/IYS-1-037,U,Purple,イベント,『BP3000以下』の相手のフロントLのキャラを1枚選び、退場させる。自分の場に〈殺生丸〉がある場合、『BP5000以下』に代わる。,4,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-037.png?v8
+風刃の舞,UA50BT/IYS-1-038,C,Purple,イベント,BP3000以下の相手のフロントLのキャラを1枚選び、退場させる。,2,1,-,-,-,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-038.png?v8
+融合,UA50BT/IYS-1-039,C,Purple,イベント,"このカードは自分の場にキャラがある場合のみ使用できる。
+自分のAPカードを1枚アクティブにする。カードを2枚引く。自分の場のキャラを1枚退場させる。このカードを自分の場の〈奈落〉1枚の下に裏向きで置いてもよい。",3,1,-,-,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-039.png?v8
+りんの命と引きかえに得るものなど―なにもない!!,UA50BT/IYS-1-040,U,Purple,イベント,自分のAPカードを2枚まで選び、アクティブにする。,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-040.png?v8
+阿波の八衛門狸,UA50BT/IYS-1-041,C,Red,キャラクター,[登場時]自分の山札の上から4枚見て、赤のイベントカードを1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,3,1,2500,-,RR,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-041.png?v8
+犬夜叉,UA50BT/IYS-1-042,C,Red,キャラクター,-,-,1,1500,-,R,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-042.png?v8
+犬夜叉,UA50BT/IYS-1-043,U,Red,キャラクター,"自分の場にカードが1枚もない場合、手札にあるこのカードの必要エナジーを[赤×2]減らす。
+[起動メイン][ターン1]このターン中にこのキャラが自分の効果でアクティブからレストになったことがある場合のみ発動できる。このキャラをアクティブにし、このターン中、BP+1000。",2,1,2000+,-,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-043.png?v8
+犬夜叉,UA50BT/IYS-1-044,U,Red,キャラクター,"このキャラの下に裏向きのカードがない場合、このキャラはブロックできない。
+このキャラはアクティブで登場させる。
+[ダメージ（2）]（このキャラがアタックで与える直接ダメージは2ダメージ）
+[起動メイン][フロントLにある場合] [ターン1]このキャラがレストの場合のみ発動できる。このキャラをアクティブにする。
+[起動メイン][フロントLにある場合] [ターン1]自分の場外の〈鉄砕牙〉を1枚裏向きでこのキャラの下に置く。",4,2,4000,-,R,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-044.png?v8
+犬夜叉,UA50BT/IYS-1-045,R,Red,キャラクター,"[起動メイン][ターン1]このターン中にこのキャラが自分の効果でアクティブからレストになったことがある場合のみ発動できる。このキャラをアクティブにする。
+[アタック時]このキャラのBPが4000以上の場合、カードを1枚引く。",3,1,3000,-,RR,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-045.png?v8
+犬夜叉,UA50BT/IYS-1-046,SR,Red,キャラクター,"[レイド]〈犬夜叉〉アクティブにし、フロントLに移動できる
+[ターン1]このキャラのアタックがブロックされなかった時、カードを1枚引く。
+[起動メイン][ターン1]このターン中にこのキャラが自分の効果でアクティブからレストになったことがある場合のみ発動できる。このキャラをアクティブにし、このターン中、『BP+1000と[インパクト（1）]』を得る。このキャラがこのターン中に登場していた場合、『[2回アタック]』に代えてもよい。",4,1,4000+,-,R,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-046.png?v8
+楓,UA50BT/IYS-1-047,C,Red,キャラクター,-,1,1,2500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-047.png?v8
+桔梗,UA50BT/IYS-1-048,U,Red,キャラクター,[登場時]自分の場の他のキャラを1枚まで選び、このターン中、BP+1000。,-,1,500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-048.png?v8
+桔梗,UA50BT/IYS-1-049,SR,Red,キャラクター,"[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+[起動メイン][ターン1]このキャラが登場したターン中のみ発動できる。自分のフロントLのアクティブの〈犬夜叉〉を1枚レストにする。そうした場合、以下から1つ選ぶ。
+・このキャラをアクティブにし、このターン中、BP+1000。
+・相手のフロントLのキャラを1枚まで選び、レストにする。",3,1,3000+,-,RR,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-049.png?v8
+雲母,UA50BT/IYS-1-050,C,Red,キャラクター,[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）,-,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-050.png?v8
+雲母,UA50BT/IYS-1-051,R,Red,キャラクター,[自分のターン中]このターン中に自分の〈珊瑚〉がアタックしている場合、このキャラはBP+1000。,2,1,3000+,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-051.png?v8
+銀太＆白角,UA50BT/IYS-1-052,C,Red,キャラクター,[ステップ]（自分の移動フェイズにフロントLからエナジーLへ移動できる）,2,1,3000,-,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-052.png?v8
+鋼牙,UA50BT/IYS-1-053,C,Red,キャラクター,[ステップ]（自分の移動フェイズにフロントLからエナジーLへ移動できる）,-,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-053.png?v8
+鋼牙,UA50BT/IYS-1-054,SR,Red,キャラクター,[登場時]自分の場に〈日暮 かごめ〉がある場合、このキャラをアクティブにしてもよい。そうした場合、このキャラはこのターン中、「自分のアタックフェイズ終了時、このキャラのBPが4000以下の場合、このキャラを手札に戻す。」を得る。,4,1,4000,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-054.png?v8
+琥珀,UA50BT/IYS-1-055,C,Red,キャラクター,[起動メイン][レストにする] [ターン1]このキャラはこのターン中、発生エナジー+[赤]と「メインフェイズ終了時、このキャラを退場させる。」を得る。,-,1,1000,-,R+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-055.png?v8
+珊瑚,UA50BT/IYS-1-056,C,Red,キャラクター,[登場時]自分の山札の上から2枚見て、赤のイベントカードを1枚まで場外に置く。残りを望む順で山札の上に置く。,-,1,1500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-056.png?v8
+珊瑚,UA50BT/IYS-1-057,U,Red,キャラクター,[登場時]自分の山札の上から3枚見て、〈珊瑚〉か〈弥勒〉か〈雲母〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-057.png?v8
+珊瑚,UA50BT/IYS-1-058,R,Red,キャラクター,"[自分のターン中]自分の場に〈弥勒〉がある場合、このキャラはBP+1000。
+[登場時]自分の山札の上から3枚見て、赤のイベントカードを1枚まで場外に置く。残りを望む順で山札の下に置く。",3,1,3000+,-,RR,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-058.png?v8
+珊瑚,UA50BT/IYS-1-059,SR,Red,キャラクター,"[レイド]〈珊瑚〉アクティブにし、フロントLに移動できる
+[インパクト（1）]（アタックしてバトルに勝利した時、相手に1ダメージ）
+[登場時]カードを『1枚』引き、自分の手札を1枚場外に置く。自分の場に〈弥勒〉がある場合、『2枚』に代えてもよい。",4,1,4000,-,R,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-059.png?v8
+七宝,UA50BT/IYS-1-060,C,Red,キャラクター,[登場時]自分の場の他のキャラを1枚まで選び、このターン中、BP+1000。,1,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-060.png?v8
+七宝,UA50BT/IYS-1-061,SR,Red,キャラクター,"自分の場にカードが1枚もない場合、手札にあるこのカードの必要エナジーを[赤×2]減らす。
+[登場時]自分の山札の上から1枚見て、山札の上か場外に置く。
+[起動メイン][レストにする] [このカードを退場させる]自分の場外から〈七宝〉以外の必要エナジーが0の赤のキャラカードを1枚まで自分の場にレストで登場させる。",2,1,2000,-,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-061.png?v8
+刀々斎,UA50BT/IYS-1-062,U,Red,キャラクター,[登場時]自分の場外から赤のイベントカードを1枚まで手札に加える。,3,2,3500,-,RR,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-062.png?v8
+日暮 かごめ,UA50BT/IYS-1-063,C,Red,キャラクター,[登場時]カードを1枚引き、自分の手札を1枚場外に置く。,-,1,1500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-063.png?v8
+日暮 かごめ,UA50BT/IYS-1-064,U,Red,キャラクター,このキャラがアクティブの場合、このキャラの発生エナジー+[赤]。,2,1,2500,-,R+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-064.png?v8
+日暮 かごめ,UA50BT/IYS-1-065,R,Red,キャラクター,[登場時]自分の山札の上から4枚見て、〈犬夜叉〉か〈日暮 かごめ〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,1500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-065.png?v8
+日暮 かごめ,UA50BT/IYS-1-066,SR,Red,キャラクター,"[レイド]〈日暮 かごめ〉アクティブにし、フロントLに移動できる
+[登場時]自分の手札から必要エナジーが3以下で消費APが1の赤の〔〈犬夜叉〉か〈日暮 かごめ〉〕を1枚まで自分の場にレストで登場させる。
+[起動メイン][フロントLにある場合] [ターン1]自分のフロントLのアクティブの〈犬夜叉〉を1枚レストにする。そうした場合、このキャラはこのターン中、「このキャラはBP4000以上のキャラにブロックされない。」を得て、自分の場の他のキャラを1枚まで選び、このターン中、BP+1000。",4,1,4000,-,R,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-066.png?v8
+冥加,UA50BT/IYS-1-067,U,Red,キャラクター,[登場時]必要エナジーが1以下の自分の場の他のキャラを1枚手札に戻す。戻せない場合、このキャラを手札に戻す。,1,1,1500,-,RR,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-067.png?v8
+弥勒,UA50BT/IYS-1-068,C,Red,キャラクター,-,-,1,1500,-,R,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-068.png?v8
+弥勒,UA50BT/IYS-1-069,U,Red,キャラクター,[登場時]カードを1枚引き、自分の手札を1枚場外に置く。,2,1,3000,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-069.png?v8
+弥勒,UA50BT/IYS-1-070,R,Red,キャラクター,[起動メイン][フロントLにある場合] [ターン1]自分の場に〈珊瑚〉がある場合のみ発動できる。自分の場外のイベントカードを1枚リムーブエリアに置く。そうした場合、このキャラはこのターン中、「このキャラはBP4000以上のキャラにブロックされない。」を得る。,3,1,3000,-,RR,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-070.png?v8
+弥勒,UA50BT/IYS-1-071,SR,Red,キャラクター,"[レイド]〈弥勒〉アクティブにし、フロントLに移動できる
+[登場時]自分の場外のイベントカードを望む枚数リムーブエリアに置き、『BP2500』以下の相手のフロントLのキャラを1枚まで選び、退場させる。自分の場に〈珊瑚〉がある場合、この効果で場外からリムーブエリアに置いたカード1枚につき、この効果で選べるキャラのBPの範囲+500。",5,1,4000,-,R,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-071.png?v8
+骨喰いの井戸,UA50BT/IYS-1-072,U,Red,フィールド,[登場時]自分の山札の上から4枚見て、〈犬夜叉〉か〈日暮 かごめ〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。,2,1,-,-,R,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-072.png?v8
+生き方を選べるということだ,UA50BT/IYS-1-073,U,Red,イベント,自分のAPカードを2枚まで選び、アクティブにする。,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-073.png?v8
+おすわり,UA50BT/IYS-1-074,C,Red,イベント,"このカードは自分の場に〈日暮 かごめ〉がある場合のみ使用できる。
+カードを1枚引く。自分の場の〈犬夜叉〉を1枚まで選び、このターン中、BP+1000。自分のフロントLのアクティブの〈犬夜叉〉を1枚レストにしてもよい。そうした場合、自分のAPカードを1枚アクティブにする。",3,1,-,-,-,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-074.png?v8
+おらがしっかりせねば,UA50BT/IYS-1-075,C,Red,イベント,自分の場のキャラを1枚まで選び、このターン中、BP+2000。自分の場に〈七宝〉がある場合、自分のAPカードを1枚アクティブにする。,3,1,-,-,-,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-075.png?v8
+おれは命を懸けておまえを守る,UA50BT/IYS-1-076,U,Red,イベント,自分のAPカードを2枚まで選び、アクティブにする。,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-076.png?v8
+風穴,UA50BT/IYS-1-077,U,Red,イベント,"自分の場に〈弥勒〉がある場合、手札にあるこのカードの消費APを-1する。
+BP5000以下の相手のフロントLのキャラを1枚まで選び、退場させる。",4,2,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-077.png?v8
+結界,UA50BT/IYS-1-078,U,Red,イベント,カードを2枚引き、自分の手札を2枚場外に置く。自分の場に〈弥勒〉がある場合、自分のAPカードを1枚アクティブにする。,3,1,-,-,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-078.png?v8
+鉄砕牙,UA50BT/IYS-1-079,U,Red,イベント,『BP3000以下』の相手のフロントLのキャラを1枚選び、退場させる。自分の場に〈犬夜叉〉がある場合、『BP5000以下』に代わる。,4,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-079.png?v8
+飛来骨,UA50BT/IYS-1-080,C,Red,イベント,"相手のフロントLのキャラを1枚選び、レストにする。
+このカードが自分の効果によって手札から場外に置かれた時、自分の場に〈珊瑚〉がある場合、カードを1枚引く。",2,1,-,-,-,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-080.png?v8
