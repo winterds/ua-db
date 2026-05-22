@@ -1,0 +1,12 @@
+{
+  "sets": [
+    {
+      "id": "UA50BT_IYS-1",
+      "name": "Inuyasha",
+      "files": {
+        "en": "data/UA50BT_IYS-1_EN.csv",
+        "jp": "data/UA50BT_IYS-1_JP.csv"
+      }
+    }
+  ]
+}
