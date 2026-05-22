@@ -83,6 +83,9 @@
   .chip.C.active    { background: var(--c); }
   .chip.Yellow.active { background: #b8860b; color: #ffe87a; border-color: var(--yellow); }
   .chip.Purple.active { background: #5a2d8a; color: #d4a8ff; border-color: var(--purple); }
+  .chip.Red.active    { background: #7a1a1a; color: #ffaaaa; border-color: #e05050; }
+  .chip.Blue.active   { background: #1a3a6a; color: #aaccff; border-color: #5090e0; }
+  .chip.Green.active  { background: #1a4a2a; color: #aaffcc; border-color: #50c070; }
   .chip.Character.active { background: #1a3a5c; color: #88c0ff; border-color: var(--accent); }
   .chip.Event.active     { background: #1a3a2a; color: #88ffcc; border-color: #40e0a0; }
   .chip.Field.active     { background: #3a2a1a; color: #ffcc88; border-color: #e09040; }
@@ -141,6 +144,9 @@
   .color-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .color-Yellow { background: var(--yellow); box-shadow: 0 0 4px var(--yellow); }
   .color-Purple { background: var(--purple); box-shadow: 0 0 4px var(--purple); }
+  .color-Red    { background: #e05050;       box-shadow: 0 0 4px #e05050; }
+  .color-Blue   { background: #5090e0;       box-shadow: 0 0 4px #5090e0; }
+  .color-Green  { background: #50c070;       box-shadow: 0 0 4px #50c070; }
 
   /* LIST ITEM */
   .card-list-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color .15s, background .15s; }
@@ -559,38 +565,41 @@ function closeModalDirect() { document.getElementById('modal-backdrop').classLis
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
 
 // ── CSV PARSER ──
+// Streams char-by-char so LF inside quoted fields is never confused with a row separator.
+// Handles both CRLF and LF-only files correctly.
 function parseCSVText(text) {
-  text = text.replace(/^\uFEFF/, '');
-  const lines = []; let cur = '', inQ = false;
+  text = text.replace(/^\uFEFF/, ''); // strip BOM
+  const rows = [];
+  let col = '', row = [], inQ = false;
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
-    if (ch === '"') { if (inQ && text[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; }
-    else if (ch === '\n' && !inQ) { lines.push(cur); cur = ''; }
-    else if (ch === '\r' && !inQ) {}
-    else cur += ch;
+    if (ch === '"') {
+      if (inQ && text[i + 1] === '"') { col += '"'; i++; } // escaped ""
+      else inQ = !inQ;
+    } else if (ch === ',' && !inQ) {
+      row.push(col); col = '';
+    } else if (ch === '\n' && !inQ) {
+      row.push(col.endsWith('\r') ? col.slice(0, -1) : col); // strip \r for CRLF files
+      col = '';
+      if (row.length) { rows.push(row); row = []; }
+    } else {
+      col += ch;
+    }
   }
-  if (cur) lines.push(cur);
-  if (lines.length < 2) return [];
-  const headers = splitLine(lines[0]);
-  return lines.slice(1).filter(l => l.trim()).map(line => {
-    const vals = splitLine(line);
-    const obj = {};
-    headers.forEach((h, i) => obj[h] = (vals[i]||'').trim());
-    return obj;
-  });
-}
-function splitLine(line) {
-  const res = []; let cur = '', inQ = false;
-  for (let i = 0; i <= line.length; i++) {
-    const ch = line[i];
-    if (i === line.length) { res.push(cur); break; }
-    if (ch === '"') { if (inQ && line[i+1]==='"') { cur+='"'; i++; } else inQ=!inQ; }
-    else if (ch === ',' && !inQ) { res.push(cur); cur=''; }
-    else cur += ch;
-  }
-  return res;
-}
+  // flush last row if no trailing newline
+  row.push(col);
+  if (row.some(c => c.trim())) rows.push(row);
 
+  if (rows.length < 2) return [];
+  const headers = rows[0].map(h => h.trim());
+  return rows.slice(1)
+    .filter(r => r.length === headers.length)
+    .map(vals => {
+      const obj = {};
+      headers.forEach((h, i) => obj[h] = (vals[i] || '').trim());
+      return obj;
+    });
+}
 // ── HELPERS ──
 function showLoading(msg = 'Loading…') {
   document.getElementById('main-content').innerHTML = `
