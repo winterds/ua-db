@@ -203,21 +203,28 @@
   .modal-img-col img { width: 100%; height: 100%; object-fit: contain; display: block; background: var(--surface2); }
   .modal-body { flex: 1; padding: 24px; overflow-y: auto; position: relative; }
 
-  /* ── SLIDE-IN OVERLAY MODE ── */
-  .modal-backdrop.slide-mode { justify-content: flex-end; align-items: stretch; padding: 0; background: rgba(0,0,0,.6); }
-  .modal-backdrop.slide-mode .modal {
-    max-width: 420px; width: 100%; height: 100%; max-height: 100vh;
+  /* ── SIDE PANEL MODE (non-blocking, no backdrop dim/blur) ── */
+  .modal-backdrop.panel-mode {
+    justify-content: flex-end; align-items: stretch; padding: 0;
+    background: transparent; backdrop-filter: none;
+    pointer-events: none; /* let clicks pass through to the page */
+  }
+  .modal-backdrop.panel-mode.open { pointer-events: none; }
+  .modal-backdrop.panel-mode .modal {
+    max-width: 380px; width: 100%; height: 100%; max-height: 100vh;
     border-radius: 0; flex-direction: column;
     transform: translateX(100%);
-    transition: transform .3s cubic-bezier(.2,.8,.2,1);
+    transition: transform .25s cubic-bezier(.2,.8,.2,1);
     border-left: 1px solid var(--border-glow); border-top: none; border-right: none; border-bottom: none;
+    box-shadow: -8px 0 40px rgba(0,0,0,.5);
+    pointer-events: all; /* panel itself stays interactive */
   }
-  .modal-backdrop.slide-mode.open .modal { transform: translateX(0); }
-  .modal-backdrop.slide-mode .modal-img-col {
-    width: 100%; height: 280px; border-radius: 0;
+  .modal-backdrop.panel-mode.open .modal { transform: translateX(0); }
+  .modal-backdrop.panel-mode .modal-img-col {
+    width: 100%; height: 260px; border-radius: 0;
     border-right: none; border-bottom: 1px solid var(--border); flex-shrink: 0;
   }
-  .modal-backdrop.slide-mode .modal-body { flex: 1; }
+  .modal-backdrop.panel-mode .modal-body { flex: 1; }
   .modal-name { font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
   .modal-num { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--text-muted); }
   .modal-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
@@ -343,7 +350,7 @@ let cards = [];         // current lang cards
 let filteredCards = [];
 let viewMode = 'grid';
 let imgMode = 'crop'; // 'crop' or 'full'
-let detailMode = 'popup'; // 'popup' or 'slide'
+let detailMode = 'popup'; // 'popup' or 'panel'
 let activeFilters = { rarity: 'all', color: 'all', type: 'all' };
 let manifest = null;
 
@@ -513,7 +520,7 @@ function renderContent() {
       </div>
       <div class="view-toggle">
         <button class="view-btn ${detailMode==='popup'?'active':''}" onclick="setDetailMode('popup')" title="Popup detail">⬚</button>
-        <button class="view-btn ${detailMode==='slide'?'active':''}" onclick="setDetailMode('slide')" title="Slide-in detail">⇥</button>
+        <button class="view-btn ${detailMode==='panel'?'active':''}" onclick="setDetailMode('panel')" title="Side panel (browse while viewing)">▤</button>
       </div>
       <select class="sort-select" id="sort-select" onchange="applyFilters()">
         <option value="num-asc">№ Ascending</option>
@@ -633,7 +640,7 @@ function openModal(idx) {
   if (c['Attributes'] && c['Attributes'] !== '-') extras.push(`<div class="modal-extra-chip"><span>Attr</span>${c['Attributes']}</div>`);
   document.getElementById('modal-extra').innerHTML = extras.join('');
   const backdrop = document.getElementById('modal-backdrop');
-  backdrop.classList.toggle('slide-mode', detailMode === 'slide');
+  backdrop.classList.toggle('panel-mode', detailMode === 'panel');
   backdrop.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
