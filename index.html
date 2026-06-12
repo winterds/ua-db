@@ -152,6 +152,14 @@
     display: block;
   }
   .card-item:hover .card-img-wrap img { transform: scale(1.05); }
+  /* Full image mode - show entire card uncropped */
+  .card-img-wrap.full-img {
+    aspect-ratio: 480/671;
+  }
+  .card-img-wrap.full-img img {
+    object-fit: contain;
+    object-position: center;
+  }
   .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 28px; }
   .card-info { padding: 8px 10px; }
   .card-name { font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
@@ -318,6 +326,7 @@ let allData = {};       // { en: [...], jp: [...] } for current set
 let cards = [];         // current lang cards
 let filteredCards = [];
 let viewMode = 'grid';
+let imgMode = 'crop'; // 'crop' or 'full'
 let activeFilters = { rarity: 'all', color: 'all', type: 'all' };
 let manifest = null;
 
@@ -481,6 +490,10 @@ function renderContent() {
         <button class="view-btn ${viewMode==='grid'?'active':''}" onclick="setView('grid')" title="Grid">⊞</button>
         <button class="view-btn ${viewMode==='list'?'active':''}" onclick="setView('list')" title="List">☰</button>
       </div>
+      <div class="view-toggle">
+        <button class="view-btn ${imgMode==='crop'?'active':''}" onclick="setImgMode('crop')" title="Cropped artwork">▣</button>
+        <button class="view-btn ${imgMode==='full'?'active':''}" onclick="setImgMode('full')" title="Full card image">▢</button>
+      </div>
       <select class="sort-select" id="sort-select" onchange="applyFilters()">
         <option value="num-asc">№ Ascending</option>
         <option value="num-desc">№ Descending</option>
@@ -507,7 +520,7 @@ function cardIndex(c) { return allData[lang].indexOf(c); }
 
 function gridCard(c, i) {
   return `<div class="card-item" onclick="openModal(${cardIndex(c)})">
-    <div class="card-img-wrap">
+    <div class="card-img-wrap ${imgMode === 'full' ? 'full-img' : ''}">
       ${c['Image']
         ? `<img src="${c['Image']}" alt="${c['Card Name']}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
            <div class="card-img-placeholder" style="display:none">🃏</div>`
@@ -548,6 +561,11 @@ function listCard(c, i) {
 
 function setView(v) {
   viewMode = v;
+  renderContent();
+}
+
+function setImgMode(m) {
+  imgMode = m;
   renderContent();
 }
 
