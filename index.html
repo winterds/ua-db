@@ -147,19 +147,20 @@
   /* MINI STEPPER (below card name) */
   .mini-stepper {
     display: flex; align-items: center; justify-content: center; gap: 8px;
-    margin-top: 6px; background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 6px; padding: 3px 6px;
+    margin: 6px auto 0; width: fit-content; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 3px 6px; box-sizing: border-box;
   }
   .mini-stepper-btn {
     background: var(--surface); border: 1px solid var(--border-glow); color: var(--text);
-    border-radius: 4px; width: 22px; height: 22px; font-size: 14px; line-height: 1;
+    border-radius: 4px; width: 22px; height: 22px; min-width: 22px; max-width: 22px; flex: 0 0 22px;
+    font-size: 14px; font-family: inherit; line-height: 1; padding: 0; margin: 0; box-sizing: border-box;
     cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: center;
   }
   .mini-stepper-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
   .mini-stepper-btn:disabled { opacity: .3; cursor: not-allowed; }
-  .mini-stepper-val { font-size: 13px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 16px; text-align: center; }
+  .mini-stepper-val { font-size: 13px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 16px; flex: 0 0 auto; text-align: center; }
   /* list view: stepper sits to the right, compact */
-  .card-list-item .mini-stepper, .deck-item .mini-stepper { margin-top: 0; flex-shrink: 0; }
+  .card-list-item .mini-stepper, .deck-item .mini-stepper { margin: 0; flex-shrink: 0; }
 
   /* LIST VIEW ITEM */
   .card-list-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: border-color .15s, background .15s; position: relative; }
@@ -216,16 +217,20 @@
   .deck-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .deck-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
   .deck-empty { color: var(--text-muted); text-align: center; padding: 40px 10px; font-size: 12px; }
-  .deck-stats-toggle {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-top: 12px; padding: 10px 4px; border-top: 1px solid var(--border);
-    cursor: pointer; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--text-muted); transition: color .15s; flex-shrink: 0;
+  /* DECK TABS */
+  .deck-tabs { display: flex; gap: 4px; margin-bottom: 12px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .deck-tab {
+    flex: 1; background: transparent; border: none; color: var(--text-muted);
+    font-family: inherit; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    padding: 8px 4px; cursor: pointer; transition: color .15s, border-color .15s;
+    border-bottom: 2px solid transparent; margin-bottom: -1px;
   }
-  .deck-stats-toggle:hover { color: var(--text); }
-  .deck-stats-arrow { transition: transform .2s; font-size: 12px; }
-  .deck-stats-arrow.open { transform: rotate(180deg); }
-  .deck-stats { padding-top: 4px; flex-shrink: 0; overflow: hidden; }
+  .deck-tab:hover { color: var(--text); }
+  .deck-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .deck-tab-content { flex: 1; overflow-y: auto; display: flex; flex-direction: column; min-height: 0; }
+  .deck-tab-panel { display: none; flex: 1; flex-direction: column; min-height: 0; }
+  .deck-tab-panel.active { display: flex; }
+  .deck-stats { flex-shrink: 0; overflow: hidden; }
   .deck-stats-group { margin-bottom: 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
   .deck-stats-group:last-child { margin-bottom: 0; }
   .deck-stats-group h4 { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text); margin-bottom: 10px; }
@@ -338,13 +343,20 @@
       <h3>My Deck</h3>
       <div class="deck-count" id="deck-count">0 / 50</div>
     </div>
-    <div class="deck-list" id="deck-list">
-      <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
+    <div class="deck-tabs">
+      <button class="deck-tab active" id="tab-deck" onclick="switchDeckTab('deck')">Deck</button>
+      <button class="deck-tab" id="tab-stats" onclick="switchDeckTab('stats')">Stats</button>
     </div>
-    <div class="deck-stats-toggle" id="deck-stats-toggle" onclick="toggleDeckStats()">
-      <span>Deck Statistics</span><span class="deck-stats-arrow" id="deck-stats-arrow">▾</span>
+    <div class="deck-tab-content">
+      <div class="deck-tab-panel active" id="panel-deck">
+        <div class="deck-list" id="deck-list">
+          <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
+        </div>
+      </div>
+      <div class="deck-tab-panel" id="panel-stats">
+        <div class="deck-stats" id="deck-stats"></div>
+      </div>
     </div>
-    <div class="deck-stats" id="deck-stats" style="display:none;"></div>
     <div class="deck-actions">
       <button class="deck-clear-btn" onclick="exportDeck()">Export</button>
       <button class="deck-clear-btn" onclick="clearDeck()">Clear Deck</button>
@@ -731,12 +743,11 @@ function exportDeck() {
 }
 
 
-function toggleDeckStats() {
-  const el = document.getElementById('deck-stats');
-  const arrow = document.getElementById('deck-stats-arrow');
-  const isOpen = el.style.display !== 'none';
-  el.style.display = isOpen ? 'none' : 'block';
-  arrow.classList.toggle('open', !isOpen);
+function switchDeckTab(tab) {
+  document.getElementById('tab-deck').classList.toggle('active', tab === 'deck');
+  document.getElementById('tab-stats').classList.toggle('active', tab === 'stats');
+  document.getElementById('panel-deck').classList.toggle('active', tab === 'deck');
+  document.getElementById('panel-stats').classList.toggle('active', tab === 'stats');
 }
 
 function renderDeck() {
@@ -786,7 +797,7 @@ function renderDeck() {
 
 function renderDeckStats(entries, total) {
   const statsEl = document.getElementById('deck-stats');
-  if (!total) { statsEl.innerHTML = ''; return; }
+  if (!total) { statsEl.innerHTML = `<div class="deck-empty">No cards in deck yet.</div>`; return; }
 
   // ── Cost Range: fixed 0-10 ──
   const costCounts = {};
