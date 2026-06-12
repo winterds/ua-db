@@ -115,15 +115,9 @@
   .result-count strong { color: var(--text); }
 
   /* CARD GRID */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; align-content: start; flex: 1; }
-  .card-list { display: flex; flex-direction: column; gap: 6px; align-content: start; flex: 1; }
+  .card-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; align-content: start; flex: 1; overflow-y: auto; padding-right: 4px; }
+  .card-list { display: flex; flex-direction: column; gap: 6px; align-content: start; flex: 1; overflow-y: auto; padding-right: 4px; }
 
-  /* PAGINATION */
-  .pagination { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 0 4px; flex-shrink: 0; }
-  .page-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 7px 14px; font-family: inherit; font-size: 13px; cursor: pointer; transition: all .15s; }
-  .page-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
-  .page-btn:disabled { opacity: .3; cursor: not-allowed; }
-  .page-info { font-size: 12px; color: var(--text-muted); font-family: 'Share Tech Mono', monospace; min-width: 70px; text-align: center; }
 
   .card-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .15s, border-color .15s, box-shadow .15s; position: relative; }
   .card-item:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 6px 20px rgba(226,0,0,.2); }
@@ -223,7 +217,16 @@
   .deck-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .deck-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
   .deck-empty { color: var(--text-muted); text-align: center; padding: 40px 10px; font-size: 12px; }
-  .deck-stats { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; flex-shrink: 0; }
+  .deck-stats-toggle {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 12px; padding: 10px 4px; border-top: 1px solid var(--border);
+    cursor: pointer; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-muted); transition: color .15s; flex-shrink: 0;
+  }
+  .deck-stats-toggle:hover { color: var(--text); }
+  .deck-stats-arrow { transition: transform .2s; font-size: 12px; }
+  .deck-stats-arrow.open { transform: rotate(180deg); }
+  .deck-stats { padding-top: 4px; flex-shrink: 0; overflow: hidden; }
   .deck-stats h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
   .deck-stats-group { margin-bottom: 12px; }
   .deck-stats-group:last-child { margin-bottom: 0; }
@@ -258,7 +261,8 @@
     .detail-panel { order: 2; max-height: 70vh; }
     .list-panel { order: 1; }
     .deck-panel { order: 3; max-height: 70vh; }
-    .card-grid, .card-list { max-height: 60vh; }
+    .card-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); max-height: 60vh; }
+    .card-list { max-height: 60vh; }
   }
 </style>
 </head>
@@ -326,7 +330,6 @@
     </div>
     <div class="result-count" id="result-count"></div>
     <div id="card-container"></div>
-    <div class="pagination" id="pagination"></div>
   </main>
 
   <!-- RIGHT: DECK LIST -->
@@ -338,7 +341,10 @@
     <div class="deck-list" id="deck-list">
       <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
     </div>
-    <div class="deck-stats" id="deck-stats"></div>
+    <div class="deck-stats-toggle" id="deck-stats-toggle" onclick="toggleDeckStats()">
+      <span>Deck Stats</span><span class="deck-stats-arrow" id="deck-stats-arrow">▾</span>
+    </div>
+    <div class="deck-stats" id="deck-stats" style="display:none;"></div>
     <div class="deck-actions">
       <button class="deck-clear-btn" onclick="exportDeck()">Export</button>
       <button class="deck-clear-btn" onclick="clearDeck()">Clear Deck</button>
@@ -357,7 +363,6 @@ let cards = [];
 let filteredCards = [];
 let viewMode = 'grid';
 let imgMode = 'full';
-let currentPage = 1;
 let manifest = null;
 let selectedCard = null;     // { cardNumber, ... } currently shown in detail panel
 let deck = {};                // { cardNumber: { count, card } }
@@ -496,8 +501,6 @@ function applyFilters() {
   const color  = document.getElementById('filter-color').value;
   const type   = document.getElementById('filter-type').value;
 
-  currentPage = 1;
-
   filteredCards = cards.filter(c => {
     if (rarity !== 'all' && c['Rarity'] !== rarity) return false;
     if (color  !== 'all' && c['Color']  !== color)  return false;
@@ -510,82 +513,24 @@ function applyFilters() {
   renderCardList();
 }
 
-// ── CARD LIST RENDER (with responsive pagination) ──
-function getItemsPerPage() {
-  const container = document.getElementById('card-container');
-  const rect = container.getBoundingClientRect();
-  const availW = rect.width || container.parentElement.clientWidth || 600;
-  // available vertical space: viewport height minus everything above the card list
-  // plus minus space reserved for the pagination bar
-  const top = rect.top || 0;
-  const availH = Math.max(window.innerHeight - top - 70, 200);
-
-  if (viewMode === 'grid') {
-    const gap = 10;
-    const minItemW = 120;
-    const cols = Math.max(1, Math.floor((availW + gap) / (minItemW + gap)));
-    const itemW = (availW - gap * (cols - 1)) / cols;
-    // card-item height = image (aspect ratio) + info block (~52px)
-    const imgH = imgMode === 'full' ? itemW * (671/480) : itemW * (301/420);
-    const itemH = imgH + 52;
-    const rows = Math.max(1, Math.floor((availH + gap) / (itemH + gap)));
-    return Math.max(cols * rows, cols); // at least one full row
-  } else {
-    const itemH = 64; // approx height of a list row incl. gap
-    const rows = Math.max(1, Math.floor(availH / itemH));
-    return Math.max(rows, 4);
-  }
-}
-
+// ── CARD LIST RENDER (scrollable, 5 per row in grid mode) ──
 function renderCardList() {
   const container = document.getElementById('card-container');
-  const pagEl = document.getElementById('pagination');
   document.getElementById('result-count').innerHTML = `Showing <strong>${filteredCards.length}</strong> of <strong>${cards.length}</strong> cards`;
 
   if (!filteredCards.length) {
     container.innerHTML = `<div class="empty">No cards found</div>`;
-    pagEl.innerHTML = '';
     return;
   }
 
-  const perPage = getItemsPerPage();
-  const totalPages = Math.max(1, Math.ceil(filteredCards.length / perPage));
-  if (currentPage > totalPages) currentPage = totalPages;
-  if (currentPage < 1) currentPage = 1;
-
-  const start = (currentPage - 1) * perPage;
-  const pageItems = filteredCards.slice(start, start + perPage);
-
   if (viewMode === 'grid') {
     container.className = 'card-grid';
-    container.innerHTML = pageItems.map(c => gridCard(c)).join('');
+    container.innerHTML = filteredCards.map(c => gridCard(c)).join('');
   } else {
     container.className = 'card-list';
-    container.innerHTML = pageItems.map(c => listCard(c)).join('');
-  }
-
-  if (totalPages > 1) {
-    pagEl.innerHTML = `
-      <button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage <= 1 ? 'disabled' : ''}>‹ Prev</button>
-      <div class="page-info">Page ${currentPage} / ${totalPages}</div>
-      <button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage >= totalPages ? 'disabled' : ''}>Next ›</button>
-    `;
-  } else {
-    pagEl.innerHTML = '';
+    container.innerHTML = filteredCards.map(c => listCard(c)).join('');
   }
 }
-
-function goToPage(p) {
-  currentPage = p;
-  renderCardList();
-}
-
-// Recalculate page size on resize (debounced)
-let resizeTimer = null;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(() => { currentPage = 1; renderCardList(); }, 200);
-});
 
 function isSelected(c) {
   return selectedCard && selectedCard['Card Number'] === c['Card Number'];
@@ -789,6 +734,15 @@ function exportDeck() {
   });
 }
 
+
+function toggleDeckStats() {
+  const el = document.getElementById('deck-stats');
+  const arrow = document.getElementById('deck-stats-arrow');
+  const isOpen = el.style.display !== 'none';
+  el.style.display = isOpen ? 'none' : 'block';
+  arrow.classList.toggle('open', !isOpen);
+}
+
 function renderDeck() {
   const total = deckTotal();
   const countEl = document.getElementById('deck-count');
@@ -802,8 +756,11 @@ function renderDeck() {
     document.getElementById('deck-stats').innerHTML = '';
     return;
   }
-  // sort by Energy Cost asc, then Card Number asc
+  // sort by Type (Character, Field, Event) -> Energy Cost asc -> Card Number asc
   entries.sort((a,b) => {
+    const ta = TYPE_ORDER.indexOf(a[1].card['Type']); const tb = TYPE_ORDER.indexOf(b[1].card['Type']);
+    const tva = ta === -1 ? 999 : ta; const tvb = tb === -1 ? 999 : tb;
+    if (tva !== tvb) return tva - tvb;
     const ea = (a[1].card['Energy Cost']||'').trim();
     const eb = (b[1].card['Energy Cost']||'').trim();
     const na = ea === '' || ea === '-' ? 999 : parseInt(ea);
@@ -894,14 +851,12 @@ function renderDeckStats(entries, total) {
 // ── VIEW / IMAGE OPTIONS ──
 function setViewMode(m) {
   viewMode = m;
-  currentPage = 1;
   document.getElementById('opt-grid').classList.toggle('active', m === 'grid');
   document.getElementById('opt-list').classList.toggle('active', m === 'list');
   renderCardList();
 }
 function setImgMode(m) {
   imgMode = m;
-  currentPage = 1;
   document.getElementById('opt-crop').classList.toggle('active', m === 'crop');
   document.getElementById('opt-full').classList.toggle('active', m === 'full');
   renderCardList();
