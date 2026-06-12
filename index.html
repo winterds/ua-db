@@ -333,6 +333,7 @@
       <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
     </div>
     <div class="deck-actions">
+      <button class="deck-clear-btn" onclick="exportDeck()">Export</button>
       <button class="deck-clear-btn" onclick="clearDeck()">Clear Deck</button>
     </div>
   </aside>
@@ -353,6 +354,7 @@ let currentPage = 1;
 let manifest = null;
 let selectedCard = null;     // { cardNumber, ... } currently shown in detail panel
 let deck = {};                // { cardNumber: { count, card } }
+let currentSetId = null;
 
 const TYPE_NORMALIZE = { 'キャラクター': 'Character', 'フィールド': 'Field', 'イベント': 'Event', 'ตัวละคร': 'Character', 'สนาม': 'Field', 'อีเวนต์': 'Event' };
 const TYPE_ORDER = ['Character', 'Field', 'Event'];
@@ -397,13 +399,39 @@ async function loadSet(setId) {
     lang = allData.jp?.length ? 'jp' : allData.en?.length ? 'en' : allData.th?.length ? 'th' : lang;
   }
 
-  // reset deck when switching sets (card numbers won't match across sets)
-  deck = {};
+  currentSetId = setId;
   selectedCard = null;
+  loadDeckFromStorage();
   renderDeck();
 
   rebuildFilterOptions();
   loadLang();
+}
+
+// ── DECK PERSISTENCE (localStorage) ──
+function deckStorageKey() {
+  return `ua_deck_${currentSetId}`;
+}
+function saveDeckToStorage() {
+  if (!currentSetId) return;
+  const plain = {};
+  Object.entries(deck).forEach(([num, e]) => { plain[num] = e.count; });
+  try { localStorage.setItem(deckStorageKey(), JSON.stringify(plain)); } catch (e) {}
+}
+function loadDeckFromStorage() {
+  deck = {};
+  if (!currentSetId) return;
+  try {
+    const raw = localStorage.getItem(deckStorageKey());
+    if (!raw) return;
+    const plain = JSON.parse(raw);
+    // allData may have jp/en/th — find card data from whichever lang is loaded
+    const allCards = [...(allData.en||[]), ...(allData.jp||[]), ...(allData.th||[])];
+    Object.entries(plain).forEach(([num, count]) => {
+      const card = allCards.find(c => c['Card Number'] === num);
+      if (card && count > 0) deck[num] = { count, card };
+    });
+  } catch (e) {}
 }
 
 async function fetchCSV(path) {
@@ -685,6 +713,7 @@ function addCard(c, n) {
   if (!deck[num]) deck[num] = { count: 0, card: c };
   deck[num].count += n;
   deck[num].card = c; // keep current-language card reference for display
+  saveDeckToStorage();
   renderDeck();
 }
 
@@ -693,6 +722,7 @@ function removeCard(c, n) {
   if (!deck[num]) return;
   deck[num].count -= n;
   if (deck[num].count <= 0) delete deck[num];
+  saveDeckToStorage();
   renderDeck();
 }
 
@@ -709,9 +739,26 @@ function clearDeck() {
   if (!Object.keys(deck).length) return;
   if (!confirm('Clear the entire deck?')) return;
   deck = {};
+  saveDeckToStorage();
   renderDeck();
   if (selectedCard) renderDetail();
   renderCardList();
+}
+
+function exportDeck() {
+  const entries = Object.entries(deck);
+  if (!entries.length) { showToast('Deck is empty'); return; }
+  entries.sort((a,b) => (a[1].card['Card Number']||'').localeCompare(b[1].card['Card Number']||''));
+  const lines = ['// Main Deck'];
+  entries.forEach(([num, entry]) => {
+    lines.push(`${entry.count} x ${num}`);
+  });
+  const text = lines.join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('Deck copied to clipboard!');
+  }).catch(() => {
+    showToast('Failed to copy — clipboard unavailable');
+  });
 }
 
 function renderDeck() {
