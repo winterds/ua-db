@@ -115,8 +115,15 @@
   .result-count strong { color: var(--text); }
 
   /* CARD GRID */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; overflow-y: auto; flex: 1; padding-bottom: 10px; }
-  .card-list { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex: 1; padding-bottom: 10px; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; align-content: start; flex: 1; }
+  .card-list { display: flex; flex-direction: column; gap: 6px; align-content: start; flex: 1; }
+
+  /* PAGINATION */
+  .pagination { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 0 4px; flex-shrink: 0; }
+  .page-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 7px 14px; font-family: inherit; font-size: 13px; cursor: pointer; transition: all .15s; }
+  .page-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .page-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .page-info { font-size: 12px; color: var(--text-muted); font-family: 'Share Tech Mono', monospace; min-width: 70px; text-align: center; }
 
   .card-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .15s, border-color .15s, box-shadow .15s; position: relative; }
   .card-item:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 6px 20px rgba(226,0,0,.2); }
@@ -130,6 +137,7 @@
   .card-name { font-size: 12px; font-weight: 600; line-height: 1.25; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .card-meta { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
   .card-num { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--text-muted); }
+  .card-color-label { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; }
   .rarity-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: 3px; }
   .rarity-SR { background: rgba(255,107,53,.2); color: var(--sr); border: 1px solid rgba(255,107,53,.4); }
   .rarity-R  { background: rgba(226,0,0,.2); color: var(--r);  border: 1px solid rgba(226,0,0,.4); }
@@ -172,8 +180,8 @@
 
   /* DETAIL PANEL */
   .detail-empty { color: var(--text-muted); text-align: center; padding: 60px 10px; font-size: 13px; }
-  .detail-img-wrap { width: 100%; aspect-ratio: 480/671; background: var(--surface2); border-radius: 10px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border); }
-  .detail-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .detail-img-wrap { width: 100%; aspect-ratio: 420/301; background: var(--surface2); border-radius: 10px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border); position: relative; }
+  .detail-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 24.05%; display: block; }
   .detail-name { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
   .detail-num { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--text-muted); }
   .detail-badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
@@ -194,7 +202,7 @@
   .detail-extra-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 11px; }
   .detail-extra-chip span { color: var(--text-muted); margin-right: 4px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
 
-  .detail-add-row { display: flex; align-items: center; gap: 10px; }
+  .detail-add-row { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
   .qty-control { display: flex; align-items: center; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; flex: 1; justify-content: center; }
   .qty-btn { background: var(--surface); border: 1px solid var(--border-glow); color: var(--text); border-radius: 6px; width: 30px; height: 30px; font-size: 16px; cursor: pointer; transition: all .15s; }
   .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -312,6 +320,7 @@
     </div>
     <div class="result-count" id="result-count"></div>
     <div id="card-container"></div>
+    <div class="pagination" id="pagination"></div>
   </main>
 
   <!-- RIGHT: DECK LIST -->
@@ -340,6 +349,7 @@ let cards = [];
 let filteredCards = [];
 let viewMode = 'grid';
 let imgMode = 'crop';
+let currentPage = 1;
 let manifest = null;
 let selectedCard = null;     // { cardNumber, ... } currently shown in detail panel
 let deck = {};                // { cardNumber: { count, card } }
@@ -451,6 +461,8 @@ function applyFilters() {
   const color  = document.getElementById('filter-color').value;
   const type   = document.getElementById('filter-type').value;
 
+  currentPage = 1;
+
   filteredCards = cards.filter(c => {
     if (rarity !== 'all' && c['Rarity'] !== rarity) return false;
     if (color  !== 'all' && c['Color']  !== color)  return false;
@@ -463,24 +475,82 @@ function applyFilters() {
   renderCardList();
 }
 
-// ── CARD LIST RENDER ──
+// ── CARD LIST RENDER (with responsive pagination) ──
+function getItemsPerPage() {
+  const container = document.getElementById('card-container');
+  const rect = container.getBoundingClientRect();
+  const availW = rect.width || container.parentElement.clientWidth || 600;
+  // available vertical space: viewport height minus everything above the card list
+  // plus minus space reserved for the pagination bar
+  const top = rect.top || 0;
+  const availH = Math.max(window.innerHeight - top - 70, 200);
+
+  if (viewMode === 'grid') {
+    const gap = 10;
+    const minItemW = 120;
+    const cols = Math.max(1, Math.floor((availW + gap) / (minItemW + gap)));
+    const itemW = (availW - gap * (cols - 1)) / cols;
+    // card-item height = image (aspect ratio) + info block (~52px)
+    const imgH = imgMode === 'full' ? itemW * (671/480) : itemW * (301/420);
+    const itemH = imgH + 52;
+    const rows = Math.max(1, Math.floor((availH + gap) / (itemH + gap)));
+    return Math.max(cols * rows, cols); // at least one full row
+  } else {
+    const itemH = 64; // approx height of a list row incl. gap
+    const rows = Math.max(1, Math.floor(availH / itemH));
+    return Math.max(rows, 4);
+  }
+}
+
 function renderCardList() {
   const container = document.getElementById('card-container');
+  const pagEl = document.getElementById('pagination');
   document.getElementById('result-count').innerHTML = `Showing <strong>${filteredCards.length}</strong> of <strong>${cards.length}</strong> cards`;
 
   if (!filteredCards.length) {
     container.innerHTML = `<div class="empty">No cards found</div>`;
+    pagEl.innerHTML = '';
     return;
   }
 
+  const perPage = getItemsPerPage();
+  const totalPages = Math.max(1, Math.ceil(filteredCards.length / perPage));
+  if (currentPage > totalPages) currentPage = totalPages;
+  if (currentPage < 1) currentPage = 1;
+
+  const start = (currentPage - 1) * perPage;
+  const pageItems = filteredCards.slice(start, start + perPage);
+
   if (viewMode === 'grid') {
     container.className = 'card-grid';
-    container.innerHTML = filteredCards.map(c => gridCard(c)).join('');
+    container.innerHTML = pageItems.map(c => gridCard(c)).join('');
   } else {
     container.className = 'card-list';
-    container.innerHTML = filteredCards.map(c => listCard(c)).join('');
+    container.innerHTML = pageItems.map(c => listCard(c)).join('');
+  }
+
+  if (totalPages > 1) {
+    pagEl.innerHTML = `
+      <button class="page-btn" onclick="goToPage(${currentPage - 1})" ${currentPage <= 1 ? 'disabled' : ''}>‹ Prev</button>
+      <div class="page-info">Page ${currentPage} / ${totalPages}</div>
+      <button class="page-btn" onclick="goToPage(${currentPage + 1})" ${currentPage >= totalPages ? 'disabled' : ''}>Next ›</button>
+    `;
+  } else {
+    pagEl.innerHTML = '';
   }
 }
+
+function goToPage(p) {
+  currentPage = p;
+  renderCardList();
+}
+
+// Recalculate page size on resize (debounced)
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => { currentPage = 1; renderCardList(); }, 200);
+});
 
 function isSelected(c) {
   return selectedCard && selectedCard['Card Number'] === c['Card Number'];
@@ -505,8 +575,7 @@ function gridCard(c) {
       <div class="card-name">${c['Card Name']}</div>
       <div class="card-meta">
         <div class="color-dot color-${c['Color']}"></div>
-        <span class="rarity-badge rarity-${c['Rarity']}">${c['Rarity']}</span>
-        <span class="card-num">${(c['Card Number']||'').split('-').pop()}</span>
+        <span class="card-color-label">${c['Color']}</span>
       </div>
     </div>
   </div>`;
@@ -520,10 +589,9 @@ function listCard(c) {
     </div>
     <div class="list-main">
       <div class="list-name">${c['Card Name']}</div>
-      <div class="list-sub">${c['Card Number']}</div>
       <div class="list-tags">
         <div class="color-dot color-${c['Color']}"></div>
-        <span class="rarity-badge rarity-${c['Rarity']}">${c['Rarity']}</span>
+        <span class="card-color-label">${c['Color']}</span>
       </div>
     </div>
     ${qty > 0 ? `<div class="qty-badge" style="position:static;">${qty}</div>` : ''}
@@ -557,7 +625,17 @@ function renderDetail() {
 
   panel.innerHTML = `
     <div class="detail-img-wrap">
-      ${c['Image'] ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}">` : `<div class="card-img-placeholder" style="height:100%">🃏</div>`}
+      ${c['Image']
+        ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+           <div class="card-img-placeholder" style="display:none;position:absolute;inset:0">🃏</div>`
+        : `<div class="card-img-placeholder" style="height:100%">🃏</div>`}
+    </div>
+    <div class="detail-add-row">
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(-1)" ${qty<=0?'disabled':''}>−</button>
+        <div class="qty-val">${qty} / ${DECK_MAX_COPIES}</div>
+        <button class="qty-btn" onclick="changeQty(1)" ${(qty>=DECK_MAX_COPIES || totalInDeck>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
+      </div>
     </div>
     <div class="detail-name">${c['Card Name']}</div>
     <div class="detail-num">${c['Card Number']}</div>
@@ -574,13 +652,6 @@ function renderDetail() {
     <div class="detail-effect-title">Effect</div>
     <div class="detail-effect">${c['Effect'] || '—'}</div>
     ${extras.length ? `<div class="detail-extra">${extras.join('')}</div>` : ''}
-    <div class="detail-add-row">
-      <div class="qty-control">
-        <button class="qty-btn" onclick="changeQty(-1)" ${qty<=0?'disabled':''}>−</button>
-        <div class="qty-val">${qty} / ${DECK_MAX_COPIES}</div>
-        <button class="qty-btn" onclick="changeQty(1)" ${(qty>=DECK_MAX_COPIES || totalInDeck>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
-      </div>
-    </div>
   `;
 }
 
@@ -678,12 +749,14 @@ function renderDeck() {
 // ── VIEW / IMAGE OPTIONS ──
 function setViewMode(m) {
   viewMode = m;
+  currentPage = 1;
   document.getElementById('opt-grid').classList.toggle('active', m === 'grid');
   document.getElementById('opt-list').classList.toggle('active', m === 'list');
   renderCardList();
 }
 function setImgMode(m) {
   imgMode = m;
+  currentPage = 1;
   document.getElementById('opt-crop').classList.toggle('active', m === 'crop');
   document.getElementById('opt-full').classList.toggle('active', m === 'full');
   renderCardList();
