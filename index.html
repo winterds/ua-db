@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Union Arena · Card Database</title>
+<title>Union Arena · Deck Builder</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23e20000'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-size='20' font-weight='900' text-anchor='middle' fill='white'%3EUA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -28,36 +28,23 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; min-height: 100vh; overflow-x: hidden; }
-  /* Only card content switches to JP font, not UI chrome */
-  body.jp-mode .card-name,
-  body.jp-mode .list-name,
-  body.jp-mode .modal-name,
-  body.jp-mode .modal-effect { font-family: 'Noto Sans JP', sans-serif; }
-  body.th-mode .card-name,
-  body.th-mode .list-name,
-  body.th-mode .modal-name,
-  body.th-mode .modal-effect { font-family: 'Noto Sans Thai', sans-serif; }
-  body.th-mode .card-name,
-  body.th-mode .list-name,
-  body.th-mode .modal-name,
-  body.th-mode .modal-effect { font-family: 'Noto Sans Thai', sans-serif; }
+  body.jp-mode .card-name, body.jp-mode .list-name, body.jp-mode .detail-name, body.jp-mode .detail-effect, body.jp-mode .deck-name { font-family: 'Noto Sans JP', sans-serif; }
+  body.th-mode .card-name, body.th-mode .list-name, body.th-mode .detail-name, body.th-mode .detail-effect, body.th-mode .deck-name { font-family: 'Noto Sans Thai', sans-serif; }
 
   /* HEADER */
   header {
     background: linear-gradient(180deg, #111111 0%, transparent 100%);
     border-bottom: 1px solid var(--border-glow);
-    padding: 0 24px; display: flex; align-items: center; gap: 16px;
-    height: 60px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
+    padding: 0 20px; display: flex; align-items: center; gap: 14px;
+    height: 56px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
   }
   .logo {
-    font-size: 20px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
     background: linear-gradient(135deg, #e20000, #ff6666);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap;
   }
-  .logo span { -webkit-text-fill-color: var(--yellow); }
-  .header-right { margin-left: auto; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
-  /* SET SELECTOR */
   .set-select {
     background: var(--surface2); border: 1px solid var(--border-glow);
     color: var(--text); border-radius: 6px; padding: 7px 32px 7px 12px;
@@ -65,212 +52,206 @@
     letter-spacing: 1px; appearance: none; -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 10px center;
+    max-width: 180px;
   }
-  .set-select:focus { border-color: var(--accent); }
 
-  /* LANG TOGGLE */
   .lang-toggle { display: flex; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-  .lang-btn { padding: 7px 18px; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; background: transparent; border: none; color: var(--text-muted); transition: all .2s; }
+  .lang-btn { padding: 7px 16px; font-family: inherit; font-size: 13px; font-weight: 600; letter-spacing: 1px; cursor: pointer; background: transparent; border: none; color: var(--text-muted); transition: all .2s; }
   .lang-btn.active { background: var(--accent); color: #fff; }
 
-  /* LAYOUT */
-  .layout { display: flex; min-height: calc(100vh - 60px); }
-
-  /* SIDEBAR */
-  aside {
-    width: 240px; flex-shrink: 0; background: var(--surface); border-right: 1px solid var(--border);
-    padding: 20px 16px; display: flex; flex-direction: column; gap: 20px;
-    overflow-y: auto; max-height: calc(100vh - 60px); position: sticky; top: 60px;
+  /* OPTIONS MENU */
+  .options-wrap { position: relative; }
+  .options-btn {
+    background: var(--surface2); border: 1px solid var(--border-glow);
+    color: var(--text); border-radius: 6px; width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px; transition: all .15s;
   }
-  .filter-section h3 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
-  .filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .chip { padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 1px; cursor: pointer; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); transition: all .15s; user-select: none; }
-  .chip:hover { border-color: var(--accent); color: var(--text); }
-  .chip.active { color: #fff; border-color: transparent; }
-  .chip.all.active  { background: var(--accent); }
-  .chip.SR.active   { background: var(--sr); }
-  .chip.R.active    { background: var(--r); }
-  .chip.U.active    { background: var(--u); }
-  .chip.C.active    { background: var(--c); }
-  .chip.Yellow.active { background: #b8860b; color: #ffe87a; border-color: var(--yellow); }
-  .chip.Purple.active { background: #5a2d8a; color: #d4a8ff; border-color: var(--purple); }
-  .chip.Red.active    { background: #7a1a1a; color: #ffaaaa; border-color: #e05050; }
-  .chip.Blue.active   { background: #1a3a6a; color: #aaccff; border-color: #5090e0; }
-  .chip.Green.active  { background: #1a4a2a; color: #aaffcc; border-color: #50c070; }
-  .chip.Character.active { background: #1a3a5c; color: #88c0ff; border-color: var(--accent); }
-  .chip.Event.active     { background: #1a3a2a; color: #88ffcc; border-color: #40e0a0; }
-  .chip.Field.active     { background: #3a2a1a; color: #ffcc88; border-color: #e09040; }
+  .options-btn:hover, .options-btn.active { border-color: var(--accent); color: var(--accent); }
+  .options-menu {
+    position: absolute; top: calc(100% + 6px); right: 0;
+    background: var(--surface); border: 1px solid var(--border-glow);
+    border-radius: 8px; padding: 12px; min-width: 180px;
+    box-shadow: 0 12px 32px rgba(0,0,0,.5);
+    display: none; z-index: 150;
+  }
+  .options-menu.open { display: block; }
+  .options-group { margin-bottom: 10px; }
+  .options-group:last-child { margin-bottom: 0; }
+  .options-group h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .options-row { display: flex; gap: 6px; }
+  .opt-btn {
+    flex: 1; background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text-muted); border-radius: 6px; padding: 7px 8px;
+    font-family: inherit; font-size: 12px; cursor: pointer; transition: all .15s;
+    text-align: center;
+  }
+  .opt-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(226,0,0,.1); }
+
+  /* LAYOUT */
+  .layout { display: flex; height: calc(100vh - 56px); }
+  .panel { overflow-y: auto; }
+  .detail-panel { width: 25%; flex-shrink: 0; background: var(--surface); border-right: 1px solid var(--border); padding: 18px; }
+  .list-panel { width: 50%; flex-shrink: 0; padding: 16px; display: flex; flex-direction: column; }
+  .deck-panel { width: 25%; flex-shrink: 0; background: var(--surface); border-left: 1px solid var(--border); padding: 18px; display: flex; flex-direction: column; }
+
+  /* FILTERS BAR */
+  .filters-bar { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
   .search-box { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--text); font-family: inherit; font-size: 14px; outline: none; transition: border-color .2s; }
   .search-box:focus { border-color: var(--accent); }
   .search-box::placeholder { color: var(--text-muted); }
-  .stat-bar { display: flex; flex-direction: column; gap: 4px; }
-  .stat-row { display: flex; justify-content: space-between; font-size: 12px; }
-  .stat-label { color: var(--text-muted); }
-  .stat-val { font-family: 'Share Tech Mono', monospace; font-weight: 700; }
-
-  /* CONTENT */
-  .content { flex: 1; padding: 24px; overflow: auto; }
-
-  /* LOADING */
-  .loading-screen {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    min-height: 300px; gap: 16px; color: var(--text-muted);
+  .filter-selects { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-select {
+    flex: 1; min-width: 90px;
+    background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); border-radius: 6px; padding: 7px 26px 7px 10px;
+    font-family: inherit; font-size: 12px; outline: none; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 8px center;
   }
-  .spinner {
-    width: 36px; height: 36px; border: 3px solid var(--border);
-    border-top-color: var(--accent); border-radius: 50%;
-    animation: spin .7s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* TOOLBAR */
-  .toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
-  .result-count { color: var(--text-muted); font-size: 13px; letter-spacing: 1px; margin-left: auto; }
+  .filter-select:focus { border-color: var(--accent); }
+  .result-count { color: var(--text-muted); font-size: 12px; letter-spacing: 1px; margin-bottom: 10px; }
   .result-count strong { color: var(--text); }
-  .view-toggle { display: flex; gap: 4px; }
-  .view-btn { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 6px 10px; cursor: pointer; font-size: 14px; transition: all .15s; }
-  .view-btn.active { border-color: var(--accent); color: var(--accent); }
-  .sort-select { background: var(--surface2); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 7px 10px; font-family: inherit; font-size: 13px; outline: none; cursor: pointer; }
 
   /* CARD GRID */
-  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
-  .card-list { display: flex; flex-direction: column; gap: 8px; }
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; overflow-y: auto; flex: 1; padding-bottom: 10px; }
+  .card-list { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex: 1; padding-bottom: 10px; }
 
-  /* CARD ITEM */
-  .card-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .2s, border-color .2s, box-shadow .2s; }
-  .card-item:hover { transform: translateY(-4px); border-color: var(--border-glow); box-shadow: 0 8px 32px rgba(226,0,0,.25); }
-  /* Crop: x1=30 y1=89 x2=450 y2=390 from a 480x671 source image */
-  .card-img-wrap {
-    aspect-ratio: 420/301; overflow: hidden; background: var(--surface2);
-    position: relative;
-  }
-  .card-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: 50% 24.05%;
-    transition: transform .3s;
-    display: block;
-  }
-  .card-item:hover .card-img-wrap img { transform: scale(1.05); }
-  /* Full image mode - show entire card uncropped */
-  .card-img-wrap.full-img {
-    aspect-ratio: 480/671;
-  }
-  .card-img-wrap.full-img img {
-    object-fit: contain;
-    object-position: center;
-  }
-  .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 28px; }
-  .card-info { padding: 8px 10px; }
-  .card-name { font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
-  .card-meta { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
-  .card-num { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: var(--text-muted); }
+  .card-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; cursor: pointer; transition: transform .15s, border-color .15s, box-shadow .15s; position: relative; }
+  .card-item:hover { transform: translateY(-2px); border-color: var(--border-glow); box-shadow: 0 6px 20px rgba(226,0,0,.2); }
+  .card-item.selected { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(226,0,0,.4); }
+  .card-img-wrap { aspect-ratio: 420/301; overflow: hidden; background: var(--surface2); position: relative; }
+  .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 24.05%; display: block; }
+  .card-img-wrap.full-img { aspect-ratio: 480/671; }
+  .card-img-wrap.full-img img { object-fit: contain; object-position: center; }
+  .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 24px; }
+  .card-info { padding: 6px 8px; }
+  .card-name { font-size: 12px; font-weight: 600; line-height: 1.25; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .card-meta { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
+  .card-num { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--text-muted); }
   .rarity-badge { font-size: 9px; font-weight: 700; letter-spacing: 1px; padding: 2px 6px; border-radius: 3px; }
   .rarity-SR { background: rgba(255,107,53,.2); color: var(--sr); border: 1px solid rgba(255,107,53,.4); }
-  .rarity-R  { background: rgba(74,144,226,.2); color: var(--r);  border: 1px solid rgba(74,144,226,.4); }
-  .rarity-U  { background: rgba(124,92,191,.2); color: var(--u);  border: 1px solid rgba(124,92,191,.4); }
-  .rarity-C  { background: rgba(90,106,138,.15); color: var(--c); border: 1px solid rgba(90,106,138,.3); }
+  .rarity-R  { background: rgba(226,0,0,.2); color: var(--r);  border: 1px solid rgba(226,0,0,.4); }
+  .rarity-U  { background: rgba(170,170,170,.2); color: var(--u);  border: 1px solid rgba(170,170,170,.4); }
+  .rarity-C  { background: rgba(102,102,102,.2); color: var(--c); border: 1px solid rgba(102,102,102,.3); }
   .color-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .color-Yellow { background: var(--yellow); box-shadow: 0 0 4px var(--yellow); }
   .color-Purple { background: var(--purple); box-shadow: 0 0 4px var(--purple); }
-  .color-Red    { background: #e05050;       box-shadow: 0 0 4px #e05050; }
-  .color-Blue   { background: #5090e0;       box-shadow: 0 0 4px #5090e0; }
-  .color-Green  { background: #50c070;       box-shadow: 0 0 4px #50c070; }
+  .color-Red    { background: #e05050; box-shadow: 0 0 4px #e05050; }
+  .color-Blue   { background: #5090e0; box-shadow: 0 0 4px #5090e0; }
+  .color-Green  { background: #50c070; box-shadow: 0 0 4px #50c070; }
 
-  /* LIST ITEM */
-  .card-list-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: border-color .15s, background .15s; }
+  /* quick-add button on grid card */
+  .qty-badge {
+    position: absolute; top: 6px; right: 6px; background: var(--accent);
+    color: #fff; font-size: 11px; font-weight: 700; border-radius: 50%;
+    width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,.4); z-index: 5;
+  }
+  .add-btn {
+    position: absolute; bottom: 6px; right: 6px;
+    background: rgba(34,34,34,.85); border: 1px solid var(--border-glow);
+    color: var(--text); border-radius: 50%; width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 16px; font-weight: 700; z-index: 5;
+    transition: all .15s;
+  }
+  .add-btn:hover { background: var(--accent); border-color: var(--accent); }
+
+  /* LIST VIEW ITEM */
+  .card-list-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: border-color .15s, background .15s; position: relative; }
   .card-list-item:hover { border-color: var(--border-glow); background: var(--surface2); }
-  .list-thumb { width: 40px; height: 54px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: var(--surface2); }
+  .card-list-item.selected { border-color: var(--accent); }
+  .list-thumb { width: 36px; height: 48px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: var(--surface2); }
   .list-thumb img { width: 100%; height: 100%; object-fit: cover; }
   .list-main { flex: 1; min-width: 0; }
-  .list-name { font-size: 15px; font-weight: 600; }
-  .list-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-  .list-tags { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
-  .list-stats { display: flex; gap: 16px; flex-shrink: 0; }
-  .stat-chip { display: flex; flex-direction: column; align-items: center; gap: 1px; min-width: 36px; }
-  .stat-chip-label { font-size: 9px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
-  .stat-chip-val { font-size: 13px; font-weight: 700; font-family: 'Share Tech Mono', monospace; color: var(--text); }
+  .list-name { font-size: 13px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .list-sub { font-size: 11px; color: var(--text-muted); margin-top: 1px; }
+  .list-tags { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; margin-top: 3px; }
 
-  /* ERROR */
-  .error-box { background: rgba(255,80,80,.08); border: 1px solid rgba(255,80,80,.3); border-radius: 8px; padding: 16px 20px; color: #ff8888; font-size: 14px; margin-bottom: 20px; }
-
-  /* MODAL */
-  .modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.8); display: flex; align-items: center; justify-content: center; z-index: 200; padding: 20px; backdrop-filter: blur(4px); opacity: 0; pointer-events: none; transition: opacity .2s; }
-  .modal-backdrop.open { opacity: 1; pointer-events: all; }
-  .modal { background: var(--surface); border: 1px solid var(--border-glow); border-radius: 16px; max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; display: flex; transform: scale(.95); transition: transform .2s; box-shadow: 0 24px 80px rgba(0,0,0,.6); }
-  .modal-backdrop.open .modal { transform: scale(1); }
-  .modal-img-col { width: 220px; flex-shrink: 0; background: var(--surface2); border-right: 1px solid var(--border); border-radius: 16px 0 0 16px; overflow: hidden; }
-  .modal-img-col img { width: 100%; height: 100%; object-fit: contain; display: block; background: var(--surface2); }
-  .modal-body { flex: 1; padding: 24px; overflow-y: auto; position: relative; }
-
-  /* ── SIDE PANEL MODE (non-blocking, no backdrop dim/blur) ── */
-  .modal-backdrop.panel-mode {
-    justify-content: flex-end; align-items: stretch; padding: 0;
-    background: transparent; backdrop-filter: none;
-    pointer-events: none; /* let clicks pass through to the page */
-  }
-  .modal-backdrop.panel-mode.open { pointer-events: none; }
-  .modal-backdrop.panel-mode .modal {
-    max-width: 380px; width: 100%; height: 100%; max-height: 100vh;
-    border-radius: 0; flex-direction: column;
-    transform: translateX(100%);
-    transition: transform .25s cubic-bezier(.2,.8,.2,1);
-    border-left: 1px solid var(--border-glow); border-top: none; border-right: none; border-bottom: none;
-    box-shadow: -8px 0 40px rgba(0,0,0,.5);
-    pointer-events: all; /* panel itself stays interactive */
-  }
-  .modal-backdrop.panel-mode.open .modal { transform: translateX(0); }
-  .modal-backdrop.panel-mode .modal-img-col {
-    width: 100%; height: 260px; border-radius: 0;
-    border-right: none; border-bottom: 1px solid var(--border); flex-shrink: 0;
-  }
-  .modal-backdrop.panel-mode .modal-body { flex: 1; }
-  .modal-name { font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
-  .modal-num { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: var(--text-muted); }
-  .modal-badges { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
-  .badge { padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 1px; }
+  /* DETAIL PANEL */
+  .detail-empty { color: var(--text-muted); text-align: center; padding: 60px 10px; font-size: 13px; }
+  .detail-img-wrap { width: 100%; aspect-ratio: 480/671; background: var(--surface2); border-radius: 10px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border); }
+  .detail-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .detail-name { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
+  .detail-num { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--text-muted); }
+  .detail-badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .badge { padding: 4px 9px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
   .badge-color-Yellow { background: rgba(240,192,64,.15); color: var(--yellow); border: 1px solid rgba(240,192,64,.3); }
   .badge-color-Purple { background: rgba(155,93,229,.15); color: var(--purple); border: 1px solid rgba(155,93,229,.3); }
+  .badge-color-Red    { background: rgba(226,80,80,.15); color: #ff8888; border: 1px solid rgba(226,80,80,.3); }
+  .badge-color-Blue   { background: rgba(80,144,224,.15); color: #88bbff; border: 1px solid rgba(80,144,224,.3); }
+  .badge-color-Green  { background: rgba(80,192,112,.15); color: #88ffaa; border: 1px solid rgba(80,192,112,.3); }
   .badge-type { background: var(--surface2); color: var(--text-muted); border: 1px solid var(--border); }
-  .modal-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin: 16px 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; }
-  .modal-stat { text-align: center; }
-  .modal-stat-label { font-size: 10px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
-  .modal-stat-val { font-size: 18px; font-weight: 700; font-family: 'Share Tech Mono', monospace; margin-top: 2px; }
-  .modal-effect-title { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-  .modal-effect { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; font-size: 13px; line-height: 1.7; white-space: pre-wrap; }
-  .modal-extra { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
-  .modal-extra-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 12px; }
-  .modal-extra-chip span { color: var(--text-muted); margin-right: 4px; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
-  .close-btn { position: absolute; top: 12px; right: 12px; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: all .15s; }
-  .close-btn:hover { border-color: var(--accent); color: var(--text); }
+  .detail-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin: 12px 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
+  .detail-stat { text-align: center; }
+  .detail-stat-label { font-size: 9px; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; }
+  .detail-stat-val { font-size: 16px; font-weight: 700; font-family: 'Share Tech Mono', monospace; margin-top: 2px; }
+  .detail-effect-title { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px; }
+  .detail-effect { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 12px; line-height: 1.65; white-space: pre-wrap; margin-bottom: 12px; }
+  .detail-extra { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .detail-extra-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 11px; }
+  .detail-extra-chip span { color: var(--text-muted); margin-right: 4px; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; }
 
-  /* EMPTY */
-  .empty { text-align: center; padding: 80px 20px; color: var(--text-muted); }
-  .empty h3 { font-size: 20px; margin-bottom: 8px; color: var(--text); }
+  .detail-add-row { display: flex; align-items: center; gap: 10px; }
+  .qty-control { display: flex; align-items: center; gap: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; flex: 1; justify-content: center; }
+  .qty-btn { background: var(--surface); border: 1px solid var(--border-glow); color: var(--text); border-radius: 6px; width: 30px; height: 30px; font-size: 16px; cursor: pointer; transition: all .15s; }
+  .qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .qty-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .qty-val { font-size: 18px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 30px; text-align: center; }
+
+  /* DECK PANEL */
+  .deck-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .deck-header h3 { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); }
+  .deck-count { font-family: 'Share Tech Mono', monospace; font-size: 18px; font-weight: 700; }
+  .deck-count.full { color: var(--accent); }
+  .deck-list { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex: 1; }
+  .deck-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; }
+  .deck-thumb { width: 32px; height: 43px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .deck-main { flex: 1; min-width: 0; }
+  .deck-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .deck-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
+  .deck-qty-control { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
+  .deck-qty-btn { background: var(--surface); border: 1px solid var(--border-glow); color: var(--text); border-radius: 4px; width: 22px; height: 22px; font-size: 13px; cursor: pointer; line-height: 1; transition: all .15s; }
+  .deck-qty-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .deck-qty-val { font-size: 13px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 18px; text-align: center; }
+  .deck-empty { color: var(--text-muted); text-align: center; padding: 40px 10px; font-size: 12px; }
+  .deck-actions { display: flex; gap: 8px; margin-top: 10px; }
+  .deck-clear-btn { flex: 1; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 8px; font-family: inherit; font-size: 12px; cursor: pointer; transition: all .15s; letter-spacing: 1px; }
+  .deck-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* LOADING / ERROR / EMPTY */
+  .loading-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 200px; gap: 14px; color: var(--text-muted); }
+  .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error-box { background: rgba(226,0,0,.08); border: 1px solid rgba(226,0,0,.3); border-radius: 8px; padding: 14px 18px; color: #ff8888; font-size: 13px; }
+  .empty { text-align: center; padding: 60px 20px; color: var(--text-muted); }
 
   /* TOAST */
-  .toast { position: fixed; bottom: 24px; right: 24px; z-index: 300; background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; padding: 12px 20px; font-size: 14px; transform: translateY(80px); opacity: 0; transition: all .3s; pointer-events: none; }
-  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(80px); z-index: 300; background: var(--surface); border: 1px solid var(--accent); border-radius: 8px; padding: 10px 18px; font-size: 13px; opacity: 0; transition: all .3s; pointer-events: none; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-  /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border-glow); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-  @media (max-width: 768px) {
-    aside { display: none; }
-    .card-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
-    .modal { flex-direction: column; }
-    .modal-img-col { width: 100%; height: 200px; border-radius: 16px 16px 0 0; border-right: none; border-bottom: 1px solid var(--border); }
-    .logo { font-size: 16px; }
+  @media (max-width: 1100px) {
+    .layout { flex-direction: column; height: auto; }
+    .detail-panel, .list-panel, .deck-panel { width: 100%; }
+    .detail-panel { order: 2; max-height: 70vh; }
+    .list-panel { order: 1; }
+    .deck-panel { order: 3; max-height: 70vh; }
+    .card-grid, .card-list { max-height: 60vh; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">UNION ARENA <span>·</span> DB</div>
+  <div class="logo">UNION ARENA · DECK BUILDER</div>
   <div class="header-right">
     <select class="set-select" id="set-select" onchange="loadSet(this.value)">
       <option value="">Loading sets…</option>
@@ -280,79 +261,93 @@
       <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" id="btn-th" onclick="setLang('th')">TH</button>
     </div>
+    <div class="options-wrap">
+      <button class="options-btn" id="options-btn" onclick="toggleOptions()">⚙</button>
+      <div class="options-menu" id="options-menu">
+        <div class="options-group">
+          <h4>View</h4>
+          <div class="options-row">
+            <button class="opt-btn" id="opt-grid" onclick="setViewMode('grid')">⊞ Grid</button>
+            <button class="opt-btn" id="opt-list" onclick="setViewMode('list')">☰ List</button>
+          </div>
+        </div>
+        <div class="options-group">
+          <h4>Card Image</h4>
+          <div class="options-row">
+            <button class="opt-btn" id="opt-crop" onclick="setImgMode('crop')">▣ Crop</button>
+            <button class="opt-btn" id="opt-full" onclick="setImgMode('full')">▢ Full</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
 <div class="layout">
-  <aside>
-    <div class="filter-section">
-      <h3>Search</h3>
-      <input class="search-box" id="search" placeholder="Card name…" oninput="applyFilters()">
-    </div>
-    <div class="filter-section">
-      <h3>Rarity</h3>
-      <div class="filter-chips" id="rarity-chips">
-        <span class="chip all active" data-filter="rarity" data-val="all" onclick="toggleFilter(this)">All</span>
-        <span class="chip SR" data-filter="rarity" data-val="SR" onclick="toggleFilter(this)">SR</span>
-        <span class="chip R"  data-filter="rarity" data-val="R"  onclick="toggleFilter(this)">R</span>
-        <span class="chip U"  data-filter="rarity" data-val="U"  onclick="toggleFilter(this)">U</span>
-        <span class="chip C"  data-filter="rarity" data-val="C"  onclick="toggleFilter(this)">C</span>
+
+  <!-- LEFT: CARD DETAIL -->
+  <aside class="detail-panel panel" id="detail-panel">
+    <div class="detail-empty">Select a card to view details</div>
+  </aside>
+
+  <!-- CENTER: CARD LIST -->
+  <main class="list-panel">
+    <div class="filters-bar">
+      <input class="search-box" id="search" placeholder="Search card name…" oninput="applyFilters()">
+      <div class="filter-selects">
+        <select class="filter-select" id="filter-rarity" onchange="applyFilters()">
+          <option value="all">All Rarity</option>
+          <option value="SR">SR</option>
+          <option value="R">R</option>
+          <option value="U">U</option>
+          <option value="C">C</option>
+        </select>
+        <select class="filter-select" id="filter-color" onchange="applyFilters()">
+          <option value="all">All Color</option>
+        </select>
+        <select class="filter-select" id="filter-type" onchange="applyFilters()">
+          <option value="all">All Type</option>
+        </select>
       </div>
     </div>
-    <div class="filter-section">
-      <h3>Color</h3>
-      <div class="filter-chips" id="color-chips"></div>
+    <div class="result-count" id="result-count"></div>
+    <div id="card-container"></div>
+  </main>
+
+  <!-- RIGHT: DECK LIST -->
+  <aside class="deck-panel panel">
+    <div class="deck-header">
+      <h3>My Deck</h3>
+      <div class="deck-count" id="deck-count">0 / 50</div>
     </div>
-    <div class="filter-section">
-      <h3>Type</h3>
-      <div class="filter-chips" id="type-chips"></div>
+    <div class="deck-list" id="deck-list">
+      <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
     </div>
-    <div class="filter-section">
-      <h3>Stats</h3>
-      <div class="stat-bar" id="stat-bar"></div>
+    <div class="deck-actions">
+      <button class="deck-clear-btn" onclick="clearDeck()">Clear Deck</button>
     </div>
   </aside>
 
-  <main class="content" id="main-content">
-    <div class="loading-screen">
-      <div class="spinner"></div>
-      <div>Loading sets…</div>
-    </div>
-  </main>
-</div>
-
-<!-- MODAL -->
-<div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
-  <div class="modal" id="modal">
-    <div class="modal-img-col" id="modal-img-col">
-      <img id="modal-img" src="" alt="">
-    </div>
-    <div class="modal-body">
-      <button class="close-btn" onclick="closeModalDirect()">✕</button>
-      <div class="modal-name" id="modal-name"></div>
-      <div class="modal-num" id="modal-num"></div>
-      <div class="modal-badges" id="modal-badges"></div>
-      <div class="modal-stats" id="modal-stats"></div>
-      <div class="modal-effect-title">EFFECT</div>
-      <div class="modal-effect" id="modal-effect"></div>
-      <div class="modal-extra" id="modal-extra"></div>
-    </div>
-  </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 // ── STATE ──
-let lang = 'en';
-let allData = {};       // { en: [...], jp: [...] } for current set
-let cards = [];         // current lang cards
+let lang = 'jp';
+let allData = {};
+let cards = [];
 let filteredCards = [];
 let viewMode = 'grid';
-let imgMode = 'crop'; // 'crop' or 'full'
-let detailMode = 'popup'; // 'popup' or 'panel'
-let activeFilters = { rarity: 'all', color: 'all', type: 'all' };
+let imgMode = 'crop';
 let manifest = null;
+let selectedCard = null;     // { cardNumber, ... } currently shown in detail panel
+let deck = {};                // { cardNumber: { count, card } }
+
+const TYPE_NORMALIZE = { 'キャラクター': 'Character', 'フィールド': 'Field', 'イベント': 'Event', 'ตัวละคร': 'Character', 'สนาม': 'Field', 'อีเวนต์': 'Event' };
+const TYPE_ORDER = ['Character', 'Field', 'Event'];
+const DECK_MAX_COPIES = 4;
+const DECK_MAX_TOTAL = 50;
 
 // ── BOOT ──
 async function boot() {
@@ -361,19 +356,15 @@ async function boot() {
     if (!res.ok) throw new Error('manifest.json not found');
     manifest = await res.json();
     populateSetSelector();
-    if (manifest.sets.length > 0) {
-      await loadSet(manifest.sets[0].id);
-    }
+    if (manifest.sets.length > 0) await loadSet(manifest.sets[0].id);
   } catch (err) {
-    showError(`Failed to load manifest.json: ${err.message}<br>Make sure manifest.json is in the same folder as index.html.`);
+    document.getElementById('card-container').innerHTML = `<div class="error-box">⚠ Failed to load manifest.json: ${err.message}</div>`;
   }
 }
 
 function populateSetSelector() {
   const sel = document.getElementById('set-select');
-  sel.innerHTML = manifest.sets.map(s =>
-    `<option value="${s.id}">${s.name || s.id}</option>`
-  ).join('');
+  sel.innerHTML = manifest.sets.map(s => `<option value="${s.id}">${s.name || s.id}</option>`).join('');
 }
 
 // ── LOAD SET ──
@@ -381,33 +372,31 @@ async function loadSet(setId) {
   const set = manifest.sets.find(s => s.id === setId);
   if (!set) return;
 
-  showLoading(`Loading ${set.name || setId}…`);
-  allData = { en: [], jp: [] };
+  document.getElementById('card-container').innerHTML = `<div class="loading-screen"><div class="spinner"></div><div>Loading ${set.name || setId}…</div></div>`;
+  allData = { en: [], jp: [], th: [] };
 
-  const langs = Object.entries(set.files); // [['en', 'path'], ['jp', 'path']]
-  const results = await Promise.allSettled(langs.map(([l, path]) => fetchCSV(path, l)));
-
+  const langs = Object.entries(set.files);
+  const results = await Promise.allSettled(langs.map(([l, path]) => fetchCSV(path)));
   results.forEach((r, i) => {
     const [l] = langs[i];
-    if (r.status === 'fulfilled') {
-      allData[l] = r.value;
-    } else {
-      console.warn(`Could not load ${langs[i][1]}:`, r.reason);
-    }
+    if (r.status === 'fulfilled') allData[l] = r.value;
+    else console.warn(`Could not load ${langs[i][1]}:`, r.reason);
   });
 
-  // If current lang has no data, switch to whichever one loaded
   if (!allData[lang]?.length) {
-    lang = allData.en?.length ? 'en' : allData.jp?.length ? 'jp' : lang;
+    lang = allData.jp?.length ? 'jp' : allData.en?.length ? 'en' : allData.th?.length ? 'th' : lang;
   }
 
-  rebuildFilterChips();
+  // reset deck when switching sets (card numbers won't match across sets)
+  deck = {};
+  selectedCard = null;
+  renderDeck();
+
+  rebuildFilterOptions();
   loadLang();
 }
 
-const TYPE_NORMALIZE = { 'キャラクター': 'Character', 'フィールド': 'Field', 'イベント': 'Event', 'ตัวละคร': 'Character', 'สนาม': 'Field', 'อีเวนต์': 'Event' };
-
-async function fetchCSV(path, langKey) {
+async function fetchCSV(path) {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`HTTP ${res.status} for ${path}`);
   const text = await res.text();
@@ -418,14 +407,10 @@ async function fetchCSV(path, langKey) {
 
 // ── LANG ──
 function setLang(l) {
-  if (!allData[l]?.length) {
-    showToast(`No ${l.toUpperCase()} data available for this set`);
-    return;
-  }
+  if (!allData[l]?.length) { showToast(`No ${l.toUpperCase()} data for this set`); return; }
   lang = l;
   loadLang();
 }
-
 function loadLang() {
   cards = allData[lang] || [];
   document.body.classList.toggle('jp-mode', lang === 'jp');
@@ -434,125 +419,87 @@ function loadLang() {
   document.getElementById('btn-jp').classList.toggle('active', lang === 'jp');
   document.getElementById('btn-th').classList.toggle('active', lang === 'th');
   applyFilters();
+  if (selectedCard) {
+    // re-map selected card into new language by Card Number
+    const match = cards.find(c => c['Card Number'] === selectedCard['Card Number']);
+    selectedCard = match || null;
+    renderDetail();
+  }
+  renderDeck(); // refresh deck names in new language
 }
 
-// ── FILTER CHIPS ──
-const TYPE_ORDER = ['Character', 'Field', 'Event'];
-
-function rebuildFilterChips() {
+// ── FILTER OPTIONS ──
+function rebuildFilterOptions() {
   const all = [...(allData.en || []), ...(allData.jp || []), ...(allData.th || [])];
   const colors = [...new Set(all.map(c => c['Color']).filter(Boolean))];
-  // Only show normalized EN type names, in fixed order, filtered to what exists
   const rawTypes = new Set(all.map(c => c['Type']).filter(Boolean));
   const types = TYPE_ORDER.filter(t => rawTypes.has(t));
-  buildChips('color-chips', 'color', colors);
-  buildChips('type-chips',  'type',  types);
-  activeFilters = { rarity: 'all', color: 'all', type: 'all' };
-  document.querySelectorAll('#rarity-chips .chip').forEach(c => c.classList.remove('active'));
-  document.querySelector('#rarity-chips .chip.all').classList.add('active');
-}
 
-function buildChips(containerId, filterKey, values) {
-  const el = document.getElementById(containerId);
-  el.innerHTML = `<span class="chip all active" data-filter="${filterKey}" data-val="all" onclick="toggleFilter(this)">All</span>`;
-  values.forEach(v => {
-    const s = document.createElement('span');
-    s.className = `chip ${v}`;
-    s.dataset.filter = filterKey;
-    s.dataset.val = v;
-    s.textContent = v;
-    s.onclick = function() { toggleFilter(this); };
-    el.appendChild(s);
-  });
-}
+  const colorSel = document.getElementById('filter-color');
+  colorSel.innerHTML = '<option value="all">All Color</option>' + colors.map(c => `<option value="${c}">${c}</option>`).join('');
 
-function toggleFilter(el) {
-  const key = el.dataset.filter;
-  el.closest('.filter-chips').querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-  el.classList.add('active');
-  activeFilters[key] = el.dataset.val;
-  applyFilters();
+  const typeSel = document.getElementById('filter-type');
+  typeSel.innerHTML = '<option value="all">All Type</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
+
+  document.getElementById('filter-rarity').value = 'all';
 }
 
 // ── FILTERS ──
 function applyFilters() {
   const search = document.getElementById('search').value.trim().toLowerCase();
-  const sort   = document.getElementById('sort-select')?.value || 'num-asc';
-  const rarityOrder = { SR: 4, R: 3, U: 2, C: 1 };
+  const rarity = document.getElementById('filter-rarity').value;
+  const color  = document.getElementById('filter-color').value;
+  const type   = document.getElementById('filter-type').value;
 
-  let result = cards.filter(c => {
-    if (activeFilters.rarity !== 'all' && c['Rarity'] !== activeFilters.rarity) return false;
-    if (activeFilters.color  !== 'all' && c['Color']  !== activeFilters.color)  return false;
-    if (activeFilters.type   !== 'all' && c['Type']   !== activeFilters.type)   return false;
-    if (search && !(c['Card Name'] || '').toLowerCase().includes(search))        return false;
+  filteredCards = cards.filter(c => {
+    if (rarity !== 'all' && c['Rarity'] !== rarity) return false;
+    if (color  !== 'all' && c['Color']  !== color)  return false;
+    if (type   !== 'all' && c['Type']   !== type)   return false;
+    if (search && !(c['Card Name'] || '').toLowerCase().includes(search)) return false;
     return true;
   });
 
-  result.sort((a, b) => {
-    switch (sort) {
-      case 'num-asc':     return (a['Card Number']||'').localeCompare(b['Card Number']||'');
-      case 'num-desc':    return (b['Card Number']||'').localeCompare(a['Card Number']||'');
-      case 'name-asc':    return (a['Card Name']||'').localeCompare(b['Card Name']||'');
-      case 'rarity-desc': return (rarityOrder[b['Rarity']]||0) - (rarityOrder[a['Rarity']]||0);
-      case 'power-desc':  return parseInt(b['Power']||0) - parseInt(a['Power']||0);
-    }
-    return 0;
-  });
-
-  filteredCards = result;
-  renderContent();
-  updateStats();
+  filteredCards.sort((a, b) => (a['Card Number']||'').localeCompare(b['Card Number']||''));
+  renderCardList();
 }
 
-// ── RENDER ──
-function renderContent() {
-  const main = document.getElementById('main-content');
-
-  const toolbar = `
-    <div class="toolbar">
-      <div class="view-toggle">
-        <button class="view-btn ${viewMode==='grid'?'active':''}" onclick="setView('grid')" title="Grid">⊞</button>
-        <button class="view-btn ${viewMode==='list'?'active':''}" onclick="setView('list')" title="List">☰</button>
-      </div>
-      <div class="view-toggle">
-        <button class="view-btn ${imgMode==='crop'?'active':''}" onclick="setImgMode('crop')" title="Cropped artwork">▣</button>
-        <button class="view-btn ${imgMode==='full'?'active':''}" onclick="setImgMode('full')" title="Full card image">▢</button>
-      </div>
-      <div class="view-toggle">
-        <button class="view-btn ${detailMode==='popup'?'active':''}" onclick="setDetailMode('popup')" title="Popup detail">⬚</button>
-        <button class="view-btn ${detailMode==='panel'?'active':''}" onclick="setDetailMode('panel')" title="Side panel (browse while viewing)">▤</button>
-      </div>
-      <select class="sort-select" id="sort-select" onchange="applyFilters()">
-        <option value="num-asc">№ Ascending</option>
-        <option value="num-desc">№ Descending</option>
-        <option value="name-asc">Name A–Z</option>
-        <option value="rarity-desc">Rarity (SR first)</option>
-        <option value="power-desc">Power ↓</option>
-      </select>
-      <div class="result-count">Showing <strong>${filteredCards.length}</strong> of <strong>${cards.length}</strong> cards</div>
-    </div>`;
+// ── CARD LIST RENDER ──
+function renderCardList() {
+  const container = document.getElementById('card-container');
+  document.getElementById('result-count').innerHTML = `Showing <strong>${filteredCards.length}</strong> of <strong>${cards.length}</strong> cards`;
 
   if (!filteredCards.length) {
-    main.innerHTML = toolbar + `<div class="empty"><h3>No cards found</h3><p>Try adjusting your filters</p></div>`;
+    container.innerHTML = `<div class="empty">No cards found</div>`;
     return;
   }
 
-  const cardsHtml = viewMode === 'grid'
-    ? `<div class="card-grid">${filteredCards.map((c,i) => gridCard(c, i)).join('')}</div>`
-    : `<div class="card-list">${filteredCards.map((c,i) => listCard(c, i)).join('')}</div>`;
-
-  main.innerHTML = toolbar + cardsHtml;
+  if (viewMode === 'grid') {
+    container.className = 'card-grid';
+    container.innerHTML = filteredCards.map(c => gridCard(c)).join('');
+  } else {
+    container.className = 'card-list';
+    container.innerHTML = filteredCards.map(c => listCard(c)).join('');
+  }
 }
 
-function cardIndex(c) { return allData[lang].indexOf(c); }
+function isSelected(c) {
+  return selectedCard && selectedCard['Card Number'] === c['Card Number'];
+}
+function deckQty(c) {
+  const e = deck[c['Card Number']];
+  return e ? e.count : 0;
+}
 
-function gridCard(c, i) {
-  return `<div class="card-item" onclick="openModal(${cardIndex(c)})">
+function gridCard(c) {
+  const qty = deckQty(c);
+  return `<div class="card-item ${isSelected(c)?'selected':''}" onclick="selectCard('${esc(c['Card Number'])}')">
     <div class="card-img-wrap ${imgMode === 'full' ? 'full-img' : ''}">
       ${c['Image']
-        ? `<img src="${c['Image']}" alt="${c['Card Name']}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
            <div class="card-img-placeholder" style="display:none">🃏</div>`
         : `<div class="card-img-placeholder">🃏</div>`}
+      ${qty > 0 ? `<div class="qty-badge">${qty}</div>` : ''}
+      <div class="add-btn" onclick="event.stopPropagation(); quickAdd('${esc(c['Card Number'])}')" title="Add to deck">+</div>
     </div>
     <div class="card-info">
       <div class="card-name">${c['Card Name']}</div>
@@ -565,10 +512,11 @@ function gridCard(c, i) {
   </div>`;
 }
 
-function listCard(c, i) {
-  return `<div class="card-list-item" onclick="openModal(${cardIndex(c)})">
+function listCard(c) {
+  const qty = deckQty(c);
+  return `<div class="card-list-item ${isSelected(c)?'selected':''}" onclick="selectCard('${esc(c['Card Number'])}')">
     <div class="list-thumb">
-      ${c['Image'] ? `<img src="${c['Image']}" alt="${c['Card Name']}" loading="lazy">` : '🃏'}
+      ${c['Image'] ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" loading="lazy">` : '🃏'}
     </div>
     <div class="list-main">
       <div class="list-name">${c['Card Name']}</div>
@@ -576,101 +524,204 @@ function listCard(c, i) {
       <div class="list-tags">
         <div class="color-dot color-${c['Color']}"></div>
         <span class="rarity-badge rarity-${c['Rarity']}">${c['Rarity']}</span>
-        <span style="font-size:11px;color:var(--text-muted)">${c['Type']}</span>
       </div>
     </div>
-    <div class="list-stats">
-      <div class="stat-chip"><div class="stat-chip-label">Power</div><div class="stat-chip-val">${c['Power']||'—'}</div></div>
-      <div class="stat-chip"><div class="stat-chip-label">Energy</div><div class="stat-chip-val">${c['Energy Cost']||'—'}</div></div>
-      <div class="stat-chip"><div class="stat-chip-label">AP</div><div class="stat-chip-val">${c['AP Cost']||'—'}</div></div>
-    </div>
+    ${qty > 0 ? `<div class="qty-badge" style="position:static;">${qty}</div>` : ''}
+    <div class="add-btn" style="position:static;" onclick="event.stopPropagation(); quickAdd('${esc(c['Card Number'])}')" title="Add to deck">+</div>
   </div>`;
 }
 
-function setView(v) {
-  viewMode = v;
-  renderContent();
+function esc(s) { return (s||'').replace(/'/g, "\\'"); }
+
+// ── SELECT / DETAIL ──
+function selectCard(cardNumber) {
+  selectedCard = cards.find(c => c['Card Number'] === cardNumber) || null;
+  renderDetail();
+  renderCardList(); // update selected highlight + qty badges
 }
 
+function renderDetail() {
+  const panel = document.getElementById('detail-panel');
+  if (!selectedCard) {
+    panel.innerHTML = `<div class="detail-empty">Select a card to view details</div>`;
+    return;
+  }
+  const c = selectedCard;
+  const extras = [];
+  if (c['Trigger'] && c['Trigger'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Trigger</span>${c['Trigger']}</div>`);
+  if (c['Generate Energy'] && c['Generate Energy'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Generate</span>⚡ ${c['Generate Energy']}</div>`);
+  if (c['Attributes'] && c['Attributes'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Attr</span>${c['Attributes']}</div>`);
+
+  const qty = deckQty(c);
+  const totalInDeck = deckTotal();
+
+  panel.innerHTML = `
+    <div class="detail-img-wrap">
+      ${c['Image'] ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}">` : `<div class="card-img-placeholder" style="height:100%">🃏</div>`}
+    </div>
+    <div class="detail-name">${c['Card Name']}</div>
+    <div class="detail-num">${c['Card Number']}</div>
+    <div class="detail-badges">
+      <span class="rarity-badge rarity-${c['Rarity']}">${c['Rarity']}</span>
+      <span class="badge badge-color-${c['Color']}">${c['Color']}</span>
+      <span class="badge badge-type">${c['Type']}</span>
+    </div>
+    <div class="detail-stats">
+      <div class="detail-stat"><div class="detail-stat-label">Power</div><div class="detail-stat-val">${c['Power']||'—'}</div></div>
+      <div class="detail-stat"><div class="detail-stat-label">Energy</div><div class="detail-stat-val">${c['Energy Cost']||'—'}</div></div>
+      <div class="detail-stat"><div class="detail-stat-label">AP Cost</div><div class="detail-stat-val">${c['AP Cost']||'—'}</div></div>
+    </div>
+    <div class="detail-effect-title">Effect</div>
+    <div class="detail-effect">${c['Effect'] || '—'}</div>
+    ${extras.length ? `<div class="detail-extra">${extras.join('')}</div>` : ''}
+    <div class="detail-add-row">
+      <div class="qty-control">
+        <button class="qty-btn" onclick="changeQty(-1)" ${qty<=0?'disabled':''}>−</button>
+        <div class="qty-val">${qty} / ${DECK_MAX_COPIES}</div>
+        <button class="qty-btn" onclick="changeQty(1)" ${(qty>=DECK_MAX_COPIES || totalInDeck>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
+      </div>
+    </div>
+  `;
+}
+
+// ── DECK LOGIC ──
+function deckTotal() {
+  return Object.values(deck).reduce((sum, e) => sum + e.count, 0);
+}
+
+function quickAdd(cardNumber) {
+  const c = cards.find(x => x['Card Number'] === cardNumber);
+  if (!c) return;
+  addCard(c, 1);
+  if (selectedCard && selectedCard['Card Number'] === cardNumber) renderDetail();
+  renderCardList();
+}
+
+function changeQty(delta) {
+  if (!selectedCard) return;
+  if (delta > 0) addCard(selectedCard, 1);
+  else removeCard(selectedCard, 1);
+  renderDetail();
+  renderCardList();
+}
+
+function addCard(c, n) {
+  const num = c['Card Number'];
+  const total = deckTotal();
+  const current = deck[num]?.count || 0;
+  if (current >= DECK_MAX_COPIES) { showToast(`Max ${DECK_MAX_COPIES} copies per card`); return; }
+  if (total >= DECK_MAX_TOTAL) { showToast(`Deck is full (${DECK_MAX_TOTAL} cards max)`); return; }
+  if (!deck[num]) deck[num] = { count: 0, card: c };
+  deck[num].count += n;
+  deck[num].card = c; // keep current-language card reference for display
+  renderDeck();
+}
+
+function removeCard(c, n) {
+  const num = c['Card Number'];
+  if (!deck[num]) return;
+  deck[num].count -= n;
+  if (deck[num].count <= 0) delete deck[num];
+  renderDeck();
+}
+
+function deckQtyChange(cardNumber, delta) {
+  const entry = deck[cardNumber];
+  if (!entry) return;
+  if (delta > 0) addCard(entry.card, 1);
+  else removeCard(entry.card, 1);
+  if (selectedCard && selectedCard['Card Number'] === cardNumber) renderDetail();
+  renderCardList();
+}
+
+function clearDeck() {
+  if (!Object.keys(deck).length) return;
+  if (!confirm('Clear the entire deck?')) return;
+  deck = {};
+  renderDeck();
+  if (selectedCard) renderDetail();
+  renderCardList();
+}
+
+function renderDeck() {
+  const total = deckTotal();
+  const countEl = document.getElementById('deck-count');
+  countEl.textContent = `${total} / ${DECK_MAX_TOTAL}`;
+  countEl.classList.toggle('full', total >= DECK_MAX_TOTAL);
+
+  const listEl = document.getElementById('deck-list');
+  const entries = Object.entries(deck);
+  if (!entries.length) {
+    listEl.innerHTML = `<div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>`;
+    return;
+  }
+  // sort by card number
+  entries.sort((a,b) => (a[1].card['Card Number']||'').localeCompare(b[1].card['Card Number']||''));
+
+  listEl.innerHTML = entries.map(([num, entry]) => {
+    const c = entry.card;
+    return `<div class="deck-item">
+      <div class="deck-thumb">${c['Image'] ? `<img src="${c['Image']}" alt="">` : '🃏'}</div>
+      <div class="deck-main">
+        <div class="deck-name">${c['Card Name']}</div>
+        <div class="deck-sub">${num.split('-').pop()} · ${c['Rarity']}</div>
+      </div>
+      <div class="deck-qty-control">
+        <button class="deck-qty-btn" onclick="deckQtyChange('${esc(num)}', -1)">−</button>
+        <div class="deck-qty-val">${entry.count}</div>
+        <button class="deck-qty-btn" onclick="deckQtyChange('${esc(num)}', 1)" ${(entry.count>=DECK_MAX_COPIES || total>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── VIEW / IMAGE OPTIONS ──
+function setViewMode(m) {
+  viewMode = m;
+  document.getElementById('opt-grid').classList.toggle('active', m === 'grid');
+  document.getElementById('opt-list').classList.toggle('active', m === 'list');
+  renderCardList();
+}
 function setImgMode(m) {
   imgMode = m;
-  renderContent();
+  document.getElementById('opt-crop').classList.toggle('active', m === 'crop');
+  document.getElementById('opt-full').classList.toggle('active', m === 'full');
+  renderCardList();
 }
-
-function setDetailMode(m) {
-  detailMode = m;
-  renderContent();
+function toggleOptions() {
+  const menu = document.getElementById('options-menu');
+  const btn = document.getElementById('options-btn');
+  menu.classList.toggle('open');
+  btn.classList.toggle('active', menu.classList.contains('open'));
 }
+document.addEventListener('click', e => {
+  const wrap = document.querySelector('.options-wrap');
+  if (!wrap.contains(e.target)) {
+    document.getElementById('options-menu').classList.remove('open');
+    document.getElementById('options-btn').classList.remove('active');
+  }
+});
 
-// ── STATS ──
-function updateStats() {
-  const bar = document.getElementById('stat-bar');
-  const f = filteredCards;
-  bar.innerHTML = `
-    <div class="stat-row"><span class="stat-label">SR</span><span class="stat-val" style="color:var(--sr)">${f.filter(c=>c['Rarity']==='SR').length}</span></div>
-    <div class="stat-row"><span class="stat-label">R</span><span class="stat-val" style="color:var(--r)">${f.filter(c=>c['Rarity']==='R').length}</span></div>
-    <div class="stat-row"><span class="stat-label">U</span><span class="stat-val" style="color:var(--u)">${f.filter(c=>c['Rarity']==='U').length}</span></div>
-    <div class="stat-row"><span class="stat-label">C</span><span class="stat-val" style="color:var(--c)">${f.filter(c=>c['Rarity']==='C').length}</span></div>
-    <div class="stat-row" style="margin-top:4px;border-top:1px solid var(--border);padding-top:4px">
-      <span class="stat-label">Total</span><span class="stat-val">${f.length}</span>
-    </div>`;
-}
-
-// ── MODAL ──
-function openModal(idx) {
-  const c = allData[lang][idx];
-  if (!c) return;
-  document.getElementById('modal-name').textContent = c['Card Name'];
-  document.getElementById('modal-num').textContent  = c['Card Number'];
-  document.getElementById('modal-img').src = c['Image'] || '';
-  document.getElementById('modal-img-col').style.display = c['Image'] ? 'block' : 'none';
-  document.getElementById('modal').style.maxWidth = c['Image'] ? '680px' : '460px';
-  document.getElementById('modal-badges').innerHTML = `
-    <span class="rarity-badge rarity-${c['Rarity']}">${c['Rarity']}</span>
-    <span class="badge badge-color-${c['Color']}">${c['Color']}</span>
-    <span class="badge badge-type">${c['Type']}</span>`;
-  document.getElementById('modal-stats').innerHTML = `
-    <div class="modal-stat"><div class="modal-stat-label">Power</div><div class="modal-stat-val">${c['Power']||'—'}</div></div>
-    <div class="modal-stat"><div class="modal-stat-label">Energy</div><div class="modal-stat-val">${c['Energy Cost']||'—'}</div></div>
-    <div class="modal-stat"><div class="modal-stat-label">AP Cost</div><div class="modal-stat-val">${c['AP Cost']||'—'}</div></div>`;
-  document.getElementById('modal-effect').textContent = c['Effect'] || '—';
-  const extras = [];
-  if (c['Trigger'] && c['Trigger'] !== '-') extras.push(`<div class="modal-extra-chip"><span>Trigger</span>${c['Trigger']}</div>`);
-  if (c['Generate Energy'] === 'Y') extras.push(`<div class="modal-extra-chip"><span>Generates</span>⚡ Energy</div>`);
-  if (c['Attributes'] && c['Attributes'] !== '-') extras.push(`<div class="modal-extra-chip"><span>Attr</span>${c['Attributes']}</div>`);
-  document.getElementById('modal-extra').innerHTML = extras.join('');
-  const backdrop = document.getElementById('modal-backdrop');
-  backdrop.classList.toggle('panel-mode', detailMode === 'panel');
-  backdrop.classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(e) { if (e.target === document.getElementById('modal-backdrop')) closeModalDirect(); }
-function closeModalDirect() { document.getElementById('modal-backdrop').classList.remove('open'); document.body.style.overflow = ''; }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalDirect(); });
-
-// ── CSV PARSER ──
-// Streams char-by-char so LF inside quoted fields is never confused with a row separator.
-// Handles both CRLF and LF-only files correctly.
+// ── CSV PARSER (streaming, handles LF-only and CRLF) ──
 function parseCSVText(text) {
-  text = text.replace(/^\uFEFF/, ''); // strip BOM
+  text = text.replace(/^\uFEFF/, '');
   const rows = [];
   let col = '', row = [], inQ = false;
   for (let i = 0; i < text.length; i++) {
     const ch = text[i];
     if (ch === '"') {
-      if (inQ && text[i + 1] === '"') { col += '"'; i++; } // escaped ""
+      if (inQ && text[i + 1] === '"') { col += '"'; i++; }
       else inQ = !inQ;
     } else if (ch === ',' && !inQ) {
       row.push(col); col = '';
     } else if (ch === '\n' && !inQ) {
-      row.push(col.endsWith('\r') ? col.slice(0, -1) : col); // strip \r for CRLF files
+      row.push(col.endsWith('\r') ? col.slice(0, -1) : col);
       col = '';
       if (row.length) { rows.push(row); row = []; }
     } else {
       col += ch;
     }
   }
-  // flush last row if no trailing newline
   row.push(col);
   if (row.some(c => c.trim())) rows.push(row);
 
@@ -684,19 +735,18 @@ function parseCSVText(text) {
       return obj;
     });
 }
-// ── HELPERS ──
-function showLoading(msg = 'Loading…') {
-  document.getElementById('main-content').innerHTML = `
-    <div class="loading-screen"><div class="spinner"></div><div>${msg}</div></div>`;
-}
-function showError(msg) {
-  document.getElementById('main-content').innerHTML = `<div class="error-box">⚠ ${msg}</div>`;
-}
+
+// ── TOAST ──
 function showToast(msg) {
   const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
 }
+
+// init option button active states
+document.getElementById('opt-grid').classList.add('active');
+document.getElementById('opt-crop').classList.add('active');
 
 boot();
 </script>
