@@ -127,7 +127,7 @@
   .card-img-wrap.full-img img { object-fit: contain; object-position: center; }
   .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 24px; }
   .card-info { padding: 6px 8px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
-  .card-name { font-size: 12px; font-weight: 600; line-height: 1.25; margin-bottom: 4px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .card-name { font-size: 12px; font-weight: 600; line-height: 1.25; min-height: 30px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .card-meta { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; }
   .card-num { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--text-muted); }
   .card-color-label { font-size: 10px; color: var(--text-muted); letter-spacing: 1px; }
@@ -226,14 +226,14 @@
   .deck-stats-arrow { transition: transform .2s; font-size: 12px; }
   .deck-stats-arrow.open { transform: rotate(180deg); }
   .deck-stats { padding-top: 4px; flex-shrink: 0; overflow: hidden; }
-  .deck-stats h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
-  .deck-stats-group { margin-bottom: 12px; }
+  .deck-stats-group { margin-bottom: 14px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px; }
   .deck-stats-group:last-child { margin-bottom: 0; }
-  .stat-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 11px; }
-  .stat-bar-label { width: 46px; flex-shrink: 0; color: var(--text-muted); font-family: 'Share Tech Mono', monospace; text-align: right; }
-  .stat-bar-track { flex: 1; background: var(--surface2); border-radius: 4px; height: 14px; overflow: hidden; position: relative; }
-  .stat-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 4px; transition: width .3s; }
-  .stat-bar-count { width: 24px; flex-shrink: 0; text-align: left; font-family: 'Share Tech Mono', monospace; font-weight: 700; }
+  .deck-stats-group h4 { font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--text); margin-bottom: 10px; }
+  .vchart { display: flex; align-items: flex-end; gap: 4px; height: 90px; }
+  .vchart-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 0; }
+  .vchart-val { font-size: 9px; color: var(--text-muted); margin-bottom: 2px; font-family: 'Share Tech Mono', monospace; }
+  .vchart-bar { width: 100%; background: linear-gradient(180deg, var(--accent2), var(--accent)); border-radius: 2px 2px 0 0; min-height: 2px; transition: height .3s; }
+  .vchart-label { font-size: 9px; color: var(--text-muted); margin-top: 5px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
   .deck-actions { display: flex; gap: 8px; margin-top: 10px; }
   .deck-clear-btn { flex: 1; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 8px; font-family: inherit; font-size: 12px; cursor: pointer; transition: all .15s; letter-spacing: 1px; }
   .deck-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -342,7 +342,7 @@
       <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
     </div>
     <div class="deck-stats-toggle" id="deck-stats-toggle" onclick="toggleDeckStats()">
-      <span>Deck Stats</span><span class="deck-stats-arrow" id="deck-stats-arrow">▾</span>
+      <span>Deck Statistics</span><span class="deck-stats-arrow" id="deck-stats-arrow">▾</span>
     </div>
     <div class="deck-stats" id="deck-stats" style="display:none;"></div>
     <div class="deck-actions">
@@ -553,10 +553,6 @@ function gridCard(c) {
     </div>
     <div class="card-info">
       <div class="card-name">${escHtml(c['Card Name'])}</div>
-      <div class="card-meta">
-        <div class="color-dot color-${c['Color']}"></div>
-        <span class="card-color-label">${c['Color']}</span>
-      </div>
       <div class="mini-stepper" onclick="event.stopPropagation()">
         <button class="mini-stepper-btn" onclick="quickRemove('${num}')" ${qty<=0?'disabled':''}>−</button>
         <div class="mini-stepper-val">${qty}</div>
@@ -792,60 +788,66 @@ function renderDeckStats(entries, total) {
   const statsEl = document.getElementById('deck-stats');
   if (!total) { statsEl.innerHTML = ''; return; }
 
-  // ── Energy Cost distribution ──
-  const energyCounts = {};
+  // ── Cost Range: fixed 0-10 ──
+  const costCounts = {};
+  for (let i = 0; i <= 10; i++) costCounts[i] = 0;
   entries.forEach(([num, entry]) => {
     const raw = (entry.card['Energy Cost'] || '').trim();
-    const key = raw === '' || raw === '-' ? '-' : raw;
-    energyCounts[key] = (energyCounts[key] || 0) + entry.count;
+    const n = parseInt(raw);
+    if (!isNaN(n) && n >= 0 && n <= 10) costCounts[n] += entry.count;
   });
-  // sort: numeric values ascending, '-' last
-  const energyKeys = Object.keys(energyCounts).sort((a, b) => {
-    if (a === '-') return 1;
-    if (b === '-') return -1;
-    return parseInt(a) - parseInt(b);
-  });
-  const energyMax = Math.max(...Object.values(energyCounts), 1);
+  const costMax = Math.max(...Object.values(costCounts), 1);
+  const costBars = Object.keys(costCounts).map(k => vBar(k, costCounts[k], costMax)).join('');
 
-  // ── Trigger distribution ──
+  // ── Power Range: buckets of 1000, only show buckets that exist ──
+  const powerCounts = {};
+  entries.forEach(([num, entry]) => {
+    const raw = (entry.card['Power'] || '').replace(/[^0-9]/g, '');
+    if (!raw) return;
+    const p = parseInt(raw);
+    const bucket = Math.floor(p / 500) * 500;
+    powerCounts[bucket] = (powerCounts[bucket] || 0) + entry.count;
+  });
+  const powerKeys = Object.keys(powerCounts).map(Number).sort((a,b) => a-b);
+  const powerMax = Math.max(...Object.values(powerCounts), 1);
+  const powerBars = powerKeys.map(k => vBar(k, powerCounts[k], powerMax)).join('');
+
+  // ── Triggers: fixed categories ──
+  const triggerOrder = ['Draw', 'Get', 'Active', 'Raid', 'Color', 'Special', 'Final', 'None'];
   const triggerCounts = {};
+  triggerOrder.forEach(k => triggerCounts[k] = 0);
   entries.forEach(([num, entry]) => {
     const raw = (entry.card['Trigger'] || '').trim();
-    const key = (raw === '' || raw === '-') ? 'None' : raw.replace(/^\[|\]$/g, '');
-    triggerCounts[key] = (triggerCounts[key] || 0) + entry.count;
-  });
-  // sort: None last, others by count desc
-  const triggerKeys = Object.keys(triggerCounts).sort((a, b) => {
-    if (a === 'None') return 1;
-    if (b === 'None') return -1;
-    return triggerCounts[b] - triggerCounts[a];
+    const clean = (raw === '' || raw === '-') ? 'None' : raw.replace(/^\[|\]$/g, '');
+    if (triggerCounts.hasOwnProperty(clean)) triggerCounts[clean] += entry.count;
+    else triggerCounts['None'] += entry.count;
   });
   const triggerMax = Math.max(...Object.values(triggerCounts), 1);
-
-  const energyBars = energyKeys.map(k => `
-    <div class="stat-bar-row">
-      <div class="stat-bar-label">${k}</div>
-      <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(energyCounts[k]/energyMax*100)}%"></div></div>
-      <div class="stat-bar-count">${energyCounts[k]}</div>
-    </div>`).join('');
-
-  const triggerBars = triggerKeys.map(k => `
-    <div class="stat-bar-row">
-      <div class="stat-bar-label">${escHtml(k)}</div>
-      <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(triggerCounts[k]/triggerMax*100)}%"></div></div>
-      <div class="stat-bar-count">${triggerCounts[k]}</div>
-    </div>`).join('');
+  const triggerBars = triggerOrder.map(k => vBar(k, triggerCounts[k], triggerMax)).join('');
 
   statsEl.innerHTML = `
     <div class="deck-stats-group">
-      <h4>Energy Cost</h4>
-      ${energyBars}
+      <h4>Cost Range</h4>
+      <div class="vchart">${costBars}</div>
     </div>
     <div class="deck-stats-group">
-      <h4>Trigger</h4>
-      ${triggerBars}
+      <h4>Power Range</h4>
+      <div class="vchart">${powerBars}</div>
+    </div>
+    <div class="deck-stats-group">
+      <h4>Triggers</h4>
+      <div class="vchart">${triggerBars}</div>
     </div>
   `;
+}
+
+function vBar(label, value, max) {
+  const pct = max > 0 ? (value / max * 100) : 0;
+  return `<div class="vchart-col">
+    <div class="vchart-val">${value > 0 ? value : ''}</div>
+    <div class="vchart-bar" style="height:${pct}%"></div>
+    <div class="vchart-label">${escHtml(String(label))}</div>
+  </div>`;
 }
 
 // ── VIEW / IMAGE OPTIONS ──
