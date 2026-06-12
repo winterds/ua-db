@@ -324,7 +324,7 @@ let manifest = null;
 // ── BOOT ──
 async function boot() {
   try {
-    const res = await fetch('manifest.json');
+    const res = await fetch('manifest.json?t=' + Date.now(), { cache: 'no-store' });
     if (!res.ok) throw new Error('manifest.json not found');
     manifest = await res.json();
     populateSetSelector();
