@@ -180,8 +180,8 @@
 
   /* DETAIL PANEL */
   .detail-empty { color: var(--text-muted); text-align: center; padding: 60px 10px; font-size: 13px; }
-  .detail-img-wrap { width: 100%; aspect-ratio: 420/301; background: var(--surface2); border-radius: 10px; overflow: hidden; margin-bottom: 14px; border: 1px solid var(--border); position: relative; }
-  .detail-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 24.05%; display: block; }
+  .detail-img-wrap { width: 55%; max-width: 200px; aspect-ratio: 480/671; background: var(--surface2); border-radius: 10px; overflow: hidden; margin: 0 auto 14px; border: 1px solid var(--border); position: relative; }
+  .detail-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
   .detail-name { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
   .detail-num { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--text-muted); }
   .detail-badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
@@ -600,7 +600,7 @@ function gridCard(c) {
       <div class="add-btn" onclick="event.stopPropagation(); quickAdd('${esc(c['Card Number'])}')" title="Add to deck">+</div>
     </div>
     <div class="card-info">
-      <div class="card-name">${c['Card Name']}</div>
+      <div class="card-name">${escHtml(c['Card Name'])}</div>
       <div class="card-meta">
         <div class="color-dot color-${c['Color']}"></div>
         <span class="card-color-label">${c['Color']}</span>
@@ -616,7 +616,7 @@ function listCard(c) {
       ${c['Image'] ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" loading="lazy">` : '🃏'}
     </div>
     <div class="list-main">
-      <div class="list-name">${c['Card Name']}</div>
+      <div class="list-name">${escHtml(c['Card Name'])}</div>
       <div class="list-tags">
         <div class="color-dot color-${c['Color']}"></div>
         <span class="card-color-label">${c['Color']}</span>
@@ -628,6 +628,9 @@ function listCard(c) {
 }
 
 function esc(s) { return (s||'').replace(/'/g, "\\'"); }
+function escHtml(s) {
+  return (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
 
 // ── SELECT / DETAIL ──
 function selectCard(cardNumber) {
@@ -644,9 +647,9 @@ function renderDetail() {
   }
   const c = selectedCard;
   const extras = [];
-  if (c['Trigger'] && c['Trigger'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Trigger</span>${c['Trigger']}</div>`);
-  if (c['Generate Energy'] && c['Generate Energy'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Generate</span>⚡ ${c['Generate Energy']}</div>`);
-  if (c['Attributes'] && c['Attributes'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Attr</span>${c['Attributes']}</div>`);
+  if (c['Trigger'] && c['Trigger'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Trigger</span>${escHtml(c['Trigger'])}</div>`);
+  if (c['Generate Energy'] && c['Generate Energy'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Generate</span>⚡ ${escHtml(c['Generate Energy'])}</div>`);
+  if (c['Attributes'] && c['Attributes'] !== '-') extras.push(`<div class="detail-extra-chip"><span>Attr</span>${escHtml(c['Attributes'])}</div>`);
 
   const qty = deckQty(c);
   const totalInDeck = deckTotal();
@@ -665,7 +668,7 @@ function renderDetail() {
         <button class="qty-btn" onclick="changeQty(1)" ${(qty>=DECK_MAX_COPIES || totalInDeck>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
       </div>
     </div>
-    <div class="detail-name">${c['Card Name']}</div>
+    <div class="detail-name">${escHtml(c['Card Name'])}</div>
     <div class="detail-num">${c['Card Number']}</div>
     <div class="detail-badges">
       <span class="rarity-badge rarity-${c['Rarity']}">${c['Rarity']}</span>
@@ -678,7 +681,7 @@ function renderDetail() {
       <div class="detail-stat"><div class="detail-stat-label">AP Cost</div><div class="detail-stat-val">${c['AP Cost']||'—'}</div></div>
     </div>
     <div class="detail-effect-title">Effect</div>
-    <div class="detail-effect">${c['Effect'] || '—'}</div>
+    <div class="detail-effect">${escHtml(c['Effect']) || '—'}</div>
     ${extras.length ? `<div class="detail-extra">${extras.join('')}</div>` : ''}
   `;
 }
@@ -781,7 +784,7 @@ function renderDeck() {
     return `<div class="deck-item">
       <div class="deck-thumb">${c['Image'] ? `<img src="${c['Image']}" alt="">` : '🃏'}</div>
       <div class="deck-main">
-        <div class="deck-name">${c['Card Name']}</div>
+        <div class="deck-name">${escHtml(c['Card Name'])}</div>
         <div class="deck-sub">${num.split('-').pop()} · ${c['Rarity']}</div>
       </div>
       <div class="deck-qty-control">
