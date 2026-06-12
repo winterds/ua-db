@@ -1,0 +1,145 @@
+﻿Card Name,Card Number,Rarity,Color,Type,Effect,Energy Cost,AP Cost,Power,Attributes,Generate Energy,Trigger,Image
+シェリル・ノーム,EX14BT/MCR-2-001,C,Yellow,キャラクター,-,-,1,2000,-,Y,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-001.png?v8
+シェリル・ノーム,EX14BT/MCR-2-002,U,Yellow,キャラクター,"[起動メイン][ターン1]このキャラが登場したターン中のみ発動できる。以下から1つ選ぶ。
+・自分のライフを1枚手札に加える。そうした場合、カードを2枚引き、自分の手札を1枚場外に置く。
+・このターン中に自分がライフを手札に加えている場合、カードを1枚引く。",3,1,2000,-,YY,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-002.png?v8
+シェリル・ノーム,EX14BT/MCR-2-003,R,Yellow,キャラクター,"[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+[自分のターン中]このターン中に自分がライフを手札に加えている場合、このキャラはBP+1000。
+[起動メイン][ターン1]自分のライフを1枚手札に加える。",2,1,3000+,-,Y,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-003.png?v8
+シェリル・ノーム,EX14BT/MCR-2-004,SR,Yellow,キャラクター,"[レイド]〈シェリル・ノーム〉アクティブにし、フロントLに移動できる
+自分のフロントLに〈ランカ・リー〉がある場合、このキャラは以下の効果を全て得る。
+・[インパクト（1）]
+・[起動メイン][フロントLにある場合] [ターン1]自分のライフを1枚手札に加える。そうした場合、カードを1枚引き、このターン中、次に手札から使用する［特徴：歌（シェリル）］の消費APを-1する。",4,1,4000,-,Y,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-004.png?v8
+ランカ・リー,EX14BT/MCR-2-005,C,Yellow,キャラクター,[登場時]自分の山札の上から1枚見て、山札の上か場外に置く。,-,1,1500,-,Y,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-005.png?v8
+ランカ・リー,EX14BT/MCR-2-006,U,Yellow,キャラクター,このキャラがアクティブの場合、このキャラの発生エナジー+[黄]。,2,1,2500,-,Y+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-006.png?v8
+ランカ・リー,EX14BT/MCR-2-007,R,Yellow,キャラクター,[起動メイン]このターン中に自分がライフを手札に加えている場合のみ発動できる。このキャラをアクティブにし、次の自分のターン開始時まで、このキャラはBP+500。〈ランカ・リー〉のこの効果は1ターンに1回のみ発動できる。,4,1,4000+,-,Y,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-007.png?v8
+ランカ・リー,EX14BT/MCR-2-008,SR,Yellow,キャラクター,"[レイド]〈ランカ・リー〉アクティブにし、フロントLに移動できる
+[登場時]カードを1枚引く。
+[起動メイン][フロントLにある場合] [手札を1枚場外に置く] [ターン1]このターン中に自分がライフを手札に加えている場合のみ発動できる。以下から1つ選ぶ。このターン中に自分の他の〈ランカ・リー〉が既に選んだ効果は選べない。
+・自分の山札の上から1枚を表向きで自分のライフエリアに置く。
+・相手のフロントLのキャラを1枚選び、次の自分のターン開始時まで、「このキャラはアタックできない。」を与える。",4,1,4000,-,Y,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-008.png?v8
+オベリスク,EX14BT/MCR-2-009,U,Yellow,イベント,"以下から『1つ』まで選ぶ。このターン中に自分がライフを手札に加えている場合、『2つ』に代わる。
+・カードを2枚引く。
+・自分の場のキャラを1枚選び、このターン中、BP+3000。
+・自分のライフが1で、自分のリムーブエリアに〈オベリスク〉がない場合、自分の山札の上から1枚を表向きで自分のライフエリアに置く。このカードをリムーブエリアに置く。",3,1,-,歌（シェリル）,-,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-009.png?v8
+放課後オーバーフロウ,EX14BT/MCR-2-010,U,Yellow,イベント,自分の場のキャラを1枚まで選び、このターン中、BP+2000。自分の場外に黄の［特徴：歌（ランカ）］のカード名が3種類以上ある場合、カードを2枚引く。,2,1,-,歌（ランカ）,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-010.png?v8
+VF-19EF/A イサム・スペシャル,EX14BT/MCR-2-011,R,Blue,キャラクター,"[フロントLにある場合]自分のアタックフェイズ終了時、カードを1枚引き、このキャラを自分の山札の下に置く。自分のエナジーLのカード名に「イサム」を含まないキャラを1枚まで選び、フロントLに移動させる。
+[登場時][フロントLにある場合]このキャラをアクティブにする。〈VF-19EF/A イサム・スペシャル〉のこの効果は1ターンに1回のみ発動する。",3,1,4000,S.M.S／F形態,B,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-011.png?v8
+シェリル・ノーム,EX14BT/MCR-2-012,SR,Blue,キャラクター,"[登場時]自分の山札の上から2枚見て、カード名に「アルト」を含むカードか〈サヨナラノツバサ ～ the end of triangle〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。
+[起動メイン][レストにする]このターン中に自分が〈サヨナラノツバサ ～ the end of triangle〉を使用している場合のみ発動できる。自分の山札の上から1枚見て、山札の上か下に置く。",-,1,1500,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-012.png?v8
+ランカ・リー,EX14BT/MCR-2-013,SR,Blue,キャラクター,"[登場時]自分の山札の上から2枚見て、カード名に「アルト」を含むカードか〈サヨナラノツバサ ～ the end of triangle〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。
+[起動メイン][レストにする]このターン中に自分が〈サヨナラノツバサ ～ the end of triangle〉を使用している場合のみ発動できる。自分の山札の上から3枚見て、望む順で山札の上に置く。",-,1,1500,-,B,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-013.png?v8
+VF-27γSP スーパールシファーバルキリー（ブレラ・スターン）,EX14BT/MCR-2-014,U,Blue,キャラクター,[起動メイン][フロントLにある場合] [レストにする] [このカードを退場させる]自分の場に〈ランカ・リー〉がある場合のみ発動できる。BP3000以下の相手のフロントLのキャラを1枚まで選び、退場させる。このターン中に自分が〈サヨナラノツバサ ～ the end of triangle〉を使用している場合、カードを1枚引く。,4,1,4000,B形態,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-014.png?v8
+早乙女 アルト,EX14BT/MCR-2-015,C,Blue,キャラクター,"[自分のターン中]自分の場に〈シェリル・ノーム〉と〈ランカ・リー〉がある場合、このキャラはBP+1000。
+[登場時]カードを1枚引き、自分の手札を1枚場外に置く。",3,1,3000+,S.M.S／スカル小隊,BB,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-015.png?v8
+YF-29 デュランダルバルキリー（早乙女 アルト）,EX14BT/MCR-2-016,R,Blue,キャラクター,"[レイド]〈早乙女 アルト〉アクティブにし、フロントLに移動できる
+このキャラのアタック終了時、自分のフロントLにアクティブのキャラがない場合、このキャラを退場させてもよい。
+[登場時]自分の場外から〈サヨナラノツバサ ～ the end of triangle〉を1枚まで手札に加える。
+[退場時]自分のターン中の場合、このキャラのレイド元のカードを1枚まで自分の場にアクティブで登場させ、そのキャラにこのターン中、「このキャラはBP3000以下のキャラにブロックされない。」を与える。",5,1,4000,S.M.S／スカル小隊／F形態,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-016.png?v8
+VF-25G トルネードメサイアバルキリー（ミハエル・ブラン）,EX14BT/MCR-2-017,C,Blue,キャラクター,"[フロントLにある場合]自分の場のレイド状態の〈クァドラン・レア（クラン・クラン）〉が退場した時、そのキャラのレイド元のカードを1枚まで自分の場にアクティブで登場させる。
+[起動メイン][ターン1]このキャラが[インパクト]を持つ場合のみ発動できる。このキャラはこのターン中、[狙い撃ち]（相手のフロントLのキャラを指定してアタックでき、その場合ブロックされない）を得る。",4,1,4000,S.M.S／スカル小隊／B形態,B,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-017.png?v8
+サヨナラノツバサ ～ the end of triangle,EX14BT/MCR-2-018,U,Blue,イベント,"〈サヨナラノツバサ ～ the end of triangle〉は1ターンに1枚のみ使用できる。
+自分の場に〈シェリル・ノｰム〉と〈ランカ・リー〉がある場合、手札のこのカードの消費APを-2する。
+BP1500以上の相手のフロントLのキャラ全ては、このターン中、BP-1000。カードを1枚引く。",4,2,-,歌（シェリル）／歌（ランカ）,-,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-018.png?v8
+ハインツ・ネーリッヒ・ウィンダミア,EX14BT/MCR-2-019,C,Purple,キャラクター,[起動メイン][レストにする] [手札を1枚場外に置く]自分のフロントLに［特徴：空中騎士団］がある場合のみ発動できる。相手のフロントLのキャラ全ては、このターン中、BP-1000。〈ハインツ・ネーリッヒ・ウィンダミア〉のこの効果は1ターンに1回のみ発動できる。,3,1,1000,ウィンダミア王国,PP,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-019.png?v8
+ハヤテ・インメルマン,EX14BT/MCR-2-020,C,Purple,キャラクター,-,-,1,1500,ケイオス／Δ小隊,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-020.png?v8
+ハヤテ・インメルマン,EX14BT/MCR-2-021,U,Purple,キャラクター,[登場時]自分の山札の上から3枚見て、［特徴：Δ小隊］か〈フレイア・ヴィオン〉を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,2000,ケイオス／Δ小隊,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-021.png?v8
+ハヤテ・インメルマン,EX14BT/MCR-2-022,R,Purple,キャラクター,"[フロントLにある場合]このキャラが登場したターン以外の自分のメインフェイズ中に、自分の効果でカードを引いた時、このキャラをアクティブにする。
+[起動メイン][フロントLにある場合] [レストにする]このキャラはこのターン中、BP+1000。
+[アタック時]このキャラのBPが5000以上の場合、自分の山札の上から2枚見て、望む枚数を望む順で山札の上に置き、残りを場外に置く。",3,1,3000+,ケイオス／Δ小隊,PP,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-022.png?v8
+ミラージュ・ファリーナ・ジーナス,EX14BT/MCR-2-023,C,Purple,キャラクター,[登場時]自分の山札の上から1枚見て、山札の上か場外に置く。,-,1,2000,ケイオス／Δ小隊,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-023.png?v8
+ミラージュ・ファリーナ・ジーナス,EX14BT/MCR-2-024,U,Purple,キャラクター,このキャラがアクティブの場合、このキャラの発生エナジー+[紫]。,2,1,2500,ケイオス／Δ小隊,P+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-024.png?v8
+ミラージュ・ファリーナ・ジーナス,EX14BT/MCR-2-025,R,Purple,キャラクター,[登場時]自分のフロントLにカード名に「ミラージュ」を含まないレイド状態の［特徴：Δ小隊］がある場合、カードを1枚引く。,1,1,2000,ケイオス／Δ小隊,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-025.png?v8
+メッサー・イーレフェルト,EX14BT/MCR-2-026,C,Purple,キャラクター,-,-,1,2000,ケイオス／Δ小隊,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-026.png?v8
+メッサー・イーレフェルト,EX14BT/MCR-2-027,U,Purple,キャラクター,[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）,2,1,3000,ケイオス／Δ小隊,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-027.png?v8
+カナメ・バッカニア,EX14BT/MCR-2-028,C,Purple,キャラクター,[起動メイン][レストにする] [ターン1]このキャラはこのターン中、発生エナジー+[紫]と「メインフェイズ終了時、このキャラを退場させる。」を得る。,-,1,1000,ケイオス／ワルキューレ,P+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-028.png?v8
+カナメ・バッカニア,EX14BT/MCR-2-029,U,Purple,キャラクター,[登場時]自分の手札から必要エナジーが2以下で消費APが1の紫の［特徴：ワルキューレ］を1枚まで自分の場にレストで登場させる。,3,1,3000,ケイオス／ワルキューレ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-029.png?v8
+カナメ・バッカニア,EX14BT/MCR-2-030,R,Purple,キャラクター,[登場時]自分の山札の上から3枚見て、［特徴：ワルキューレ］を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,2000,ケイオス／ワルキューレ,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-030.png?v8
+カナメ・バッカニア,EX14BT/MCR-2-031,SR,Purple,キャラクター,"このキャラはアクティブで登場させる。
+[登場時]自分の手札を1枚場外に置いてもよい。そうした場合、自分の場外から必要エナジーが2以下の紫の［特徴：ワルキューレ］を1枚まで自分の場にレストで登場させる。",3,2,4000,ケイオス／ワルキューレ,P,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-031.png?v8
+フレイア・ヴィオン,EX14BT/MCR-2-032,C,Purple,キャラクター,[登場時]カードを1枚引き、自分の手札を1枚場外に置く。,-,1,1500,ケイオス／ワルキューレ,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-032.png?v8
+フレイア・ヴィオン,EX14BT/MCR-2-033,C,Purple,キャラクター,[登場時]カードを1枚引く。,2,1,2000,ケイオス／ワルキューレ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-033.png?v8
+フレイア・ヴィオン,EX14BT/MCR-2-034,U,Purple,キャラクター,[自分のターン中]自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、このキャラはBP+1000。,1,1,2000+,ケイオス／ワルキューレ,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-034.png?v8
+フレイア・ヴィオン,EX14BT/MCR-2-035,R,Purple,キャラクター,"[起動メイン][レストにする]自分のフロントLにカード名に「ハヤテ」を含むキャラがある場合のみ発動できる。以下から1つ選ぶ。〈フレイア・ヴィオン〉のこの効果は1ターンに1回のみ発動できる。
+・カードを1枚引き、自分の手札を1枚場外に置く。
+・自分のライフを1枚手札に加える。そうした場合、カードを2枚引き、自分の手札を1枚場外に置く。",3,1,2500,ケイオス／ワルキューレ,PP,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-035.png?v8
+フレイア・ヴィオン,EX14BT/MCR-2-036,SR,Purple,キャラクター,"このカードを手札からレイドする際、自分の場に［特徴：ワルキューレ］のカード名が5種類以上ある場合、消費APを-1する。このターン中に他の〈フレイア・ヴィオン〉をAPを支払わずにレイドしているなら、この効果は無効になる。
+[レイド]〈フレイア・ヴィオン〉アクティブにし、フロントLに移動できる
+[アタック時]自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、自分の場のキャラ全ては、このターン中、BP+1000。",3,1,3500+,ケイオス／ワルキューレ,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-036.png?v8
+マキナ・中島,EX14BT/MCR-2-037,C,Purple,キャラクター,[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）,-,1,2000,ケイオス／ワルキューレ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-037.png?v8
+マキナ・中島,EX14BT/MCR-2-038,C,Purple,キャラクター,[登場時]自分の山札の上から5枚見て、カード名に「VF」を含む［特徴：Δ小隊］を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,2000,ケイオス／ワルキューレ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-038.png?v8
+マキナ・中島,EX14BT/MCR-2-039,U,Purple,キャラクター,"[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+[登場時]自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、自分の場の他のキャラを1枚まで選び、このターン中、『BP+1000』。5種類以上ある場合、『BP+2000』に代わる。",3,1,3000,ケイオス／ワルキューレ,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-039.png?v8
+マキナ・中島,EX14BT/MCR-2-040,SR,Purple,キャラクター,"自分のフロントLに［特徴：ワルキューレ］が2枚以上ある場合、このキャラの発生エナジー+[紫]。
+[登場時]自分の場に〈レイナ・プラウラー〉がある場合、自分の山札の上から2枚見て、望む枚数を望む順で山札の上に置き、残りを場外に置く。",2,1,2500,ケイオス／ワルキューレ,P+,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-040.png?v8
+美雲・ギンヌメール,EX14BT/MCR-2-041,C,Purple,キャラクター,[登場時]自分の山札の上から2枚見て、［特徴：ワルキューレ］を1枚まで場外に置き、残りを望む順で山札の上に置く。,-,1,1500,ケイオス／ワルキューレ,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-041.png?v8
+美雲・ギンヌメール,EX14BT/MCR-2-042,C,Purple,キャラクター,"このキャラは相手のキャラの効果で選ばれない。
+[フロントLにある場合] [ターン1]自分が一度に2ダメージ以上受ける場合、代わりに1ダメージにしてもよい。",3,1,3500,ケイオス／ワルキューレ,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-042.png?v8
+美雲・ギンヌメール,EX14BT/MCR-2-043,U,Purple,キャラクター,[登場時]自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、自分の場外の必要エナジーが2以下の［特徴：歌（ワルキューレ）］を1枚まで自分の山札の上に置く。,2,1,3000,ケイオス／ワルキューレ,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-043.png?v8
+美雲・ギンヌメール,EX14BT/MCR-2-044,R,Purple,キャラクター,"[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、このキャラはBP+1000。",1,1,2000+,ケイオス／ワルキューレ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-044.png?v8
+美雲・ギンヌメール,EX14BT/MCR-2-045,SR,Purple,キャラクター,"[レイド]〈美雲・ギンヌメール〉アクティブにし、フロントLに移動できる
+[自分のターン中]自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、このキャラは[インパクト（1）]を得る。
+[アタック時]以下から2つまで選ぶ。
+・自分の場外の［特徴：歌（ワルキューレ）］を1枚リムーブエリアに置く。そうした場合、カードを1枚引く。
+・自分の場に［特徴：ワルキューレ］のカード名が5種類以上ある場合、このキャラは次の自分のターン開始時まで、BP+1000。",4,1,4000+,ケイオス／ワルキューレ,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-045.png?v8
+レイナ・プラウラー,EX14BT/MCR-2-046,C,Purple,キャラクター,-,-,1,2000,ケイオス／ワルキューレ,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-046.png?v8
+レイナ・プラウラー,EX14BT/MCR-2-047,C,Purple,キャラクター,[登場時]必要エナジーが1以下の自分の場の他のキャラを1枚手札に戻す。戻せない場合、このキャラを手札に戻す。,1,1,1500,ケイオス／ワルキューレ,PP,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-047.png?v8
+レイナ・プラウラー,EX14BT/MCR-2-048,U,Purple,キャラクター,[登場時]自分の山札の上から3枚見て、［特徴：ワルキューレ］を1枚まで公開し山札の上に置く。残りを望む順で山札の下に置く。,3,1,3000,ケイオス／ワルキューレ,PP,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-048.png?v8
+レイナ・プラウラー,EX14BT/MCR-2-049,SR,Purple,キャラクター,"[起動メイン][レストにする]以下から1つ選ぶ。
+・自分の場の他のキャラを1枚選び、このターン中、BP+1000。
+・自分の場に〈マキナ・中島〉がある場合、自分の場の他のキャラを1枚選び、このターン中、「このキャラはBP4000以上のキャラにブロックされない。」を与える。〈レイナ・プラウラー〉のこの効果は1ターンに1回のみ選べる。",2,1,2000,ケイオス／ワルキューレ,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-049.png?v8
+Sv-262Ba ドラケンIII（ボーグ・コンファールト）,EX14BT/MCR-2-050,C,Purple,キャラクター,[登場時]自分の手札を1枚場外に置いてもよい。そうした場合、自分の場外から[レイド]を持たないキャラカードを1枚まで手札に加える。,4,1,4000,ウィンダミア王国／空中騎士団／G形態,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-050.png?v8
+Sv-262Hs ドラケンIII（キース・エアロ・ウィンダミア）,EX14BT/MCR-2-051,U,Purple,キャラクター,"このキャラはアクティブで登場させる。
+[登場時]相手のフロントLのキャラを1枚まで選び、このターン中、BP-3000。",5,2,4000,ウィンダミア王国／空中騎士団／B形態,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-051.png?v8
+VF-31F ジークフリード（メッサー・イーレフェルト）,EX14BT/MCR-2-052,R,Purple,キャラクター,"[レイド]〈メッサー・イーレフェルト〉アクティブにし、フロントLに移動できる
+[登場時]相手のフロントLのキャラを1枚まで選び、このターン中、BP-2500。
+[アタック時]このキャラのBPが6000以上の場合、このキャラは次の自分のターン開始時まで、[ダメージ（2）]と[インパクト無効]を得る。
+[退場時]自分の山札の上から7枚見て、カード名に「メッサー」を含まず「VF」を含む［特徴：Δ小隊］を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。",5,1,4000,ケイオス／Δ小隊／F形態,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-052.png?v8
+VF-31C ジークフリード（ミラージュ・ファリーナ・ジーナス）,EX14BT/MCR-2-053,SR,Purple,キャラクター,"[レイド]〈ミラージュ・ファリーナ・ジーナス〉アクティブにし、フロントLに移動できる
+[起動メイン][フロントLにある場合] [ターン1]自分の場のカード名に「ハヤテ」を含むキャラを1枚選ぶ。そうした場合、カードを1枚引き、選んだキャラにこのターン中、[インパクト（1）]を与える。",4,1,4000,ケイオス／Δ小隊／B形態,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-053.png?v8
+VF-31J ジークフリード（ハヤテ・インメルマン）,EX14BT/MCR-2-054,SR,Purple,キャラクター,"[レイド]〈ハヤテ・インメルマン〉アクティブにし、フロントLに移動できる
+[フロントLにある場合]自分のメインフェイズ中に、自分の効果でカードを引いた時、このキャラをアクティブにする。
+[起動メイン][フロントLにある場合] [レストにする]以下から1つ選ぶ。このターン中に既に選んだこのキャラの効果は選べない。
+・自分の手札から必要エナジーが1以下の紫のキャラカードを1枚まで自分の場にレストで登場させる。
+・自分の場のキャラを1枚選び、このターン中、BP+2000。
+・相手のフロントLのキャラを1枚選び、このターン中、BP-1500。",5,1,4000+,ケイオス／Δ小隊／B形態,P,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-054.png?v8
+裸喰娘娘,EX14BT/MCR-2-055,U,Purple,フィールド,[起動メイン][レストにする] [このカードを退場させる]カードを1枚引く。自分の手札から必要エナジーが3以下で消費APが1の紫のキャラカードを1枚まで自分の場にレストで登場させる。,3,1,-,-,PP,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-055.png?v8
+覚悟するんよ,EX14BT/MCR-2-056,U,Purple,イベント,自分のAPカードを2枚まで選び、アクティブにする。,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-056.png?v8
+守ることが俺の仕事だ,EX14BT/MCR-2-057,U,Purple,イベント,『BP3000以下』の相手のフロントLのキャラを1枚選び、退場させる。自分の場にカード名に「ハヤテ」を含むキャラがある場合、『BP5000以下』に代わる。,4,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-057.png?v8
+AXIA～ダイスキでダイキライ～,EX14BT/MCR-2-058,C,Purple,イベント,自分の場の［特徴：Δ小隊］か［特徴：ワルキューレ］を1枚選び、このターン中、BP+2000。自分のAPカードを1枚アクティブにする。,2,1,-,歌（ワルキューレ）,-,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-058.png?v8
+いけないボーダーライン,EX14BT/MCR-2-059,C,Purple,イベント,自分の山札の上から3枚見て、［特徴：ワルキューレ］を1枚まで公開し手札に加える。残りを望む順で山札の下に置く。このターン中、次に手札から使用する［特徴：ワルキューレ］の消費APを-1する。,2,1,-,歌（ワルキューレ）,-,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-059.png?v8
+一度だけの恋なら,EX14BT/MCR-2-060,U,Purple,イベント,『BP3000以下』の相手のフロントLのキャラを1枚選び、退場させる。自分の場に［特徴：ワルキューレ］のカード名が3種類以上ある場合、『BP5000以下』に代わる。,3,1,-,歌（ワルキューレ）,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-060.png?v8
+GIRAFFE BLUES,EX14BT/MCR-2-061,C,Purple,イベント,"カードを1枚引く。その後、以下から1つ選ぶ。
+・相手のフロントLのキャラを1枚まで選び、次の自分のターン開始時まで、「このキャラはアタックできない。」を与える。
+・相手のフロントLのレイド状態のキャラを1枚まで選び、レイド状態の上のカードを1枚場外に置く。",2,1,-,歌（ワルキューレ）,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-061.png?v8
+アリエス・ターナー,EX14BT/MCR-2-062,C,Red,キャラクター,[起動メイン][フロントLにある場合] [ターン1]このキャラがアクティブの場合のみ発動できる。自分の手札を1枚自分の山札の下に置く。そうした場合、カードを1枚引く。,2,1,3000,-,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-062.png?v8
+工藤 シン,EX14BT/MCR-2-063,C,Red,キャラクター,[登場時]自分の山札の上から1枚見て、山札の上か下に置く。,-,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-063.png?v8
+工藤 シン,EX14BT/MCR-2-064,U,Red,キャラクター,[登場時]自分の山札の上から4枚見て、元々のBPが3500以下の特徴を持たないキャラカードを1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,1500,-,R,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-064.png?v8
+サラ・ノーム,EX14BT/MCR-2-065,U,Red,キャラクター,"[登場時]以下から1つ選ぶ。
+・自分の場の他のキャラを1枚まで選び、このターン中、BP+1000。
+・このキャラが自分の効果で登場していた場合、自分の場の元々のBPが3500以下の他のキャラを1枚まで選び、アクティブにする。",3,1,2000,-,RR,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-065.png?v8
+マオ・ノーム,EX14BT/MCR-2-066,C,Red,キャラクター,[起動メイン][レストにする]自分の場の元々のBPが3500以下の他のキャラを1枚まで選び、このターン中、[インパクト（1）]か「このキャラはBP4000以上のキャラにブロックされない。」を与える。このキャラを自分の山札の下に置く。,-,1,1500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-066.png?v8
+ロイ・フォッカー,EX14BT/MCR-2-067,U,Red,キャラクター,"自分の場にカードが1枚もない場合、手札にあるこのカードの必要エナジーを[赤×2]減らす。
+[起動メイン][ターン1]このキャラのBPが元々のBPより高い場合のみ発動できる。このキャラはこのターン中、BP+500。",2,1,2500+,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-067.png?v8
+VF-0S フェニックス（ロイ・フォッカー）,EX14BT/MCR-2-068,R,Red,キャラクター,"[登場時]自分の手札からBP3500以下で消費APが1の赤のキャラカードを1枚まで自分の場にレストで登場させるかレイドさせる。
+[起動メイン][フロントLにある場合] [ターン1]このキャラのBPが5000以上の場合のみ発動できる。このキャラをアクティブにする。以下から1つ選ぶ。
+・カードを1枚引く。
+・自分の場の他のキャラを1枚選び、このターン中、BP+1000。",4,2,4000,-,R,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-068.png?v8
+VF-0D フェニックス（工藤 シン）,EX14BT/MCR-2-069,R,Red,キャラクター,"[レイド]〈工藤 シン〉アクティブにし、フロントLに移動できる
+[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+[登場時]このキャラはこのターン中、BP+1000。
+[アタック時][ターン1]自分の山札の下から1枚を場外に置く。場外に置いたカードが赤の〔〈サラ・ノーム〉か〈マオ・ノーム〉〕の場合、そのカードを自分の場にレストで登場させてもよい。場外に置いたカードが特徴を持たない場合、そのカードを手札に加えてもよい。",3,1,3500+,-,R,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-069.png?v8
+ARKAN,EX14BT/MCR-2-070,U,Red,イベント,自分のAPカードを2枚まで選び、アクティブにする。,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-070.png?v8
+鳥の人,EX14BT/MCR-2-071,U,Red,イベント,"このカードは自分の場にBP4000以上のキャラが2枚以上ある場合のみ使用できる。
+BP5000以下の相手のフロントLのキャラを1枚まで選び、退場させる。自分の場の〈サラ・ノーム〉を自分の山札の下に置いてもよい。そうした場合、カードを1枚引く。",4,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-071.png?v8
+エルマ・ホイリー,EX14BT/MCR-2-072,C,Red,キャラクター,[登場時]自分の手札を1枚場外に置いてもよい。そうした場合、自分の場外から必要エナジーが3以下の〈熱気 バサラ〉を1枚まで手札に加える。,-,1,1500,-,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-072.png?v8
+ライザ・ホイリー,EX14BT/MCR-2-073,C,Red,キャラクター,[フロントLにある場合]自分の場のレイド状態のカード名に「バサラ」を含むキャラが退場した時、アクティブのこのキャラをレストにしてもよい。そうした場合、退場したキャラのレイド元のカードを1枚まで手札に加える。,4,1,4000,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-073.png?v8
+熱気 バサラ,EX14BT/MCR-2-074,C,Red,キャラクター,"このキャラがアタックしてバトルに勝利した時、カードを1枚引き、このバトルで敗北した相手のキャラは退場する代わりに、手札に戻る。
+[起動メイン][フロントLにある場合] [ターン1]このキャラがアクティブの場合のみ発動できる。相手はカードを1枚引く。自分の場の他の［特徴：Fire Bomber］を1枚まで選び、アクティブにする。",1,1,2000,Fire Bomber,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-074.png?v8
+熱気 バサラ,EX14BT/MCR-2-075,SR,Red,キャラクター,"[インパクト無効]（このキャラとバトルをしたキャラはこのバトル中、インパクトを失う）
+このキャラがアタックしてバトルに勝利した時、カードを1枚引き、このバトルで敗北した相手のキャラは退場する代わりに、相手の山札の下に置かれる。
+[フロントLにある場合]自分の場のカード名に「バサラ」を含むキャラの効果に記載されている「退場する代わりに、手札に戻る。」は「退場する代わりに、相手の山札の下に置かれる。」に代わる。
+[登場時]自分と相手はカードを1枚引く。",5,1,4000,Fire Bomber,R,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-075.png?v8
+ミレーヌ・フレア・ジーナス,EX14BT/MCR-2-076,C,Red,キャラクター,[登場時]自分の山札の上から3枚見て、カード名に「ジーナス」を含むキャラカードを1枚まで公開し手札に加える。残りを望む順で山札の下に置く。手札に加えた場合、自分の手札を1枚場外に置く。,1,1,1500,Fire Bomber,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-076.png?v8
+ミレーヌ・フレア・ジーナス,EX14BT/MCR-2-077,U,Red,キャラクター,[起動メイン][レストにする]自分の場の他のキャラを1枚選び、このターン中、BP+1000。,4,1,3000,Fire Bomber,RR,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/EX14BT_MCR-2-077.png?v8

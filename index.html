@@ -6,7 +6,7 @@
 <title>Union Arena · Card Database</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23e20000'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-size='20' font-weight='900' text-anchor='middle' fill='white'%3EUA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #181818;
@@ -33,6 +33,14 @@
   body.jp-mode .list-name,
   body.jp-mode .modal-name,
   body.jp-mode .modal-effect { font-family: 'Noto Sans JP', sans-serif; }
+  body.th-mode .card-name,
+  body.th-mode .list-name,
+  body.th-mode .modal-name,
+  body.th-mode .modal-effect { font-family: 'Noto Sans Thai', sans-serif; }
+  body.th-mode .card-name,
+  body.th-mode .list-name,
+  body.th-mode .modal-name,
+  body.th-mode .modal-effect { font-family: 'Noto Sans Thai', sans-serif; }
 
   /* HEADER */
   header {
@@ -237,8 +245,9 @@
       <option value="">Loading sets…</option>
     </select>
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" id="btn-jp" onclick="setLang('jp')">JP</button>
+      <button class="lang-btn active" id="btn-jp" onclick="setLang('jp')">JP</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-th" onclick="setLang('th')">TH</button>
     </div>
   </div>
 </header>
@@ -363,7 +372,7 @@ async function loadSet(setId) {
   loadLang();
 }
 
-const TYPE_NORMALIZE = { 'キャラクター': 'Character', 'フィールド': 'Field', 'イベント': 'Event' };
+const TYPE_NORMALIZE = { 'キャラクター': 'Character', 'フィールド': 'Field', 'イベント': 'Event', 'ตัวละคร': 'Character', 'สนาม': 'Field', 'อีเวนต์': 'Event' };
 
 async function fetchCSV(path, langKey) {
   const res = await fetch(path);
@@ -387,8 +396,10 @@ function setLang(l) {
 function loadLang() {
   cards = allData[lang] || [];
   document.body.classList.toggle('jp-mode', lang === 'jp');
+  document.body.classList.toggle('th-mode', lang === 'th');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.getElementById('btn-jp').classList.toggle('active', lang === 'jp');
+  document.getElementById('btn-th').classList.toggle('active', lang === 'th');
   applyFilters();
 }
 
@@ -396,7 +407,7 @@ function loadLang() {
 const TYPE_ORDER = ['Character', 'Field', 'Event'];
 
 function rebuildFilterChips() {
-  const all = [...(allData.en || []), ...(allData.jp || [])];
+  const all = [...(allData.en || []), ...(allData.jp || []), ...(allData.th || [])];
   const colors = [...new Set(all.map(c => c['Color']).filter(Boolean))];
   // Only show normalized EN type names, in fixed order, filtered to what exists
   const rawTypes = new Set(all.map(c => c['Type']).filter(Boolean));
