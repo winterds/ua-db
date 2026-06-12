@@ -151,21 +151,22 @@
   .color-Green  { background: #50c070; box-shadow: 0 0 4px #50c070; }
 
   /* quick-add button on grid card */
-  .qty-badge {
-    position: absolute; top: 6px; right: 6px; background: var(--accent);
-    color: #fff; font-size: 11px; font-weight: 700; border-radius: 50%;
-    width: 22px; height: 22px; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 2px 6px rgba(0,0,0,.4); z-index: 5;
+  /* MINI STEPPER (below card name) */
+  .mini-stepper {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin-top: 6px; background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 3px 6px;
   }
-  .add-btn {
-    position: absolute; bottom: 6px; right: 6px;
-    background: rgba(34,34,34,.85); border: 1px solid var(--border-glow);
-    color: var(--text); border-radius: 50%; width: 26px; height: 26px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer; font-size: 16px; font-weight: 700; z-index: 5;
-    transition: all .15s;
+  .mini-stepper-btn {
+    background: var(--surface); border: 1px solid var(--border-glow); color: var(--text);
+    border-radius: 4px; width: 22px; height: 22px; font-size: 14px; line-height: 1;
+    cursor: pointer; transition: all .15s; display: flex; align-items: center; justify-content: center;
   }
-  .add-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .mini-stepper-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .mini-stepper-btn:disabled { opacity: .3; cursor: not-allowed; }
+  .mini-stepper-val { font-size: 13px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 16px; text-align: center; }
+  /* list view: stepper sits to the right, compact */
+  .card-list-item .mini-stepper, .deck-item .mini-stepper { margin-top: 0; flex-shrink: 0; }
 
   /* LIST VIEW ITEM */
   .card-list-item { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 10px; cursor: pointer; transition: border-color .15s, background .15s; position: relative; }
@@ -216,16 +217,21 @@
   .deck-count.full { color: var(--accent); }
   .deck-list { display: flex; flex-direction: column; gap: 6px; overflow-y: auto; flex: 1; }
   .deck-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 10px; display: flex; align-items: center; gap: 8px; }
-  .deck-thumb { width: 32px; height: 43px; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: var(--bg); }
-  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .deck-thumb { width: 48px; aspect-ratio: 420/301; border-radius: 4px; overflow: hidden; flex-shrink: 0; background: var(--bg); }
+  .deck-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 24.05%; }
   .deck-main { flex: 1; min-width: 0; }
   .deck-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .deck-sub { font-size: 10px; color: var(--text-muted); margin-top: 1px; }
-  .deck-qty-control { display: flex; align-items: center; gap: 4px; flex-shrink: 0; }
-  .deck-qty-btn { background: var(--surface); border: 1px solid var(--border-glow); color: var(--text); border-radius: 4px; width: 22px; height: 22px; font-size: 13px; cursor: pointer; line-height: 1; transition: all .15s; }
-  .deck-qty-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .deck-qty-val { font-size: 13px; font-weight: 700; font-family: 'Share Tech Mono', monospace; min-width: 18px; text-align: center; }
   .deck-empty { color: var(--text-muted); text-align: center; padding: 40px 10px; font-size: 12px; }
+  .deck-stats { margin-top: 12px; border-top: 1px solid var(--border); padding-top: 12px; flex-shrink: 0; }
+  .deck-stats h4 { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+  .deck-stats-group { margin-bottom: 12px; }
+  .deck-stats-group:last-child { margin-bottom: 0; }
+  .stat-bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; font-size: 11px; }
+  .stat-bar-label { width: 46px; flex-shrink: 0; color: var(--text-muted); font-family: 'Share Tech Mono', monospace; text-align: right; }
+  .stat-bar-track { flex: 1; background: var(--surface2); border-radius: 4px; height: 14px; overflow: hidden; position: relative; }
+  .stat-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 4px; transition: width .3s; }
+  .stat-bar-count { width: 24px; flex-shrink: 0; text-align: left; font-family: 'Share Tech Mono', monospace; font-weight: 700; }
   .deck-actions { display: flex; gap: 8px; margin-top: 10px; }
   .deck-clear-btn { flex: 1; background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 8px; font-family: inherit; font-size: 12px; cursor: pointer; transition: all .15s; letter-spacing: 1px; }
   .deck-clear-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -265,8 +271,8 @@
       <option value="">Loading sets…</option>
     </select>
     <div class="lang-toggle">
-      <button class="lang-btn active" id="btn-jp" onclick="setLang('jp')">JP</button>
-      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-jp" onclick="setLang('jp')">JP</button>
       <button class="lang-btn" id="btn-th" onclick="setLang('th')">TH</button>
     </div>
     <div class="options-wrap">
@@ -332,6 +338,7 @@
     <div class="deck-list" id="deck-list">
       <div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>
     </div>
+    <div class="deck-stats" id="deck-stats"></div>
     <div class="deck-actions">
       <button class="deck-clear-btn" onclick="exportDeck()">Export</button>
       <button class="deck-clear-btn" onclick="clearDeck()">Clear Deck</button>
@@ -344,12 +351,12 @@
 
 <script>
 // ── STATE ──
-let lang = 'jp';
+let lang = 'en';
 let allData = {};
 let cards = [];
 let filteredCards = [];
 let viewMode = 'grid';
-let imgMode = 'crop';
+let imgMode = 'full';
 let currentPage = 1;
 let manifest = null;
 let selectedCard = null;     // { cardNumber, ... } currently shown in detail panel
@@ -396,7 +403,7 @@ async function loadSet(setId) {
   });
 
   if (!allData[lang]?.length) {
-    lang = allData.jp?.length ? 'jp' : allData.en?.length ? 'en' : allData.th?.length ? 'th' : lang;
+    lang = allData.en?.length ? 'en' : allData.jp?.length ? 'jp' : allData.th?.length ? 'th' : lang;
   }
 
   currentSetId = setId;
@@ -590,14 +597,14 @@ function deckQty(c) {
 
 function gridCard(c) {
   const qty = deckQty(c);
-  return `<div class="card-item ${isSelected(c)?'selected':''}" onclick="selectCard('${esc(c['Card Number'])}')">
+  const total = deckTotal();
+  const num = esc(c['Card Number']);
+  return `<div class="card-item ${isSelected(c)?'selected':''}" onclick="selectCard('${num}')">
     <div class="card-img-wrap ${imgMode === 'full' ? 'full-img' : ''}">
       ${c['Image']
         ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
            <div class="card-img-placeholder" style="display:none">🃏</div>`
         : `<div class="card-img-placeholder">🃏</div>`}
-      ${qty > 0 ? `<div class="qty-badge">${qty}</div>` : ''}
-      <div class="add-btn" onclick="event.stopPropagation(); quickAdd('${esc(c['Card Number'])}')" title="Add to deck">+</div>
     </div>
     <div class="card-info">
       <div class="card-name">${escHtml(c['Card Name'])}</div>
@@ -605,13 +612,20 @@ function gridCard(c) {
         <div class="color-dot color-${c['Color']}"></div>
         <span class="card-color-label">${c['Color']}</span>
       </div>
+      <div class="mini-stepper" onclick="event.stopPropagation()">
+        <button class="mini-stepper-btn" onclick="quickRemove('${num}')" ${qty<=0?'disabled':''}>−</button>
+        <div class="mini-stepper-val">${qty}</div>
+        <button class="mini-stepper-btn" onclick="quickAdd('${num}')" ${(qty>=DECK_MAX_COPIES || total>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
+      </div>
     </div>
   </div>`;
 }
 
 function listCard(c) {
   const qty = deckQty(c);
-  return `<div class="card-list-item ${isSelected(c)?'selected':''}" onclick="selectCard('${esc(c['Card Number'])}')">
+  const total = deckTotal();
+  const num = esc(c['Card Number']);
+  return `<div class="card-list-item ${isSelected(c)?'selected':''}" onclick="selectCard('${num}')">
     <div class="list-thumb">
       ${c['Image'] ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" loading="lazy">` : '🃏'}
     </div>
@@ -622,8 +636,11 @@ function listCard(c) {
         <span class="card-color-label">${c['Color']}</span>
       </div>
     </div>
-    ${qty > 0 ? `<div class="qty-badge" style="position:static;">${qty}</div>` : ''}
-    <div class="add-btn" style="position:static;" onclick="event.stopPropagation(); quickAdd('${esc(c['Card Number'])}')" title="Add to deck">+</div>
+    <div class="mini-stepper" onclick="event.stopPropagation()">
+      <button class="mini-stepper-btn" onclick="quickRemove('${num}')" ${qty<=0?'disabled':''}>−</button>
+      <div class="mini-stepper-val">${qty}</div>
+      <button class="mini-stepper-btn" onclick="quickAdd('${num}')" ${(qty>=DECK_MAX_COPIES || total>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
+    </div>
   </div>`;
 }
 
@@ -695,6 +712,14 @@ function quickAdd(cardNumber) {
   const c = cards.find(x => x['Card Number'] === cardNumber);
   if (!c) return;
   addCard(c, 1);
+  if (selectedCard && selectedCard['Card Number'] === cardNumber) renderDetail();
+  renderCardList();
+}
+
+function quickRemove(cardNumber) {
+  const c = cards.find(x => x['Card Number'] === cardNumber);
+  if (!c) return;
+  removeCard(c, 1);
   if (selectedCard && selectedCard['Card Number'] === cardNumber) renderDetail();
   renderCardList();
 }
@@ -774,10 +799,18 @@ function renderDeck() {
   const entries = Object.entries(deck);
   if (!entries.length) {
     listEl.innerHTML = `<div class="deck-empty">No cards added yet.<br>Click a card and use the detail panel to add it to your deck (max 4 copies, 50 cards total).</div>`;
+    document.getElementById('deck-stats').innerHTML = '';
     return;
   }
-  // sort by card number
-  entries.sort((a,b) => (a[1].card['Card Number']||'').localeCompare(b[1].card['Card Number']||''));
+  // sort by Energy Cost asc, then Card Number asc
+  entries.sort((a,b) => {
+    const ea = (a[1].card['Energy Cost']||'').trim();
+    const eb = (b[1].card['Energy Cost']||'').trim();
+    const na = ea === '' || ea === '-' ? 999 : parseInt(ea);
+    const nb = eb === '' || eb === '-' ? 999 : parseInt(eb);
+    if (na !== nb) return na - nb;
+    return (a[1].card['Card Number']||'').localeCompare(b[1].card['Card Number']||'');
+  });
 
   listEl.innerHTML = entries.map(([num, entry]) => {
     const c = entry.card;
@@ -787,13 +820,75 @@ function renderDeck() {
         <div class="deck-name">${escHtml(c['Card Name'])}</div>
         <div class="deck-sub">${num.split('-').pop()} · ${c['Rarity']}</div>
       </div>
-      <div class="deck-qty-control">
-        <button class="deck-qty-btn" onclick="deckQtyChange('${esc(num)}', -1)">−</button>
-        <div class="deck-qty-val">${entry.count}</div>
-        <button class="deck-qty-btn" onclick="deckQtyChange('${esc(num)}', 1)" ${(entry.count>=DECK_MAX_COPIES || total>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
+      <div class="mini-stepper">
+        <button class="mini-stepper-btn" onclick="deckQtyChange('${esc(num)}', -1)">−</button>
+        <div class="mini-stepper-val">${entry.count}</div>
+        <button class="mini-stepper-btn" onclick="deckQtyChange('${esc(num)}', 1)" ${(entry.count>=DECK_MAX_COPIES || total>=DECK_MAX_TOTAL)?'disabled':''}>+</button>
       </div>
     </div>`;
   }).join('');
+
+  renderDeckStats(entries, total);
+}
+
+function renderDeckStats(entries, total) {
+  const statsEl = document.getElementById('deck-stats');
+  if (!total) { statsEl.innerHTML = ''; return; }
+
+  // ── Energy Cost distribution ──
+  const energyCounts = {};
+  entries.forEach(([num, entry]) => {
+    const raw = (entry.card['Energy Cost'] || '').trim();
+    const key = raw === '' || raw === '-' ? '-' : raw;
+    energyCounts[key] = (energyCounts[key] || 0) + entry.count;
+  });
+  // sort: numeric values ascending, '-' last
+  const energyKeys = Object.keys(energyCounts).sort((a, b) => {
+    if (a === '-') return 1;
+    if (b === '-') return -1;
+    return parseInt(a) - parseInt(b);
+  });
+  const energyMax = Math.max(...Object.values(energyCounts), 1);
+
+  // ── Trigger distribution ──
+  const triggerCounts = {};
+  entries.forEach(([num, entry]) => {
+    const raw = (entry.card['Trigger'] || '').trim();
+    const key = (raw === '' || raw === '-') ? 'None' : raw.replace(/^\[|\]$/g, '');
+    triggerCounts[key] = (triggerCounts[key] || 0) + entry.count;
+  });
+  // sort: None last, others by count desc
+  const triggerKeys = Object.keys(triggerCounts).sort((a, b) => {
+    if (a === 'None') return 1;
+    if (b === 'None') return -1;
+    return triggerCounts[b] - triggerCounts[a];
+  });
+  const triggerMax = Math.max(...Object.values(triggerCounts), 1);
+
+  const energyBars = energyKeys.map(k => `
+    <div class="stat-bar-row">
+      <div class="stat-bar-label">${k}</div>
+      <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(energyCounts[k]/energyMax*100)}%"></div></div>
+      <div class="stat-bar-count">${energyCounts[k]}</div>
+    </div>`).join('');
+
+  const triggerBars = triggerKeys.map(k => `
+    <div class="stat-bar-row">
+      <div class="stat-bar-label">${escHtml(k)}</div>
+      <div class="stat-bar-track"><div class="stat-bar-fill" style="width:${(triggerCounts[k]/triggerMax*100)}%"></div></div>
+      <div class="stat-bar-count">${triggerCounts[k]}</div>
+    </div>`).join('');
+
+  statsEl.innerHTML = `
+    <div class="deck-stats-group">
+      <h4>Energy Cost</h4>
+      ${energyBars}
+    </div>
+    <div class="deck-stats-group">
+      <h4>Trigger</h4>
+      ${triggerBars}
+    </div>
+  `;
 }
 
 // ── VIEW / IMAGE OPTIONS ──
@@ -869,7 +964,7 @@ function showToast(msg) {
 
 // init option button active states
 document.getElementById('opt-grid').classList.add('active');
-document.getElementById('opt-crop').classList.add('active');
+document.getElementById('opt-full').classList.add('active');
 
 boot();
 </script>
