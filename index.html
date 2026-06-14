@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Union Arena · Deck Builder</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23e20000'/%3E%3Ctext x='16' y='23' font-family='Arial Black,sans-serif' font-size='20' font-weight='900' text-anchor='middle' fill='white'%3EUA%3C/text%3E%3C/svg%3E">
+<title>Union Arena· Deck Builder Deck Builder</title>
+<link rel="icon" href="favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+Thai:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #181818;
@@ -27,7 +27,7 @@
     --radius: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; min-height: 100vh; overflow-x: hidden; }
   body.jp-mode .card-name, body.jp-mode .list-name, body.jp-mode .detail-name, body.jp-mode .detail-effect, body.jp-mode .deck-name { font-family: 'Noto Sans JP', sans-serif; }
   body.th-mode .card-name, body.th-mode .list-name, body.th-mode .detail-name, body.th-mode .detail-effect, body.th-mode .deck-name { font-family: 'Noto Sans Thai', sans-serif; }
 
@@ -39,15 +39,16 @@
     height: 56px; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(12px);
   }
   .logo {
-    font-size: 18px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+    font-size: 18px; font-weight: 700; font-family: 'Barlow Semi Condensed', sans-serif; letter-spacing: 3px; text-transform: uppercase;
     background: linear-gradient(135deg, #e20000, #ff6666);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap;
   }
+  .logo-short { display: none; }
   .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
 
   .set-select {
     background: var(--surface2); border: 1px solid var(--border-glow);
-    color: var(--text); border-radius: 6px; padding: 7px 32px 7px 12px;
+    color: var(--text); border-radius: 6px; padding: 8px 32px 8px 12px;
     font-family: inherit; font-size: 13px; outline: none; cursor: pointer;
     letter-spacing: 1px; appearance: none; -webkit-appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
@@ -97,7 +98,7 @@
 
   /* FILTERS BAR */
   .filters-bar { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
-  .search-box { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; color: var(--text); font-family: inherit; font-size: 14px; outline: none; transition: border-color .2s; }
+  .search-box { flex: 1; min-width: 0; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px; outline: none; transition: border-color .2s; }
   .search-box:focus { border-color: var(--accent); }
   .search-box::placeholder { color: var(--text-muted); }
   .filter-selects { display: flex; gap: 8px; flex-wrap: wrap; }
@@ -113,6 +114,23 @@
   .filter-select:focus { border-color: var(--accent); }
   .result-count { color: var(--text-muted); font-size: 12px; letter-spacing: 1px; margin-bottom: 10px; }
   .result-count strong { color: var(--text); }
+  .adv-toggle { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); border-radius: 6px; padding: 8px 12px; font-family: inherit; font-size: 13px; cursor: pointer; transition: all .15s; white-space: nowrap; }
+  .adv-toggle.active, .adv-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .adv-panel { display: none; grid-template-columns: 1fr 1fr; gap: 10px 20px; padding: 10px; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; }
+  .adv-panel.open { display: grid; }
+  .adv-full { grid-column: 1 / -1; }
+  .adv-group { display: flex; align-items: flex-start; gap: 10px; }
+  .adv-label { font-size: 11px; font-weight: 600; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; min-width: 62px; padding-top: 2px; }
+  .adv-cb-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .adv-cb-row label { display: flex; align-items: center; gap: 4px; font-size: 12px; color: var(--text); cursor: pointer; }
+  .range-wrap { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+  .range-val { font-size: 11px; color: var(--text); min-width: 38px; text-align: center; border: 1px solid var(--border); border-radius: 4px; padding: 2px 4px; background: var(--surface); }
+  .range-slider-wrap { position: relative; flex: 1; height: 20px; display: flex; align-items: center; }
+  .range-track-bg { position: absolute; width: 100%; height: 4px; background: var(--border); border-radius: 2px; }
+  .range-track-fill { position: absolute; height: 4px; background: #e53; border-radius: 2px; pointer-events: none; }
+  .range-thumb { position: absolute; width: 100%; appearance: none; -webkit-appearance: none; background: transparent; pointer-events: none; margin: 0; height: 20px; }
+  .range-thumb::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2px solid var(--text-muted); cursor: pointer; pointer-events: all; }
+  .range-thumb::-moz-range-thumb { width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2px solid var(--text-muted); cursor: pointer; pointer-events: all; box-sizing: border-box; }
 
   /* CARD GRID */
   .card-grid { display: grid; grid-template-columns: repeat(5, 1fr); grid-auto-rows: 268px; gap: 10px; align-content: start; flex: 1; overflow-y: auto; padding-right: 4px; }
@@ -125,6 +143,12 @@
   .card-img-wrap { height: 180px; flex-shrink: 0; overflow: hidden; background: var(--surface2); position: relative; }
   .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 24.05%; display: block; }
   .card-img-wrap.full-img img { object-fit: contain; object-position: center; }
+  .card-grid.img-crop { grid-auto-rows: auto; align-items: start; }
+  .card-grid.img-crop .card-item { height: auto; }
+  .card-grid.img-crop .card-img-wrap { height: auto; }
+  .card-grid.img-crop .card-img-wrap img { height: auto; aspect-ratio: 420 / 301; }
+  .card-grid.img-crop .card-img-wrap .card-img-placeholder { height: auto; aspect-ratio: 420 / 301; }
+  .card-grid.img-crop .card-info { flex: 0 0 auto; }
   .card-img-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 24px; }
   .card-info { padding: 6px 8px 10px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; min-height: 0; }
   .card-name { font-size: 12px; font-weight: 600; line-height: 1.25; min-height: 30px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
@@ -182,11 +206,9 @@
   .detail-img-overlay {
     position: absolute;
     left: 5.8333%; right: 5.8333%;
-    top: 58.9988%; bottom: 14.3027%;
-    display: flex; align-items: flex-start; justify-content: flex-start;
-    text-align: left; overflow: hidden;
+    top: 58.9988%; bottom: 10.7270%;
+    display: block; overflow: hidden;
     color: #fff; font-weight: 500; font-size: 10px; line-height: 1.3;
-    white-space: pre-wrap;
     text-shadow: 0 1px 2px rgba(0,0,0,.9);
     pointer-events: none;
     backdrop-filter: blur(6px);
@@ -195,6 +217,62 @@
     border-radius: 4px;
     padding: 4px 6px;
   }
+  .detail-img-overlay .overlay-line { display: block; white-space: pre-wrap; word-wrap: break-word; }
+  .detail-img-overlay .overlay-line-char { display: flex; align-items: baseline; white-space: normal; }
+  .overlay-char-rest { background: rgb(31,22,17); color: #fff; flex: 1; padding: 0 3px; text-shadow: none; border-radius: 2px; }
+  .detail-img-overlay.has-trigger { bottom: 14.3027%; }
+  .overlays-hidden .detail-img-name,
+  .overlays-hidden .detail-img-type,
+  .overlays-hidden .detail-img-overlay,
+  .overlays-hidden .detail-img-trigger { display: none; }
+  .detail-img-overlay.rarity-sr { top: 52.6412%; }
+  .detail-img-name {
+    position: absolute;
+    left: 16.6667%; right: 16.6667%;
+    top: 5.3635%; bottom: 88.6770%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    overflow: hidden;
+    color: #fff; font-weight: 700; font-size: 11px; line-height: 1.2;
+    text-shadow: 0 1px 2px rgba(0,0,0,.9);
+    text-align: center;
+    pointer-events: none;
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    background: rgba(0,0,0,.20);
+    border-radius: 4px; padding: 2px 6px;
+  }
+  .detail-img-name .name-attr { font-size: 9px; font-weight: 500; opacity: 0.85; margin-top: 1px; }
+  .detail-img-name.has-attr { bottom: 87.3659%; }
+  .detail-img-type {
+    position: absolute;
+    left: 5.8333%; width: 21.3333%;
+    top: 56.4958%; height: 2.5030%;
+    display: flex; align-items: center; justify-content: center;
+    background: #000; color: #fff;
+    font-weight: 700; font-size: 10px; line-height: 1;
+    white-space: nowrap;
+    pointer-events: none;
+    border-radius: 3px; padding: 0 6px;
+  }
+  .detail-img-type.rarity-sr { top: 50.1382%; }
+  .detail-img-trigger {
+    position: absolute;
+    left: 5.8333%; right: 5.8333%;
+    top: 85.6973%; height: 3.5757%;
+    display: flex; align-items: center; overflow: hidden;
+    background: linear-gradient(to bottom, rgb(184,180,195), rgb(255,255,255)); color: #000;
+    font-weight: 500; font-size: 10px; line-height: 1.3;
+    white-space: nowrap;
+    text-align: left;
+    pointer-events: none;
+    border-radius: 4px;
+    padding: 4px 6px;
+  }
+  .kw-timing   { background: rgb(0,118,204);  color: #fff; border-radius: 3px; padding: 1px 5px; font-weight: 700; font-size: .9em; white-space: nowrap; text-shadow: none; }
+  .kw-freq     { background: #ffffff;         color: #000; border-radius: 3px; padding: 1px 5px; font-weight: 700; font-size: .9em; white-space: nowrap; text-shadow: none; }
+  .kw-action   { background: rgb(232,3,95);   color: #fff; border-radius: 3px; padding: 1px 5px; font-weight: 700; font-size: .9em; white-space: nowrap; text-shadow: none; }
+  .kw-mechanic { background: rgb(253,234,6);  color: #000; border-radius: 3px; padding: 1px 5px; font-weight: 700; font-size: .9em; white-space: nowrap; text-shadow: none; }
+  .kw-raid     { background: rgb(232,1,13);   color: #fff; border-radius: 3px; padding: 1px 5px; font-weight: 700; font-size: .9em; white-space: nowrap; text-shadow: none; }
+  .kw-trigger  { background: #000000;         color: #fff; border-radius: 3px; padding: 1px 5px; font-weight: 700; font-size: .9em; white-space: nowrap; text-shadow: none; }
   .detail-name { font-size: 18px; font-weight: 700; line-height: 1.25; margin-bottom: 4px; }
   .detail-num { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: var(--text-muted); }
   .detail-badges { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
@@ -288,16 +366,72 @@
     .card-img-wrap { height: 140px; }
     .card-list { max-height: 60vh; }
   }
+
+  /* ── MOBILE BOTTOM NAV ── */
+  .mobile-nav {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0; height: 56px;
+    background: var(--surface); border-top: 1px solid var(--border-glow);
+    z-index: 200; align-items: stretch;
+  }
+  .mobile-nav button {
+    flex: 1; background: transparent; border: none; color: var(--text-muted);
+    font-family: inherit; font-size: 11px; font-weight: 600; letter-spacing: 1px;
+    cursor: pointer; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 3px; transition: color .15s;
+    -webkit-tap-highlight-color: transparent; min-height: 44px;
+  }
+  .mobile-nav button.active { color: var(--accent); }
+  .mobile-nav .nav-icon { font-size: 18px; line-height: 1; }
+
+  @media (max-width: 768px) {
+    .mobile-nav { display: flex; }
+
+    header { padding: 0 10px; gap: 6px; overflow: hidden; }
+    .options-menu { position: fixed; top: 56px; right: 10px; }
+    .logo { font-size: 13px; letter-spacing: 1px; min-width: 0; flex-shrink: 1; overflow: hidden; white-space: nowrap; text-overflow: clip; }
+    .lang-btn { padding: 6px 10px; font-size: 11px; letter-spacing: 0; }
+    .header-right { gap: 6px; flex-shrink: 0; }
+
+    .layout {
+      position: fixed;
+      top: 56px; left: 0; right: 0; bottom: 56px;
+      height: auto; overflow: hidden;
+      flex-direction: row;
+    }
+    .detail-panel, .list-panel, .deck-panel {
+      display: none; position: absolute; inset: 0;
+      width: 100%; height: 100%; max-height: none; overflow-y: auto;
+      order: unset;
+    }
+    .detail-panel.mobile-active { display: block; }
+    .list-panel.mobile-active { display: flex; flex-direction: column; }
+    .deck-panel.mobile-active { display: flex; flex-direction: column; }
+
+    .card-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; max-height: none; }
+    .card-img-wrap { height: 130px; }
+    .card-list { max-height: none; }
+
+    .qty-btn { width: 40px; height: 40px; font-size: 18px; }
+    .mini-stepper-btn { width: 30px; height: 30px; min-width: 30px; max-width: 30px; flex: 0 0 30px; }
+    .deck-clear-btn { min-height: 44px; }
+  }
+
+  @media (max-width: 480px) {
+    .logo-long { display: none; }
+    .logo-short { display: inline; }
+    .lang-btn { padding: 6px 8px; font-size: 10px; }
+
+    .card-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 220px; }
+    .card-img-wrap { height: 140px; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="logo">UNION ARENA · DECK BUILDER</div>
+  <div class="logo"><span class="logo-long">UNION ARENA · DECK BUILDER</span><span class="logo-short">UA · DB</span></div>
   <div class="header-right">
-    <select class="set-select" id="set-select" onchange="loadSet(this.value)">
-      <option value="">Loading sets…</option>
-    </select>
     <div class="lang-toggle">
       <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" id="btn-jp" onclick="setLang('jp')">JP</button>
@@ -307,17 +441,17 @@
       <button class="options-btn" id="options-btn" onclick="toggleOptions()">⚙</button>
       <div class="options-menu" id="options-menu">
         <div class="options-group">
-          <h4>View</h4>
-          <div class="options-row">
-            <button class="opt-btn" id="opt-grid" onclick="setViewMode('grid')">⊞ Grid</button>
-            <button class="opt-btn" id="opt-list" onclick="setViewMode('list')">☰ List</button>
-          </div>
-        </div>
-        <div class="options-group">
           <h4>Card Image</h4>
           <div class="options-row">
             <button class="opt-btn" id="opt-full" onclick="setImgMode('full')">▢ Full</button>
             <button class="opt-btn" id="opt-crop" onclick="setImgMode('crop')">▣ Crop</button>
+          </div>
+        </div>
+        <div class="options-group">
+          <h4>Card Overlay</h4>
+          <div class="options-row">
+            <button class="opt-btn" id="opt-overlay-show" onclick="setCardOverlay(true)">Show</button>
+            <button class="opt-btn" id="opt-overlay-hide" onclick="setCardOverlay(false)">Hide</button>
           </div>
         </div>
       </div>
@@ -335,21 +469,88 @@
   <!-- CENTER: CARD LIST -->
   <main class="list-panel">
     <div class="filters-bar">
-      <input class="search-box" id="search" placeholder="Search card name…" oninput="applyFilters()">
       <div class="filter-selects">
-        <select class="filter-select" id="filter-rarity" onchange="applyFilters()">
-          <option value="all">All Rarity</option>
-          <option value="SR">SR</option>
-          <option value="R">R</option>
-          <option value="U">U</option>
-          <option value="C">C</option>
+        <select class="set-select" id="set-select" onchange="loadSet(this.value)">
+          <option value="">Loading sets…</option>
         </select>
-        <select class="filter-select" id="filter-color" onchange="applyFilters()">
-          <option value="all">All Color</option>
-        </select>
-        <select class="filter-select" id="filter-type" onchange="applyFilters()">
-          <option value="all">All Type</option>
-        </select>
+        <input class="search-box" id="search" placeholder="Search card name…" oninput="applyFilters()">
+        <button class="adv-toggle" id="adv-toggle" onclick="toggleAdv()">Advanced ▾</button>
+      </div>
+      <div class="adv-panel" id="adv-panel">
+        <div class="adv-group">
+          <span class="adv-label">Rarity</span>
+          <div class="adv-cb-row">
+            <label><input type="checkbox" onchange="advCbChange('rarities','SR',this)"> SR</label>
+            <label><input type="checkbox" onchange="advCbChange('rarities','R',this)"> R</label>
+            <label><input type="checkbox" onchange="advCbChange('rarities','U',this)"> U</label>
+            <label><input type="checkbox" onchange="advCbChange('rarities','C',this)"> C</label>
+          </div>
+        </div>
+        <div class="adv-group">
+          <span class="adv-label">Type</span>
+          <div class="adv-cb-row">
+            <label><input type="checkbox" onchange="advCbChange('types','Character',this)"> Character</label>
+            <label><input type="checkbox" onchange="advCbChange('types','Field',this)"> Field</label>
+            <label><input type="checkbox" onchange="advCbChange('types','Event',this)"> Event</label>
+          </div>
+        </div>
+        <div class="adv-group adv-full">
+          <span class="adv-label">Color</span>
+          <div class="adv-cb-row">
+            <label><input type="checkbox" onchange="advCbChange('colors','Red',this)"> Red</label>
+            <label><input type="checkbox" onchange="advCbChange('colors','Blue',this)"> Blue</label>
+            <label><input type="checkbox" onchange="advCbChange('colors','Yellow',this)"> Yellow</label>
+            <label><input type="checkbox" onchange="advCbChange('colors','Green',this)"> Green</label>
+            <label><input type="checkbox" onchange="advCbChange('colors','Purple',this)"> Purple</label>
+          </div>
+        </div>
+        <div class="adv-group">
+          <span class="adv-label">Energy</span>
+          <div class="range-wrap">
+            <span class="range-val" id="energy-min-val">0</span>
+            <div class="range-slider-wrap">
+              <div class="range-track-bg"></div>
+              <div class="range-track-fill" id="energy-fill"></div>
+              <input type="range" class="range-thumb" id="energy-min-slider" min="0" max="15" value="0" step="1" oninput="energySliderChange()">
+              <input type="range" class="range-thumb" id="energy-max-slider" min="0" max="15" value="15" step="1" oninput="energySliderChange()">
+            </div>
+            <span class="range-val" id="energy-max-val">15</span>
+          </div>
+        </div>
+        <div class="adv-group">
+          <span class="adv-label">Power</span>
+          <div class="range-wrap">
+            <span class="range-val" id="power-min-val">0</span>
+            <div class="range-slider-wrap">
+              <div class="range-track-bg"></div>
+              <div class="range-track-fill" id="power-fill"></div>
+              <input type="range" class="range-thumb" id="power-min-slider" min="0" max="10000" value="0" step="500" oninput="powerSliderChange()">
+              <input type="range" class="range-thumb" id="power-max-slider" min="0" max="10000" value="10000" step="500" oninput="powerSliderChange()">
+            </div>
+            <span class="range-val" id="power-max-val">10000</span>
+          </div>
+        </div>
+        <div class="adv-group">
+          <span class="adv-label">AP Cost</span>
+          <div class="adv-cb-row">
+            <label><input type="checkbox" onchange="advCbChange('apCost','1',this)"> 1</label>
+            <label><input type="checkbox" onchange="advCbChange('apCost','2',this)"> 2</label>
+            <label><input type="checkbox" onchange="advCbChange('apCost','3',this)"> 3</label>
+          </div>
+        </div>
+        <div class="adv-group">
+          <span class="adv-label">Generate</span>
+          <div class="range-wrap">
+            <span class="range-val" id="gen-min-val">0</span>
+            <div class="range-slider-wrap">
+              <div class="range-track-bg"></div>
+              <div class="range-track-fill" id="gen-fill"></div>
+              <input type="range" class="range-thumb" id="gen-min-slider" min="0" max="3" value="0" step="1" oninput="genSliderChange()">
+              <input type="range" class="range-thumb" id="gen-max-slider" min="0" max="3" value="3" step="1" oninput="genSliderChange()">
+            </div>
+            <span class="range-val" id="gen-max-val">3</span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="result-count" id="result-count"></div>
@@ -386,6 +587,12 @@
 
 <div class="toast" id="toast"></div>
 
+<nav class="mobile-nav" id="mobile-nav">
+  <button id="nav-list" onclick="mobileTab('list')"><span class="nav-icon">🃏</span>Cards</button>
+  <button id="nav-detail" onclick="mobileTab('detail')"><span class="nav-icon">🔍</span>Detail</button>
+  <button id="nav-deck" onclick="mobileTab('deck')"><span class="nav-icon">📋</span>Deck</button>
+</nav>
+
 <script>
 // ── STATE ──
 let lang = 'en';
@@ -394,6 +601,16 @@ let cards = [];
 let filteredCards = [];
 let viewMode = 'grid';
 let imgMode = 'full';
+let cardOverlayVisible = true;
+let advSearchOpen = false;
+let advFilter = {
+  rarities: new Set(),
+  types: new Set(), colors: new Set(),
+  energyMin: '', energyMax: '',
+  genEnergyMin: '', genEnergyMax: '',
+  apCost: new Set(),
+  powerMin: '', powerMax: '',
+};
 let manifest = null;
 let selectedCard = null;     // { cardNumber, ... } currently shown in detail panel
 let deck = {};                // { cardNumber: { count, card } }
@@ -449,6 +666,7 @@ async function loadSet(setId) {
 
   rebuildFilterOptions();
   loadLang();
+  if (isMobile()) mobileTab('list');
 }
 
 // ── DECK PERSISTENCE (localStorage) ──
@@ -511,32 +729,109 @@ function loadLang() {
 
 // ── FILTER OPTIONS ──
 function rebuildFilterOptions() {
-  const all = [...(allData.en || []), ...(allData.jp || []), ...(allData.th || [])];
-  const colors = [...new Set(all.map(c => c['Color']).filter(Boolean))];
-  const rawTypes = new Set(all.map(c => c['Type']).filter(Boolean));
-  const types = TYPE_ORDER.filter(t => rawTypes.has(t));
-
-  const colorSel = document.getElementById('filter-color');
-  colorSel.innerHTML = '<option value="all">All Color</option>' + colors.map(c => `<option value="${c}">${c}</option>`).join('');
-
-  const typeSel = document.getElementById('filter-type');
-  typeSel.innerHTML = '<option value="all">All Type</option>' + types.map(t => `<option value="${t}">${t}</option>`).join('');
-
-  document.getElementById('filter-rarity').value = 'all';
+  advFilter.rarities.clear(); advFilter.types.clear(); advFilter.colors.clear();
+  advFilter.energyMin = ''; advFilter.energyMax = '';
+  advFilter.genEnergyMin = ''; advFilter.genEnergyMax = '';
+  advFilter.apCost.clear();
+  advFilter.powerMin = ''; advFilter.powerMax = '';
+  document.querySelectorAll('#adv-panel input[type=checkbox]').forEach(cb => cb.checked = false);
+  document.getElementById('gen-min-slider').value = 0;
+  document.getElementById('gen-max-slider').value = 3;
+  document.getElementById('gen-min-val').textContent = 0;
+  document.getElementById('gen-max-val').textContent = 3;
+  updateRangeFill('gen', 0, 3, 0, 3);
+  document.getElementById('energy-min-slider').value = 0;
+  document.getElementById('energy-max-slider').value = 15;
+  document.getElementById('energy-min-val').textContent = 0;
+  document.getElementById('energy-max-val').textContent = 15;
+  updateRangeFill('energy', 0, 15, 0, 15);
+  document.getElementById('power-min-slider').value = 0;
+  document.getElementById('power-max-slider').value = 10000;
+  document.getElementById('power-min-val').textContent = 0;
+  document.getElementById('power-max-val').textContent = 10000;
+  updateRangeFill('power', 0, 10000, 0, 10000);
 }
 
 // ── FILTERS ──
+function toggleAdv() {
+  advSearchOpen = !advSearchOpen;
+  document.getElementById('adv-panel').classList.toggle('open', advSearchOpen);
+  document.getElementById('adv-toggle').classList.toggle('active', advSearchOpen);
+}
+function advCbChange(field, value, el) {
+  if (el.checked) advFilter[field].add(value);
+  else advFilter[field].delete(value);
+  applyFilters();
+}
+function updateRangeFill(id, minVal, maxVal, absMin, absMax) {
+  const fill = document.getElementById(id + '-fill');
+  const minPct = (minVal - absMin) / (absMax - absMin) * 100;
+  const maxPct = (maxVal - absMin) / (absMax - absMin) * 100;
+  fill.style.left = minPct + '%';
+  fill.style.width = (maxPct - minPct) + '%';
+}
+function energySliderChange() {
+  let minV = parseInt(document.getElementById('energy-min-slider').value);
+  let maxV = parseInt(document.getElementById('energy-max-slider').value);
+  if (minV > maxV) { document.getElementById('energy-min-slider').value = maxV; minV = maxV; }
+  document.getElementById('energy-min-val').textContent = minV;
+  document.getElementById('energy-max-val').textContent = maxV;
+  updateRangeFill('energy', minV, maxV, 0, 15);
+  advFilter.energyMin = (minV === 0 && maxV === 15) ? '' : String(minV);
+  advFilter.energyMax = (minV === 0 && maxV === 15) ? '' : String(maxV);
+  applyFilters();
+}
+function powerSliderChange() {
+  let minV = parseInt(document.getElementById('power-min-slider').value);
+  let maxV = parseInt(document.getElementById('power-max-slider').value);
+  if (minV > maxV) { document.getElementById('power-min-slider').value = maxV; minV = maxV; }
+  document.getElementById('power-min-val').textContent = minV;
+  document.getElementById('power-max-val').textContent = maxV;
+  updateRangeFill('power', minV, maxV, 0, 10000);
+  advFilter.powerMin = (minV === 0 && maxV === 10000) ? '' : String(minV);
+  advFilter.powerMax = (minV === 0 && maxV === 10000) ? '' : String(maxV);
+  applyFilters();
+}
+function genSliderChange() {
+  let minV = parseInt(document.getElementById('gen-min-slider').value);
+  let maxV = parseInt(document.getElementById('gen-max-slider').value);
+  if (minV > maxV) { document.getElementById('gen-min-slider').value = maxV; minV = maxV; }
+  document.getElementById('gen-min-val').textContent = minV;
+  document.getElementById('gen-max-val').textContent = maxV;
+  updateRangeFill('gen', minV, maxV, 0, 3);
+  advFilter.genEnergyMin = (minV === 0 && maxV === 3) ? '' : String(minV);
+  advFilter.genEnergyMax = (minV === 0 && maxV === 3) ? '' : String(maxV);
+  applyFilters();
+}
 function applyFilters() {
   const search = document.getElementById('search').value.trim().toLowerCase();
-  const rarity = document.getElementById('filter-rarity').value;
-  const color  = document.getElementById('filter-color').value;
-  const type   = document.getElementById('filter-type').value;
 
   filteredCards = cards.filter(c => {
-    if (rarity !== 'all' && c['Rarity'] !== rarity) return false;
-    if (color  !== 'all' && c['Color']  !== color)  return false;
-    if (type   !== 'all' && c['Type']   !== type)   return false;
+    if (advFilter.rarities.size && !advFilter.rarities.has(c['Rarity'])) return false;
+    if (advFilter.types.size    && !advFilter.types.has(c['Type']))       return false;
+    if (advFilter.colors.size && !advFilter.colors.has(c['Color'])) return false;
     if (search && !(c['Card Name'] || '').toLowerCase().includes(search)) return false;
+    if (advFilter.energyMin !== '' || advFilter.energyMax !== '') {
+      const v = parseInt(c['Energy Cost']);
+      if (isNaN(v)) return false;
+      if (advFilter.energyMin !== '' && v < +advFilter.energyMin) return false;
+      if (advFilter.energyMax !== '' && v > +advFilter.energyMax) return false;
+    }
+    if (advFilter.genEnergyMin !== '' || advFilter.genEnergyMax !== '') {
+      const raw = String(c['Generate Energy'] || '').trim();
+      const v = (raw === '-' || raw === '') ? 0 : raw.length;
+      if (advFilter.genEnergyMin !== '' && v < +advFilter.genEnergyMin) return false;
+      if (advFilter.genEnergyMax !== '' && v > +advFilter.genEnergyMax) return false;
+    }
+    if (advFilter.apCost.size) {
+      if (!advFilter.apCost.has(String(c['AP Cost'] || '').trim())) return false;
+    }
+    if (advFilter.powerMin !== '' || advFilter.powerMax !== '') {
+      const v = parseInt(c['Power']);
+      if (isNaN(v)) return false;
+      if (advFilter.powerMin !== '' && v < +advFilter.powerMin) return false;
+      if (advFilter.powerMax !== '' && v > +advFilter.powerMax) return false;
+    }
     return true;
   });
 
@@ -555,7 +850,7 @@ function renderCardList() {
   }
 
   if (viewMode === 'grid') {
-    container.className = 'card-grid';
+    container.className = 'card-grid' + (imgMode === 'crop' ? ' img-crop' : '');
     container.innerHTML = filteredCards.map(c => gridCard(c)).join('');
   } else {
     container.className = 'card-list';
@@ -621,11 +916,103 @@ function escHtml(s) {
   return (s||'').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// ── MOBILE TAB NAV ──
+function isMobile() { return window.innerWidth <= 768; }
+
+function mobileTab(name) {
+  const panels = {
+    list: document.querySelector('.list-panel'),
+    detail: document.getElementById('detail-panel'),
+    deck: document.querySelector('.deck-panel')
+  };
+  Object.values(panels).forEach(p => p && p.classList.remove('mobile-active'));
+  if (panels[name]) panels[name].classList.add('mobile-active');
+  ['list', 'detail', 'deck'].forEach(n => {
+    const btn = document.getElementById('nav-' + n);
+    if (btn) btn.classList.toggle('active', n === name);
+  });
+}
+
+window.addEventListener('resize', () => {
+  if (!isMobile()) {
+    document.querySelectorAll('.layout > *').forEach(p => p.classList.remove('mobile-active'));
+  }
+});
+
+// ── KEYWORD COLORIZATION ──
+const KW_STYLES = [
+  { re: /\[Activate: Main\]/g,  cls: 'kw-timing' },
+  { re: /\[On Play\]/g,         cls: 'kw-timing' },
+  { re: /\[On Attack\]/g,       cls: 'kw-timing' },
+  { re: /\[On Leave\]/g,        cls: 'kw-timing' },
+  { re: /\[1\/Turn\]/g,         cls: 'kw-freq' },
+  { re: /\[Your Turn\]/g,       cls: 'kw-timing' },
+  { re: /\[Opponent's Turn\]/g, cls: 'kw-timing' },
+  { re: /\[Front Line\]/g,      cls: 'kw-action' },
+  { re: /\[Energy Line\]/g,     cls: 'kw-action' },
+  { re: /\[Outside Area\]/g,    cls: 'kw-action' },
+  { re: /\[Discard 1\]/g,       cls: 'kw-action' },
+  { re: /\[Rest this card\]/g,   cls: 'kw-action' },
+  { re: /\[Retire this card\]/g, cls: 'kw-action' },
+  { re: /\[Double Attack\]/g,   cls: 'kw-mechanic' },
+  { re: /\[Impact Null\]/g,     cls: 'kw-mechanic' },
+  { re: /\[Impact \(1\)\]/g,    cls: 'kw-mechanic' },
+  { re: /\[Impact\]/g,          cls: 'kw-mechanic' },
+  { re: /\[Damage \(2\)\]/g,    cls: 'kw-mechanic' },
+  { re: /\[Active\]/g,          cls: 'kw-mechanic' },
+  { re: /\[Snipe\]/g,           cls: 'kw-mechanic' },
+  { re: /\[Step\]/g,            cls: 'kw-mechanic' },
+  { re: /\[Final\]/g,           cls: 'kw-mechanic' },
+  { re: /\[Special\]/g,         cls: 'kw-mechanic' },
+  { re: /\[Raid\]/g,            cls: 'kw-raid' },
+  { re: /\[Color Trigger\]/g,   cls: 'kw-trigger' },
+  { re: /\[Color\]/g,           cls: 'kw-trigger' },
+  { re: /\[Draw\]/g,            cls: 'kw-trigger' },
+  { re: /\[Get\]/g,             cls: 'kw-trigger' },
+];
+function preprocessEffect(rawText) {
+  return rawText
+    .replace(/\] \([^)]+\)/g, ']')
+    .replace(/\[Raid\] Set (<[^>]+>) to Active;[^.\n]*\./g, '[Raid] $1');
+}
+function colorizeLineKw(rawLine) {
+  let html = escHtml(rawLine);
+  for (const { re, cls } of KW_STYLES) {
+    html = html.replace(re, m => `<span class="${cls}">${m.slice(1, -1)}</span>`);
+  }
+  return html;
+}
+function colorizeEffect(rawText) {
+  if (!rawText) return '—';
+  let html = escHtml(preprocessEffect(rawText));
+  for (const { re, cls } of KW_STYLES) {
+    html = html.replace(re, m => `<span class="${cls}">${m.slice(1, -1)}</span>`);
+  }
+  return html;
+}
+function colorizeOverlayEffect(rawText) {
+  if (!rawText) return '—';
+  return preprocessEffect(rawText).split('\n').map(line => {
+    const raidMatch = line.match(/^(\[Raid\] )(<[^>]+>.*)$/);
+    if (raidMatch) {
+      const before = colorizeLineKw(raidMatch[1]);
+      const rest   = colorizeLineKw(raidMatch[2]);
+      return `<div class="overlay-line overlay-line-char">${before}<span class="overlay-char-rest">${rest}</span></div>`;
+    }
+    return `<div class="overlay-line">${colorizeLineKw(line)}</div>`;
+  }).join('');
+}
+function colorizeTrigger(rawText) {
+  if (!rawText) return '—';
+  return escHtml(rawText).replace(/\[([^\]]+)\]/g, (_, inner) => `<span class="kw-trigger">${inner}</span>`);
+}
+
 // ── SELECT / DETAIL ──
 function selectCard(cardNumber) {
   selectedCard = cards.find(c => c['Card Number'] === cardNumber) || null;
   renderDetail();
   renderCardList(); // update selected highlight + qty badges
+  if (isMobile()) mobileTab('detail');
 }
 
 function renderDetail() {
@@ -642,14 +1029,18 @@ function renderDetail() {
 
   const qty = deckQty(c);
   const totalInDeck = deckTotal();
+  const hasTrigger = c['Trigger'] && c['Trigger'] !== '-';
 
   panel.innerHTML = `
-    <div class="detail-img-wrap">
+    <div class="detail-img-wrap${cardOverlayVisible ? '' : ' overlays-hidden'}">
       ${c['Image']
         ? `<img src="${c['Image']}" alt="${esc(c['Card Name'])}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
            <div class="card-img-placeholder" style="display:none;position:absolute;inset:0">🃏</div>`
         : `<div class="card-img-placeholder" style="height:100%">🃏</div>`}
-      <div class="detail-img-overlay">${escHtml(c['Effect'])}</div>
+      <div class="detail-img-name${c['Attributes'] && c['Attributes'] !== '-' ? ' has-attr' : ''}">${escHtml(c['Card Name'])}${c['Attributes'] && c['Attributes'] !== '-' ? `<span class="name-attr">${escHtml(c['Attributes'])}</span>` : ''}</div>
+      <div class="detail-img-type${c['Rarity'] === 'SR' ? ' rarity-sr' : ''}">${escHtml(c['Type'])}</div>
+      <div class="detail-img-overlay${c['Rarity'] === 'SR' ? ' rarity-sr' : ''}${hasTrigger ? ' has-trigger' : ''}">${colorizeOverlayEffect(c['Effect'])}</div>
+      ${hasTrigger ? `<div class="detail-img-trigger">${colorizeTrigger(c['Trigger'])}</div>` : ''}
     </div>
     <div class="detail-add-row">
       <div class="qty-control">
@@ -671,7 +1062,7 @@ function renderDetail() {
       <div class="detail-stat"><div class="detail-stat-label">AP Cost</div><div class="detail-stat-val">${c['AP Cost']||'—'}</div></div>
     </div>
     <div class="detail-effect-title">Effect</div>
-    <div class="detail-effect">${escHtml(c['Effect']) || '—'}</div>
+    <div class="detail-effect">${colorizeEffect(c['Effect'])}</div>
     ${extras.length ? `<div class="detail-extra">${extras.join('')}</div>` : ''}
   `;
 }
@@ -849,6 +1240,17 @@ function renderDeckStats(entries, total) {
   const powerMax = Math.max(...Object.values(powerCounts), 1);
   const powerBars = powerKeys.map(k => vBar(k, powerCounts[k], powerMax)).join('');
 
+  // ── Generate Energy Range: fixed 0-3 ──
+  const genCounts = {0: 0, 1: 0, 2: 0, 3: 0};
+  entries.forEach(([num, entry]) => {
+    const raw = String(entry.card['Generate Energy'] || '').trim();
+    const v = (raw === '-' || raw === '') ? 0 : raw.length;
+    const key = Math.min(v, 3);
+    genCounts[key] = (genCounts[key] || 0) + entry.count;
+  });
+  const genMax = Math.max(...Object.values(genCounts), 1);
+  const genBars = [0,1,2,3].map(k => vBar(k, genCounts[k], genMax)).join('');
+
   // ── Triggers: fixed categories ──
   const triggerOrder = ['Draw', 'Get', 'Active', 'Raid', 'Color', 'Special', 'Final', 'None'];
   const triggerCounts = {};
@@ -864,12 +1266,16 @@ function renderDeckStats(entries, total) {
 
   statsEl.innerHTML = `
     <div class="deck-stats-group">
-      <h4>Cost Range</h4>
+      <h4>Energy Cost Range</h4>
       <div class="vchart">${costBars}</div>
     </div>
     <div class="deck-stats-group">
       <h4>Power Range</h4>
       <div class="vchart">${powerBars}</div>
+    </div>
+    <div class="deck-stats-group">
+      <h4>Generate Energy Range</h4>
+      <div class="vchart">${genBars}</div>
     </div>
     <div class="deck-stats-group">
       <h4>Triggers</h4>
@@ -890,8 +1296,6 @@ function vBar(label, value, max) {
 // ── VIEW / IMAGE OPTIONS ──
 function setViewMode(m) {
   viewMode = m;
-  document.getElementById('opt-grid').classList.toggle('active', m === 'grid');
-  document.getElementById('opt-list').classList.toggle('active', m === 'list');
   renderCardList();
 }
 function setImgMode(m) {
@@ -899,6 +1303,13 @@ function setImgMode(m) {
   document.getElementById('opt-crop').classList.toggle('active', m === 'crop');
   document.getElementById('opt-full').classList.toggle('active', m === 'full');
   renderCardList();
+}
+function setCardOverlay(show) {
+  cardOverlayVisible = show;
+  document.getElementById('opt-overlay-show').classList.toggle('active', show);
+  document.getElementById('opt-overlay-hide').classList.toggle('active', !show);
+  const wrap = document.querySelector('.detail-img-wrap');
+  if (wrap) wrap.classList.toggle('overlays-hidden', !show);
 }
 function toggleOptions() {
   const menu = document.getElementById('options-menu');
@@ -957,8 +1368,8 @@ function showToast(msg) {
 }
 
 // init option button active states
-document.getElementById('opt-grid').classList.add('active');
 document.getElementById('opt-full').classList.add('active');
+document.getElementById('opt-overlay-show').classList.add('active');
 
 boot();
 </script>

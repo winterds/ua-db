@@ -5,41 +5,41 @@ Eris,UA54BT/MST-1-003,U,Blue,Character,"If <Rudeus> and <Ruijerd> are on your fi
 Eris,UA54BT/MST-1-004,U,Blue,Character,"[On Play] If this Character was played by your own effect, set this Character to Active.",2,1,3000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-004.png?v8
 Eris,UA54BT/MST-1-005,R,Blue,Character,"If there are no cards on your field, reduce the Energy Cost of this card in your hand by [Blue ×2].
 [Impact Null] (The Character that battled this Character loses Impact for this battle.)
-[During your turn] If you have [played or Raided] a Character card by your own effect this turn, this Character gains BP +500.",2,1,2500+,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-005.png?v8
+[Your Turn] If you have [played or Raided] a Character card by your own effect this turn, this Character gains BP +500.",2,1,2500+,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-005.png?v8
 Eris,UA54BT/MST-1-006,R,Blue,Character,"[On Play] You may pay 1 AP. If you do, draw 1 card, then play up to 1 Blue [<Rudeus> or <Eris> or <Ruijerd>] with Energy Cost 3 or less and AP Cost 1 from your hand to your field Rested, or Raid it.",3,1,2500,-,BB,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-006.png?v8
 Eris,UA54BT/MST-1-007,SR,Blue,Character,"[On Play] Choose one of the following:
 • Draw 1 card, then discard 1 card from your hand.
 • If this Character was played by your own effect, play up to 1 Blue [<Rudeus> or <Eris> or <Ruijerd>] with Energy Cost 3 or less and AP Cost 1 from your hand to your field Rested, or Raid it. <Eris>'s this effect can only be chosen once per turn.",1,1,2000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-007.png?v8
 Eris,UA54BT/MST-1-008,SR,Blue,Character,"[Raid] Set <Eris> to Active; it can move to Front Line.
 When this Character's attack is not blocked, draw up to 1 card.
-[Once per turn] When this Character attacks and loses the battle, set this Character to Active, and this Character gains BP +2000 this turn.",3,1,3000+,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-008.png?v8
+[1/Turn] When this Character attacks and loses the battle, set this Character to Active, and this Character gains BP +2000 this turn.",3,1,3000+,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-008.png?v8
 Eris,UA54BT/MST-1-009,SR,Blue,Character,"[Raid] Set <Eris> to Active; it can move to Front Line.
 [Impact (1)] (When attacking and winning the battle, deal 1 damage to the opponent.)
-[During your turn] This Character gains BP +500.
+[Your Turn] This Character gains BP +500.
 [On Play] If this Character was played by your own effect, choose one of the following:
 • This Character gains BP +1000 until the start of your next turn.
 • This Character gains ""At the end of this Character's attack, you may choose 1 Character in your Energy Line and swap positions with this Character."" this turn.",3,1,3500+,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-009.png?v8
 Kishirika Kishirisu,UA54BT/MST-1-010,U,Blue,Character,[On Play] Look at the top 3 cards of your Deck and place them on top of your Deck in any order.,3,1,3000,-,BB,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-010.png?v8
-Gilreyne,UA54BT/MST-1-011,U,Blue,Character,"[Activate: Main] [If in Front Line] [Once per turn] Choose 1 <Eris> on your field; this turn, BP +1000.",4,1,4000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-011.png?v8
+Gilreyne,UA54BT/MST-1-011,U,Blue,Character,"[Activate: Main] [Front Line] [1/Turn] Choose 1 <Eris> on your field; this turn, BP +1000.",4,1,4000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-011.png?v8
 Sylphiette,UA54BT/MST-1-012,C,Blue,Character,"[On Attack] Draw 1 card, then discard 1 card from your hand.",0,1,1000,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-012.png?v8
 Sylphiette,UA54BT/MST-1-013,U,Blue,Character,[On Leave] Draw 1 card.,1,1,2000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-013.png?v8
 Sylphiette,UA54BT/MST-1-014,SR,Blue,Character,"If there are no cards on your field, reduce the Energy Cost of this card in your hand by [Blue ×2].
-[During your turn] If you have used an Event card this turn and <Rudeus> is in the same Line, this Character gains BP +1500.
+[Your Turn] If you have used an Event card this turn and <Rudeus> is in the same Line, this Character gains BP +1500.
 [On Play] Look at the top 2 cards of your Deck, place up to 1 in Discard, and place the rest on top of your Deck in any order.",2,1,1500+,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-014.png?v8
 Holy Beast,UA54BT/MST-1-015,U,Blue,Character,[Impact Null] (The Character that battled this Character loses Impact for this battle.),2,1,3000,-,B,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-015.png?v8
-Zenith,UA54BT/MST-1-016,C,Blue,Character,"[Activate: Main] [Rest this card] [Once per turn] This Character gains Generate Energy +[Blue] and ""At the end of the Main Phase, retire this Character."" this turn.",0,1,1000,-,B+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-016.png?v8
+Zenith,UA54BT/MST-1-016,C,Blue,Character,"[Activate: Main] [Rest this card] [1/Turn] This Character gains Generate Energy +[Blue] and ""At the end of the Main Phase, retire this Character."" this turn.",0,1,1000,-,B+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-016.png?v8
 Norn & Aisha,UA54BT/MST-1-017,C,Blue,Character,[On Play] Draw 1 card.,2,1,2000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-017.png?v8
 Paul,UA54BT/MST-1-018,U,Blue,Character,"[On Attack] Draw 1 card, then discard 1 card from your hand.",5,1,4000,-,B,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-018.png?v8
 Lilia,UA54BT/MST-1-019,C,Blue,Character,"[On Play] Return 1 other Character with Energy Cost 1 or less on your field to your hand. If unable to, return this Character to your hand.",1,1,1500,-,BB,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-019.png?v8
 Ruijerd,UA54BT/MST-1-020,C,Blue,Character,-,0,1,2000,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-020.png?v8
 Ruijerd,UA54BT/MST-1-021,R,Blue,Character,"[On Play] Play up to 1 Blue [<Rudeus> or <Eris> or <Ruijerd>] with Energy Cost 3 or less and AP Cost 1 from your hand to your field Rested, or Raid it.
-[Activate: Main] [Once per turn] Can only be activated if <Rudeus> and <Eris> are on your field. Set this Character to Active.",4,2,4000,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-021.png?v8
+[Activate: Main] [1/Turn] Can only be activated if <Rudeus> and <Eris> are on your field. Set this Character to Active.",4,2,4000,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-021.png?v8
 Rudeus,UA54BT/MST-1-022,C,Blue,Character,"[On Play] Draw 1 card, then discard 1 card from your hand.",0,1,1500,-,B,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-022.png?v8
 Rudeus,UA54BT/MST-1-023,C,Blue,Character,"[On Play] If this Character was played by your own effect, draw 1 card.",2,1,3000,-,B,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-023.png?v8
-Rudeus,UA54BT/MST-1-024,U,Blue,Character,"[During your turn] If <Roxy> is on your field, this Character gains BP +1000.",1,1,2000+,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-024.png?v8
+Rudeus,UA54BT/MST-1-024,U,Blue,Character,"[Your Turn] If <Roxy> is on your field, this Character gains BP +1000.",1,1,2000+,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-024.png?v8
 Rudeus,UA54BT/MST-1-025,R,Blue,Character,"[Raid] Set <Rudeus> to Active; it can move to Front Line.
 [On Play] Choose up to 1 Character on your field; this turn, BP +1000.
-[Activate: Main] [If in Front Line] [Once per turn] Choose one of the following:
+[Activate: Main] [Front Line] [1/Turn] Choose one of the following:
 • Activate this Character's [On Play].
 • Choose 1 Raided <Eris> on your field; this turn, grant it [Snipe], and place the top card of this Character's Raid stack in Discard.",4,1,4000+,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-025.png?v8
 Rudeus,UA54BT/MST-1-026,SR,Blue,Character,"This card cannot be played in the Front Line and cannot move except by your own effect.
@@ -55,12 +55,12 @@ Roxy,UA54BT/MST-1-030,R,Blue,Character,"[Activate: Main] [Rest this card] Can on
 • Draw 1 card, then discard 1 card from your hand.",3,1,3000+,-,BB,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-030.png?v8
 Roxy,UA54BT/MST-1-031,R,Blue,Character,"[Raid] Set <Roxy> to Active; it can move to Front Line.
 [Impact Null] (The Character that battled this Character loses Impact for this battle.)
-[During your turn] If you have used an Event card this turn, this Character gains [Impact (1)].
+[Your Turn] If you have used an Event card this turn, this Character gains [Impact (1)].
 [On Play] This turn, reduce the AP Cost of the next Event card with Energy Cost 3 or less used from your hand by 1.",4,1,4000,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-031.png?v8
 Roxy,UA54BT/MST-1-032,SR,Blue,Character,"[Raid] Set <Roxy> to Active; it can move to Front Line.
 [On Play] Add up to 1 card with Energy Cost 2 or less from your Discard to your hand.
-[Activate: Main] [If in Front Line] [Once per turn] Can only be activated if you have used an Event card this turn. Choose 1 Character on your field with Energy Cost 3 or less and set it to Active.
-[Activate: Main] [If in Front Line] [Once per turn] Choose 1 <Rudeus> on your field and move it to another Line.",4,1,4000,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-032.png?v8
+[Activate: Main] [Front Line] [1/Turn] Can only be activated if you have used an Event card this turn. Choose 1 Character on your field with Energy Cost 3 or less and set it to Active.
+[Activate: Main] [Front Line] [1/Turn] Choose 1 <Rudeus> on your field and move it to another Line.",4,1,4000,-,B,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-032.png?v8
 Dead End,UA54BT/MST-1-033,C,Blue,Field,"[On Play] Look at the top 3 cards of your Deck, reveal up to 1 <Rudeus> or <Eris> or <Ruijerd> and add it to your hand. Place the rest at the bottom of your Deck in any order. If a card was added to your hand, discard 1 card from your hand.
 [Activate: Main] [Rest this card] [Retire this card] Play 1 Blue Character card with Energy Cost 3 or less and AP Cost 1 from your hand to your field Rested, or Raid it.",2,1,-,-,B,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-033.png?v8
 "Please Teach Eris Magic, Nyan☆",UA54BT/MST-1-034,U,Blue,Event,Choose up to 2 of your AP cards and set them to Active.,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-034.png?v8
@@ -73,7 +73,7 @@ For every 2 Event cards in your Discard, reduce the Energy Cost of this card by 
 Choose 1 Character in the opponent's Front Line with BP 5000 or less and retire it.",5,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-036.png?v8
 Sacred Object,UA54BT/MST-1-037,U,Blue,Event,Choose up to 2 of your AP cards and set them to Active.,3,1,-,-,-,[Final],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-037.png?v8
 A Gift From My Master,UA54BT/MST-1-038,C,Blue,Event,"Choose 1 Character on your field; this turn, BP +1000. If <Roxy> is on your field, set 1 of your AP cards to Active.
-[Activate: Main] [While in Discard] Can only be activated if your <Rudeus> or <Roxy> has Raided this turn. Discard 1 card from your hand. If you do, add this card from Discard to your hand. <A Gift From My Master>'s this effect can only be activated once per turn.",2,1,-,-,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-038.png?v8
+[Activate: Main] [Outside Area] Can only be activated if your <Rudeus> or <Roxy> has Raided this turn. Discard 1 card from your hand. If you do, add this card from Discard to your hand. <A Gift From My Master>'s this effect can only be activated once per turn.",2,1,-,-,-,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-038.png?v8
 Rudeus Is Amazing!,UA54BT/MST-1-039,U,Blue,Event,"Choose one of the following:
 • Choose 1 <Eris> on your field; this turn, grant it BP +500 and [Snipe] (can attack a designated Character in the opponent's Front Line, in which case it cannot be blocked).
 • If <Eris> is on your field, play up to 1 Blue <Rudeus> with AP Cost 1 from your Discard to your field Rested, or Raid it.",3,1,-,-,-,[Special],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-039.png?v8
@@ -84,9 +84,9 @@ Elinalise,UA54BT/MST-1-042,R,Green,Character,"[Impact Null] (The Character that 
 [Activate: Main] Can only be activated if a Field on your field has been retired this turn. Set this Character to Active. <Elinalise>'s this effect can only be activated once per turn.",4,1,4000,-,G,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-042.png?v8
 Gisu,UA54BT/MST-1-043,C,Green,Character,"[On Play] Look at the top 5 cards of your Deck, reveal up to 1 Green Field card and add it to your hand. Place the rest at the bottom of your Deck in any order. If a card was added to your hand, discard 1 card from your hand.",0,1,1500,-,G,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-043.png?v8
 Sara,UA54BT/MST-1-044,C,Green,Character,"[On Play] Return 1 other Character with Energy Cost 1 or less on your field to your hand. If unable to, return this Character to your hand.",1,1,1500,-,GG,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-044.png?v8
-Zenith,UA54BT/MST-1-045,C,Green,Character,"[Activate: Main] [Rest this card] [Once per turn] This Character gains Generate Energy +[Green] and ""At the end of the Main Phase, retire this Character."" this turn.",0,1,1000,-,G+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-045.png?v8
+Zenith,UA54BT/MST-1-045,C,Green,Character,"[Activate: Main] [Rest this card] [1/Turn] This Character gains Generate Energy +[Green] and ""At the end of the Main Phase, retire this Character."" this turn.",0,1,1000,-,G+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-045.png?v8
 Talhand,UA54BT/MST-1-046,U,Green,Character,"If a Field on your field has been retired this turn, this Character's Generate Energy +[Green].
-[Activate: Main] [If in Front Line] [Once per turn] Retire 1 Field on your field. If you do, this Character gains BP +1000 this turn.",3,1,3000+,-,GG+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-046.png?v8
+[Activate: Main] [Front Line] [1/Turn] Retire 1 Field on your field. If you do, this Character gains BP +1000 this turn.",3,1,3000+,-,GG+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-046.png?v8
 Paul,UA54BT/MST-1-047,U,Green,Character,"[Step] (During your Move Phase, you can move from Front Line to Energy Line.)",2,1,3000,-,G,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-047.png?v8
 Paul,UA54BT/MST-1-048,R,Green,Character,"[On Play] You may retire 1 Field on your field. If you do, set this Character to Active.
 [On Attack] If there are 6 or more Field cards in your Discard, you may discard 1 card from your hand. If you do, set this Character to Active. <Paul>'s this effect can only be activated once per turn.",5,1,4000,-,G,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-048.png?v8
@@ -94,21 +94,21 @@ Rudeus,UA54BT/MST-1-049,SR,Green,Character,"[On Play] You may retire 1 Field on 
 Roxy,UA54BT/MST-1-050,C,Green,Character,-,0,1,1500,-,G,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-050.png?v8
 Roxy,UA54BT/MST-1-051,C,Green,Character,"[On Play] Draw 1 card, then discard 1 card from your hand.",3,1,3000,-,GG,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-051.png?v8
 Roxy,UA54BT/MST-1-052,U,Green,Character,"[On Leave] If a Field is on your field, draw 1 card.",0,1,2000,-,G,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-052.png?v8
-Roxy,UA54BT/MST-1-053,SR,Green,Character,"[During the opponent's turn] You may replace ""Character card"" written in the effect of your Green [Color Trigger] with ""Field card"".
+Roxy,UA54BT/MST-1-053,SR,Green,Character,"[Opponent's Turn] You may replace ""Character card"" written in the effect of your Green [Color] with ""Field card"".
 [On Play] Draw 1 card, then discard 1 card from your hand.
-[Activate: Main] [If in Front Line] [Once per turn] You may retire 1 Field on your field. If you do, draw 1 card.",1,1,2500,-,G,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-053.png?v8
+[Activate: Main] [Front Line] [1/Turn] You may retire 1 Field on your field. If you do, draw 1 card.",1,1,2500,-,G,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-053.png?v8
 Roxy,UA54BT/MST-1-054,SR,Green,Character,"[Raid] Set <Roxy> to Active; it can move to Front Line.
 [On Play] If there is a Field card in your Discard, choose up to 1 Character in the opponent's Front Line and Rest it. It loses all of its original effects and does not become Active until the end of the opponent's next Attack Phase.",4,1,4000,-,G,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-054.png?v8
 Ariel,UA54BT/MST-1-055,R,Green,Character,"[On Play] Look at the top 3 cards of your Deck, reveal up to 1 [Trait: Ranoa University of Magic] and add it to your hand. Place the rest at the bottom of your Deck in any order. If a card was added to your hand, discard 1 card from your hand.",1,1,2000,Ranoa University of Magic,G,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-055.png?v8
-Elinalise,UA54BT/MST-1-056,C,Green,Character,"[Activate: Main] [Rest this card] [Once per turn] Rest 1 Active Character in your Front Line. If you do, this Character's Generate Energy +[Green] this turn.",1,1,2000,Ranoa University of Magic,G+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-056.png?v8
+Elinalise,UA54BT/MST-1-056,C,Green,Character,"[Activate: Main] [Rest this card] [1/Turn] Rest 1 Active Character in your Front Line. If you do, this Character's Generate Energy +[Green] this turn.",1,1,2000,Ranoa University of Magic,G+,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-056.png?v8
 Cliff,UA54BT/MST-1-057,U,Green,Character,This Character also generates Energy while in the Front Line.,4,1,3500,Ranoa University of Magic,G,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-057.png?v8
 Zanoba & Julie,UA54BT/MST-1-058,U,Green,Character,"[Impact Null] (The Character that battled this Character loses Impact for this battle.)
-[Activate: Main] [Once per turn] Can only be activated if your Generate Energy is 7 or more and all Characters on your field are [Trait: Ranoa University of Magic]. This Character gains BP +500 until the start of your next turn.",5,1,4000+,Ranoa University of Magic,-,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-058.png?v8
+[Activate: Main] [1/Turn] Can only be activated if your Generate Energy is 7 or more and all Characters on your field are [Trait: Ranoa University of Magic]. This Character gains BP +500 until the start of your next turn.",5,1,4000+,Ranoa University of Magic,-,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-058.png?v8
 Sylphiette,UA54BT/MST-1-059,R,Green,Character,"[On Play] Choose one of the following:
 • Draw 1 card, then discard 1 card from your hand.
 • Choose up to 1 other [Trait: Ranoa University of Magic] in your Front Line and grant it ""This Character also generates Energy while in the Front Line."" this turn.",2,1,3000,Ranoa University of Magic,G,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-059.png?v8
 Sylphiette,UA54BT/MST-1-060,SR,Green,Character,"[Step] (During your Move Phase, you can move from Front Line to Energy Line.)
-[Activate: Main] [If in Front Line] [Once per turn] Draw 1 card, then discard 1 card from your hand. Choose up to 1 other [Trait: Ranoa University of Magic] in your Front Line and grant it ""This Character also generates Energy while in the Front Line."" this turn.",3,1,2500,Ranoa University of Magic,GG,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-060.png?v8
+[Activate: Main] [Front Line] [1/Turn] Draw 1 card, then discard 1 card from your hand. Choose up to 1 other [Trait: Ranoa University of Magic] in your Front Line and grant it ""This Character also generates Energy while in the Front Line."" this turn.",3,1,2500,Ranoa University of Magic,GG,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-060.png?v8
 Nanahoshi,UA54BT/MST-1-061,C,Green,Character,"[On Play] Choose up to 1 other Character on your field; this turn, BP +1000.",1,1,2000,Ranoa University of Magic,G,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-061.png?v8
 Nanahoshi,UA54BT/MST-1-062,SR,Green,Character,"[On Play] Choose one of the following:
 • You may return 1 Character other than <Nanahoshi> on your field to your hand. If you do, this turn, reduce the AP Cost of the next Character card with original Generate Energy 2 or more used from your hand by 1.
@@ -119,7 +119,7 @@ Badigadi,UA54BT/MST-1-064,C,Green,Character,"This Character enters play Active.
 Fitz,UA54BT/MST-1-065,C,Green,Character,"This card is also treated as <Sylphiette>.
 [On Play] Look at the top 2 cards of your Deck, place up to 1 [Trait: Ranoa University of Magic] in Discard. Place the rest on top of your Deck in any order.",0,1,1500,Ranoa University of Magic,G,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-065.png?v8
 Fitz,UA54BT/MST-1-066,U,Green,Character,"This card is also treated as <Sylphiette>.
-[During your turn] If your Generate Energy is 7 or more, this Character gains BP +1000.",3,1,3000+,Ranoa University of Magic,GG,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-066.png?v8
+[Your Turn] If your Generate Energy is 7 or more, this Character gains BP +1000.",3,1,3000+,Ranoa University of Magic,GG,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA54BT_MST-1-066.png?v8
 Fitz,UA54BT/MST-1-067,R,Green,Character,"This card is also treated as <Sylphiette>.
 [Raid] Set <Sylphiette> to Active; it can move to Front Line.
 [On Play] Choose up to 1 [Trait: Ranoa University of Magic] on your field with original Generate Energy 1 or more and grant it ""This Character cannot be chosen by the opponent's effects."" until the start of your next turn.
