@@ -224,9 +224,24 @@
   .overlays-hidden .detail-img-name,
   .overlays-hidden .detail-img-type,
   .overlays-hidden .detail-img-overlay,
-  .overlays-hidden .detail-img-trigger { display: none; }
-  .detail-img-overlay.rarity-sr { top: auto; max-height: 36.6318%; }
-  .detail-img-overlay.rarity-sr.has-trigger { max-height: 33.0561%; }
+  .overlays-hidden .detail-img-trigger,
+  .overlays-hidden .sr-stack { display: none; }
+  .sr-stack {
+    position: absolute;
+    bottom: 10.7270%;
+    left: 5.8333%; right: 5.8333%;
+    display: flex; flex-direction: column;
+    max-height: 39.1348%;
+  }
+  .sr-stack.has-trigger { bottom: 14.3027%; max-height: 35.5591%; }
+  .sr-stack .detail-img-type {
+    position: relative; top: auto; left: auto;
+    width: auto; align-self: flex-start; flex-shrink: 0;
+  }
+  .sr-stack .detail-img-overlay {
+    position: relative; top: auto; bottom: auto; left: auto; right: auto;
+    min-height: 0;
+  }
   .detail-img-name {
     position: absolute;
     left: 16.6667%; right: 16.6667%;
@@ -254,7 +269,6 @@
     pointer-events: none;
     border-radius: 3px; padding: 0 6px;
   }
-  .detail-img-type.rarity-sr { top: 50.1382%; }
   .detail-img-trigger {
     position: absolute;
     left: 5.8333%; right: 5.8333%;
@@ -1051,8 +1065,13 @@ function renderDetail() {
            <div class="card-img-placeholder" style="display:none;position:absolute;inset:0">🃏</div>`
         : `<div class="card-img-placeholder" style="height:100%">🃏</div>`}
       <div class="detail-img-name${c['Attributes'] && c['Attributes'] !== '-' ? ' has-attr' : ''}">${escHtml(c['Card Name'])}${c['Attributes'] && c['Attributes'] !== '-' ? `<span class="name-attr">${escHtml(c['Attributes'])}</span>` : ''}</div>
-      <div class="detail-img-type${c['Rarity'] === 'SR' ? ' rarity-sr' : ''}">${escHtml(c['Type'])}</div>
-      <div class="detail-img-overlay${c['Rarity'] === 'SR' ? ' rarity-sr' : ''}${hasTrigger ? ' has-trigger' : ''}">${colorizeOverlayEffect(c['Effect'])}</div>
+      ${c['Rarity'] === 'SR'
+        ? `<div class="sr-stack${hasTrigger ? ' has-trigger' : ''}">
+             <div class="detail-img-type">${escHtml(c['Type'])}</div>
+             <div class="detail-img-overlay">${colorizeOverlayEffect(c['Effect'])}</div>
+           </div>`
+        : `<div class="detail-img-type">${escHtml(c['Type'])}</div>
+           <div class="detail-img-overlay${hasTrigger ? ' has-trigger' : ''}">${colorizeOverlayEffect(c['Effect'])}</div>`}
       ${hasTrigger ? `<div class="detail-img-trigger">${colorizeTrigger(c['Trigger'])}</div>` : ''}
     </div>
     <div class="detail-add-row">
