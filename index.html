@@ -985,7 +985,8 @@ const KW_STYLES = [
 function preprocessEffect(rawText) {
   return rawText
     .replace(/\] \([^)]+\)/g, ']')
-    .replace(/\[Raid\] Set (<[^>]+>) to Active;[^.\n]*\./g, '[Raid] $1');
+    .replace(/\[Raid\] Set (<[^>]+>) to Active;[^.\n]*\./g, '[Raid] $1')
+    .replace(/\[Raid\] ตั้ง (<[^>]+>) เป็นแอคทีฟ[^\n]*/g, '[Raid] $1');
 }
 function colorizeLineKw(rawLine) {
   let html = escHtml(rawLine);
