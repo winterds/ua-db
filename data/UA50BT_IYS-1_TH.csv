@@ -1,11 +1,11 @@
 Card Name,Card Number,Rarity,Color,Type,Effect,Energy Cost,AP Cost,Power,Attributes,Generate Energy,Trigger,Image
 อะ-อุน,UA50BT/IYS-1-001,U,Purple,คาแรคเตอร์,[เมื่อเข้าสู่สนาม] เลือกคาแรคเตอร์อื่นที่ไม่มีลักษณะบนสนามของคุณได้ไม่เกิน 1 ใบ แล้วย้ายไปยังแนวอื่น,3,1,3000,-,PP,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-001.png?v8
-จาเก็น,UA50BT/IYS-1-002,C,Purple,คาแรคเตอร์,[Impact Cancel] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้),0,1,1500,-,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-002.png?v8
+จาเก็น,UA50BT/IYS-1-002,C,Purple,คาแรคเตอร์,[อิมแพคแคนเซิล] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้),0,1,1500,-,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-002.png?v8
 จาเก็น,UA50BT/IYS-1-003,R,Purple,คาแรคเตอร์,[เมื่อเข้าสู่สนาม] ดูการ์ด 4 ใบบนสุดของกองการ์ด แสดงการ์ดคาแรคเตอร์ที่ไม่มีลักษณะได้ไม่เกิน 1 ใบและนำขึ้นมือ วางที่เหลือไว้ใต้กองการ์ดตามใจชอบ หากนำการ์ดขึ้นมือแล้ว ให้ทิ้งการ์ด 1 ใบจากมือ,1,1,1500,-,P,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-003.png?v8
 เส็ตโชมารู,UA50BT/IYS-1-004,C,Purple,คาแรคเตอร์,-,0,1,1500,-,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-004.png?v8
 เส็ตโชมารู,UA50BT/IYS-1-005,C,Purple,คาแรคเตอร์,"หากไม่มีการ์ดบนสนามของคุณ ให้ลด Energy Cost ของการ์ดนี้ในมือลง [ม่วง ×2]
 [เมื่อเข้าสู่สนาม] ดูการ์ด 2 ใบบนสุดของกองการ์ด วางการ์ดคาแรคเตอร์สีม่วงที่ไม่มีลักษณะได้ไม่เกิน 1 ใบลง Outside Area วางที่เหลือไว้บนสุดของกองการ์ดตามใจชอบ",2,1,2000,-,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-005.png?v8
-เส็ตโชมารู,UA50BT/IYS-1-006,U,Purple,คาแรคเตอร์,"[Impact Cancel] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้)
+เส็ตโชมารู,UA50BT/IYS-1-006,U,Purple,คาแรคเตอร์,"[อิมแพคแคนเซิล] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้)
 [เทิร์นคุณ] หากคาแรคเตอร์ของคุณถูกเล่นจาก Outside Area ในเทิร์นนี้ คาแรคเตอร์นี้ได้รับ BP +1000",3,1,3000+,-,PP,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-006.png?v8
 เส็ตโชมารู,UA50BT/IYS-1-007,R,Purple,คาแรคเตอร์,[เมื่อโจมตี] หากคาแรคเตอร์ของคุณถูกเล่นจาก Outside Area ในเทิร์นนี้ จั่วได้ไม่เกิน 1 ใบ,4,1,4000,-,P,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-007.png?v8
 เส็ตโชมารู,UA50BT/IYS-1-008,R,Purple,คาแรคเตอร์,"[เทิร์นคุณ] หากคาแรคเตอร์ของคุณถูกเล่นจาก Outside Area ในเทิร์นนี้ คาแรคเตอร์นี้ได้รับ [ดาเมจ (2)]
@@ -32,7 +32,7 @@ Card Name,Card Number,Rarity,Color,Type,Effect,Energy Cost,AP Cost,Power,Attribu
 โกชินกิ,UA50BT/IYS-1-023,C,Purple,คาแรคเตอร์,[เทิร์นคุณ] หากคาแรคเตอร์บนสนามถูกถอดออกในเทิร์นนี้ คาแรคเตอร์นี้ได้รับ BP +1000,2,1,3000+,กลุ่มนาราคุ,P,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-023.png?v8
 โคฮาคุ,UA50BT/IYS-1-024,U,Purple,คาแรคเตอร์,[เมื่อโดนรีไทร์] เพิ่มการ์ดนี้เข้ามือ,1,1,2000,กลุ่มนาราคุ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-024.png?v8
 นาราคุ,UA50BT/IYS-1-025,U,Purple,คาแรคเตอร์,[เมื่อเข้าสู่สนาม] เลือกคาแรคเตอร์ใน Front Line ของฝ่ายตรงข้ามได้ไม่เกิน 1 ใบ ในเทิร์นนี้ BP -1000,2,1,2500,กลุ่มนาราคุ,P,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-025.png?v8
-นาราคุ,UA50BT/IYS-1-026,R,Purple,คาแรคเตอร์,"หากมีการ์ดคว่ำอยู่ใต้คาแรคเตอร์นี้ คาแรคเตอร์นี้ได้รับ [Impact Cancel]
+นาราคุ,UA50BT/IYS-1-026,R,Purple,คาแรคเตอร์,"หากมีการ์ดคว่ำอยู่ใต้คาแรคเตอร์นี้ คาแรคเตอร์นี้ได้รับ [อิมแพคแคนเซิล]
 [เทิร์นคุณ] หากมีการ์ดคว่ำอยู่ใต้คาแรคเตอร์นี้ คาแรคเตอร์นี้ได้รับ BP +1000",2,1,3000+,กลุ่มนาราคุ,P,[Color],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-026.png?v8
 นาราคุ,UA50BT/IYS-1-027,R,Purple,คาแรคเตอร์,[สั่งใช้: เมน] [1/เทิร์น] เลือกคาแรคเตอร์ใน Front Line ของฝ่ายตรงข้ามได้ไม่เกิน 1 ใบ ในเทิร์นนี้ BP -1000 ตั้งคาแรคเตอร์นี้เป็นแอคทีฟ และคาแรคเตอร์นี้ได้รับ [อิมแพค (1)] ในเทิร์นนี้ ถอด [ลักษณะ: กลุ่มนาราคุ] 1 ใบบนสนามออก,4,1,4000,กลุ่มนาราคุ,P,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-027.png?v8
 นาราคุ,UA50BT/IYS-1-028,SR,Purple,คาแรคเตอร์,"[Raid] ตั้ง <นาราคุ> เป็นแอคทีฟ สามารถย้ายไป Front Line ได้
@@ -70,11 +70,11 @@ Card Name,Card Number,Rarity,Color,Type,Effect,Energy Cost,AP Cost,Power,Attribu
 [สั่งใช้: เมน] [1/เทิร์น] สามารถเปิดใช้งานได้เฉพาะหากคาแรคเตอร์นี้เปลี่ยนจากแอคทีฟเป็นเรสโดยเอฟเฟกต์ของคุณในเทิร์นนี้ ตั้งคาแรคเตอร์นี้เป็นแอคทีฟ ในเทิร์นนี้ได้รับ 'BP +1000 และ [อิมแพค (1)]' หากคาแรคเตอร์นี้ถูกเล่นในเทิร์นนี้ อาจเปลี่ยนเป็น '[Double Attack]'",4,1,4000+,-,R,[Raid],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-046.png?v8
 คาเอะเดะ,UA50BT/IYS-1-047,C,Red,คาแรคเตอร์,-,1,1,2500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-047.png?v8
 คิเคียว,UA50BT/IYS-1-048,U,Red,คาแรคเตอร์,[เมื่อเข้าสู่สนาม] เลือกคาแรคเตอร์อื่นบนสนามได้ไม่เกิน 1 ใบ ในเทิร์นนี้ BP +1000,0,1,500,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-048.png?v8
-คิเคียว,UA50BT/IYS-1-049,SR,Red,คาแรคเตอร์,"[Impact Cancel] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้)
+คิเคียว,UA50BT/IYS-1-049,SR,Red,คาแรคเตอร์,"[อิมแพคแคนเซิล] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้)
 [สั่งใช้: เมน] [1/เทิร์น] สามารถเปิดใช้งานได้เฉพาะในเทิร์นที่คาแรคเตอร์นี้ถูกเล่น เรส <อินุยาฉะ> ที่แอคทีฟ 1 ใบใน Front Line หากทำได้ ให้เลือกหนึ่งต่อไปนี้:
 • ตั้งคาแรคเตอร์นี้เป็นแอคทีฟ ในเทิร์นนี้ BP +1000
 • เลือกคาแรคเตอร์ใน Front Line ของฝ่ายตรงข้ามได้ไม่เกิน 1 ใบและเรสมัน",3,1,3000+,-,RR,[Get],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-049.png?v8
-คิราระ,UA50BT/IYS-1-050,C,Red,คาแรคเตอร์,[Impact Cancel] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้),0,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-050.png?v8
+คิราระ,UA50BT/IYS-1-050,C,Red,คาแรคเตอร์,[อิมแพคแคนเซิล] (คาแรคเตอร์ที่ต่อสู้กับคาแรคเตอร์นี้จะสูญเสียอิมแพคในการต่อสู้ครั้งนี้),0,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-050.png?v8
 คิราระ,UA50BT/IYS-1-051,R,Red,คาแรคเตอร์,[เทิร์นคุณ] หาก <ซังโกะ> ของคุณโจมตีในเทิร์นนี้ คาแรคเตอร์นี้ได้รับ BP +1000,2,1,3000+,-,R,[Active],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-051.png?v8
 กินตะ & ฮักคาคุ,UA50BT/IYS-1-052,C,Red,คาแรคเตอร์,[Step] (ใน Move Phase ของคุณ คุณสามารถย้ายจาก Front Line ไปยัง Energy Line ได้),2,1,3000,-,R,[Draw],https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-052.png?v8
 โคงะ,UA50BT/IYS-1-053,C,Red,คาแรคเตอร์,[Step] (ใน Move Phase ของคุณ คุณสามารถย้ายจาก Front Line ไปยัง Energy Line ได้),0,1,2000,-,R,-,https://www.unionarena-tcg.com/jp/images/cardlist/card/UA50BT_IYS-1-053.png?v8
