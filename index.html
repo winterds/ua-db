@@ -969,6 +969,18 @@ const KW_STYLES = [
   { re: /\[Color\]/g,           cls: 'kw-trigger' },
   { re: /\[Draw\]/g,            cls: 'kw-trigger' },
   { re: /\[Get\]/g,             cls: 'kw-trigger' },
+  // TH equivalents
+  { re: /\[สั่งใช้: เมน\]/g,    cls: 'kw-timing' },
+  { re: /\[เมื่อเข้าสู่สนาม\]/g, cls: 'kw-timing' },
+  { re: /\[เมื่อโจมตี\]/g,       cls: 'kw-timing' },
+  { re: /\[เมื่อโดนรีไทร์\]/g,   cls: 'kw-timing' },
+  { re: /\[1\/เทิร์น\]/g,        cls: 'kw-freq' },
+  { re: /\[เทิร์นคุณ\]/g,        cls: 'kw-timing' },
+  { re: /\[เรสการ์ดใบนี้\]/g,    cls: 'kw-action' },
+  { re: /\[รีไทล์การ์ดใบนี้\]/g, cls: 'kw-action' },
+  { re: /\[ดาเมจ \(2\)\]/g,      cls: 'kw-mechanic' },
+  { re: /\[อิมแพค \(1\)\]/g,     cls: 'kw-mechanic' },
+  { re: /\[อิมแพค\]/g,           cls: 'kw-mechanic' },
 ];
 function preprocessEffect(rawText) {
   return rawText

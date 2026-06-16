@@ -2,7 +2,7 @@
   "sets": [
     {
       "id": "UA50BT_IYS-1",
-      "name": "Inuyasha",
+      "name": "UA50BT: Inuyasha",
       "files": {
         "jp": "data/UA50BT_IYS-1_JP.csv",
         "en": "data/UA50BT_IYS-1_EN.csv",
@@ -11,18 +11,20 @@
     },
     {
       "id": "UA54BT_MST-1",
-      "name": "Mushoku Tensei",
+      "name": "UA54BT: Mushoku Tensei",
       "files": {
         "jp": "data/UA54BT_MST-1_JP.csv",
-        "en": "data/UA54BT_MST-1_EN.csv"
+        "en": "data/UA54BT_MST-1_EN.csv",
+        "th": "data/UA54BT_MST-1_TH.csv"
       }
     },
     {
       "id": "EX14BT_MCR-2",
-      "name": "Macross",
+      "name": "EX14BT: Macross",
       "files": {
         "jp": "data/EX14BT_MCR-2_JP.csv",
-        "en": "data/EX14BT_MCR-2_EN.csv"
+        "en": "data/EX14BT_MCR-2_EN.csv",
+        "th": "data/EX14BT_MCR-2_TH.csv"
       }
     }
   ]
