@@ -960,6 +960,7 @@ const KW_STYLES = [
   { re: /\[Activate: Main\]/g,  cls: 'kw-timing' },
   { re: /\[On Play\]/g,         cls: 'kw-timing' },
   { re: /\[On Attack\]/g,       cls: 'kw-timing' },
+  { re: /\[Attacking\]/g,       cls: 'kw-timing' },
   { re: /\[On Leave\]/g,        cls: 'kw-timing' },
   { re: /\[1\/Turn\]/g,         cls: 'kw-freq' },
   { re: /\[Your Turn\]/g,       cls: 'kw-timing' },
@@ -992,9 +993,9 @@ const KW_STYLES = [
   { re: /\[เมื่อโจมตี\]/g,       cls: 'kw-timing' },
   { re: /\[เมื่อโดนรีไทร์\]/g,   cls: 'kw-timing' },
   { re: /\[1\/เทิร์น\]/g,        cls: 'kw-freq' },
-  { re: /\[เทิร์นคุณ\]/g,        cls: 'kw-timing' },
-  { re: /\[เรสต์การ์ดใบนี้\]/g,    cls: 'kw-action' },
-  { re: /\[รีไทล์การ์ดใบนี้\]/g, cls: 'kw-action' },
+  { re: /\[เทิร์นของคุณ\]/g,      cls: 'kw-timing' },
+  { re: /\[เรสการ์ดใบนี้\]/g,      cls: 'kw-action' },
+  { re: /\[รีไทร์การ์ดใบนี้\]/g,  cls: 'kw-action' },
   { re: /\[ทิ้งการ์ด 1 ใบ\]/g,   cls: 'kw-action' },
 ];
 function preprocessEffect(rawText) {
